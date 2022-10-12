@@ -13,6 +13,12 @@ WatCarPool is a Web application that provides an affordable carpooling platform 
 - [Kevin Jin](https://github.com/kevin21jin)
 - [Kevin Ke](https://github.com/Fakevin0613)
 
+## Technologies Used
+
+- **Database:** MySQL
+- **Backend:** Python, Flask
+- **Frontend:** JavaScript, React
+
 ## Project Setup
 
 
