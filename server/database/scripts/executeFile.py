@@ -2,19 +2,8 @@
 from importlib.resources import path
 import mysql.connector
 from sqlite3 import OperationalError, dbapi2
-import sqlalchemy
-
-
-# mydb = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     passwd="12345678",
-# )
-
-# my_cursor = mydb.cursor()
 
 def executeScriptsFromFile(filename):
-    # db = sqlalchemy.create_engine("mysql://root:12345678@localhost/WCP_DB")
 
     mydb = mysql.connector.connect(
         host="localhost",
