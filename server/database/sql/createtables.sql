@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Passenger
 CREATE TABLE IF NOT EXISTS Driver
 (
     userID INT(11) NOT NULL,
-    rating DECIMAL(1,2),
+    rating DECIMAL(3,2),
     FOREIGN KEY (userID) REFERENCES User(userID),
     PRIMARY KEY (userID)
 );
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Travelled
 (
     tripID INT(11) NOT NULL,
     passengerID INT(11) NOT NULL,
-    rating DECIMAL(1,1),
+    rating DECIMAL(2,1),
     FOREIGN KEY (tripID) REFERENCES Trip(tripID),
     FOREIGN KEY (passengerID) REFERENCES Passenger(userID), 
     PRIMARY KEY (tripID, passengerID)

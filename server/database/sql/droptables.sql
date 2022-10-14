@@ -1,0 +1,6 @@
+DROP TABLE User;
+DROP TABLE Passenger;
+DROP TABLE Driver;
+DROP TABLE Vehicle;
+DROP TABLE Trip;
+DROP TABLE Travelled;
