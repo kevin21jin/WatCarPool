@@ -20,7 +20,26 @@ def execute_login(username, password):
     # result = my_cursor.execute(some sql)
     return result
 
-def execute_getTrips(userID):
+# drive functions
+
+def execute_driverGetOwnTrips(userID):
+    # TO DO
+    # result = my_cursor.execute(some sql)
+    return result
+
+def execute_driverGetOtherTrips(userID):
+    # TO DO
+    # result = my_cursor.execute(some sql)
+    return result
+
+def execute_driverCreateTrip(userID):
+    # TO DO
+    # result = my_cursor.execute(some sql)
+    return result
+
+# passenger functions
+
+def execute_passengerGetTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
     return result
