@@ -19,3 +19,8 @@ def execute_login(username, password):
     # TO DO
     # result = my_cursor.execute(some sql)
     return result
+
+def execute_getTrips(userID):
+    # TO DO
+    # result = my_cursor.execute(some sql)
+    return result
