@@ -59,7 +59,7 @@ def execute_register(username, password, email, phone, isDriver):
         return ValidationErr('ERROR: Account username can not be longer than 25 characters')
     
     exitUser = find_user_by_username(username)
-    print(exitUser.userId)
+
     if exitUser != None: return ValidationErr('ERROR: Account with associated username already exists')
 
     exitUser = find_user_by_email(email)
@@ -76,12 +76,20 @@ def execute_register(username, password, email, phone, isDriver):
 
     return "Success"
     
-# execute_register('BigBruce', '12345678', 'bruce@gmail.com', '1231231234', False)
 
-# def execute_login(username, password):
-#     # TO DO
-#     # result = my_cursor.execute(some sql)
-#     return 0
+def execute_login(username, password):
+    
+    if username == None: return ValidationErr('ERROR: Username cannot be empty')
+    if password == None: return ValidationErr('ERROR: Password cannot be empty')
+
+    currentUser = find_user_by_username(username)
+    if currentUser == None: return ValidationErr('ERROR: Account with associated username does not already exist')
+
+    if not check_password_hash(currentUser.hashed_password, password):
+        return ValidationErr('ERROR: Authentification failed')
+    
+    return "Success: "
+
 
 # def execute_getTrips(userID):
 #     # TO DO
