@@ -1,26 +1,19 @@
 import mysql.connector
-from sqlite3 import OperationalError
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="12345678",
-    database="WCP_DB",
-)
-cursor = db.cursor()
-
-def createUser():
+def createUser(db):
+    cursor = db.cursor()
     path = f'./database/data/user.txt'
     fd = open(path, 'r')
     for line in fd:
         print(line)
         data = line.split(',')
-        command = 'INSERT INTO User (userID, username, password, email, phone, type, joinedAt) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+        command = 'INSERT INTO User (userID, username, password, email, phone, isDriver, joinedAt) VALUES (%s, %s, %s, %s, %s, %s, %s)'
         cursor.execute(command, data)
     fd.close()
     db.commit()
 
-def createPassenger():
+def createPassenger(db):
+    cursor = db.cursor()
     path = f'./database/data/passenger.txt'
     fd = open(path, 'r')
     for line in fd:
@@ -31,7 +24,8 @@ def createPassenger():
     fd.close()
     db.commit()
 
-def createDriver():
+def createDriver(db):
+    cursor = db.cursor()
     path = f'./database/data/driver.txt'
     fd = open(path, 'r')
     for line in fd:
@@ -42,7 +36,8 @@ def createDriver():
     fd.close()
     db.commit()
 
-def createVehicle():
+def createVehicle(db):
+    cursor = db.cursor()
     path = f'./database/data/vehicle.txt'
     fd = open(path, 'r')
     for line in fd:
@@ -53,7 +48,8 @@ def createVehicle():
     fd.close()
     db.commit() 
 
-def createTrip():
+def createTrip(db):
+    cursor = db.cursor()
     path = f'./database/data/trip.txt'
     fd = open(path, 'r')
     for line in fd:
@@ -64,7 +60,8 @@ def createTrip():
     fd.close()
     db.commit() 
 
-def createTravelled():
+def createTravelled(db):
+    cursor = db.cursor()
     path = f'./database/data/travelled.txt'
     fd = open(path, 'r')
     for line in fd:
@@ -76,7 +73,13 @@ def createTravelled():
     db.commit() 
  
 def populateTables():
-    createUser()
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        passwd="12345678",
+        database="WCP_DB",
+        )
+    createUser(db)
     # createPassenger()
     # createDriver()
     # createVehicle()

@@ -1,13 +1,20 @@
 import React from 'react'
-import { Card, Typography} from '@mui/material'
+import {Card, Button} from 'react-bootstrap'
 
 const PassengerTrip = ({trip}) => {
   return (
     <>
-        <Card>
-            <Typography variant="h5" component="div">
-                {trip.from}
-            </Typography>
+        <Card style={{ width: '35rem'}} className="rounded">
+            <Card.Body>
+              <Card.Title style={{color: "#2DA8D8FF"}}>{trip.from} to {trip.to}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Time: {trip.dapartTime}</Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">Model: {trip.model}</Card.Subtitle>
+              <Card.Text>
+              {trip.description}
+              </Card.Text>
+              <Button variant="primary" className="rounded">Join</Button>
+            </Card.Body>
         </Card>
     </>
   )
