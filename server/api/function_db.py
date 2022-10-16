@@ -86,7 +86,7 @@ def execute_login(username, password):
     if currentUser == None: return ValidationErr('ERROR: Account with associated username does not already exist')
 
     if not check_password_hash(currentUser.hashed_password, password):
-        return ValidationErr('ERROR: Authentification failed')
+        return ValidationErr('ERROR: Authentication failed')
     
     return "Success: "
 
