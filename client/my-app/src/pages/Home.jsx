@@ -1,5 +1,6 @@
 import React from 'react'
 import {Row, Col} from 'react-bootstrap'
+
 import fakeTrips from '../fakeTrips'
 import PassengerTrip from '../components/PassengerTrip'
 
