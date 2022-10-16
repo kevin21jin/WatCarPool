@@ -37,7 +37,6 @@ export const Login = () => {
             value={user}
             autoComplete="off"
             onChange={(e) => setUser(e.target.value)}>
-
           </Form.Control>
         </Form.Group>
 
@@ -57,8 +56,9 @@ export const Login = () => {
         </Form.Group>
         
         <br />
+        <center>
         <Button type='submit' variant='primary' onClick={handleSubmit}> Login </Button><br />
-
+        </center>
         <br />
         <p> Need a account?<br />
           <span className="line">

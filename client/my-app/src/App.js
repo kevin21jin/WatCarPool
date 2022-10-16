@@ -9,14 +9,11 @@ function App() {
     return (
         <BrowserRouter>
         
-        
-        <Container>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-        </Container>
         </BrowserRouter>
     );
   }
