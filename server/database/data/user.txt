@@ -1,0 +1,4 @@
+0,Kevin Jin,12345678,kevin@gmail.com,1234567890,passenger,2022-10-14
+1,Diana Shi,dianashi,diana@outlook.com,2222222222,passenger,2022-10-07
+2,Bruce Jin,loveislove,brucejin@gmail.com,3333333333,passenger,2022-10-10
+3,Kevin Ke,00000000,kevin@uwaterloo.ca,4444444444,passenger,2021-09-03

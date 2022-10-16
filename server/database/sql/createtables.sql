@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS User
     password VARCHAR(255) NOT NULL,
     email VARCHAR(60) NOT NULL,
     phone VARCHAR(60) NOT NULL,
-    type VARCHAR(100) NOT NULL,
-    joinedAt DATE NOT NULL,
+    isDriver BOOLEAN NOT NULL,
+    joinedAt DATETIME NOT NULL,
     PRIMARY KEY (userID)
 );
 
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS Trip
     origin VARCHAR(25) NOT NULL,
     destination VARCHAR(25) NOT NULL,
     departTime DATETIME NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
     desciption VARCHAR(200),
     FOREIGN KEY (driverID) REFERENCES Driver(userID),
     FOREIGN KEY (vehicleID) REFERENCES Vehicle(vehicleID),
