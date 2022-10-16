@@ -1,5 +1,6 @@
 import mysql.connector
 from database.executeSQL import executeScriptsFromFile
+from database.populateTables import populateTables
 
 db = mysql.connector.connect(
     host="localhost",
@@ -17,5 +18,4 @@ def createDB():
 
 createDB()
 executeScriptsFromFile('createtables')
-# executeScriptsFromFile('populatetables')
-#executeScriptsFromFile('droptables')
+populateTables()
