@@ -34,6 +34,16 @@ def find_user_by_username(username):
     existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
     return existingUser
 
+def find_user_by_email(email):
+    sql_command = "SELECT * FROM User WHERE email = %s"
+    val = (email,)
+    my_cursor.execute(sql_command, val)
+    get_account = my_cursor.fetchall()
+    if len(get_account) == 0: return None
+    account = get_account[0]
+    existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
+    return existingUser
+
 
 def execute_register(username, password, email, phone, isDriver):
 
@@ -48,6 +58,9 @@ def execute_register(username, password, email, phone, isDriver):
     
     exitUser = find_user_by_username(username)
     if exitUser != None: ValidationErr('ERROR: Account with associated username already exists')
+
+    exitUser = find_user_by_email(email)
+    if exitUser != None: ValidationErr('ERROR: Account with associated email already exists')
 
     try:
         sql_command = "INSERT INTO User (username, password, email, phone, isDriver, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"

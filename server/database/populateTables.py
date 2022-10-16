@@ -7,7 +7,7 @@ def createUser(db):
     for line in fd:
         print(line)
         data = line.split(',')
-        command = 'INSERT INTO User (userID, username, password, email, phone, type, joinedAt) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+        command = 'INSERT INTO User (userID, username, password, email, phone, isDriver, joinedAt) VALUES (%s, %s, %s, %s, %s, %s, %s)'
         cursor.execute(command, data)
     fd.close()
     db.commit()
