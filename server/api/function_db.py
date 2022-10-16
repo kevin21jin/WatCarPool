@@ -34,20 +34,36 @@ def find_user_by_username(username):
     existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
     return existingUser
 
+def find_user_by_email(email):
+    sql_command = "SELECT * FROM User WHERE email = %s"
+    val = (email,)
+    my_cursor.execute(sql_command, val)
+    get_account = my_cursor.fetchall()
+    if len(get_account) == 0: return None
+    account = get_account[0]
+    existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
+    return existingUser
+
+# print(find_user_by_username("BigBruce").username)
+
 
 def execute_register(username, password, email, phone, isDriver):
 
-    if username == None: ValidationErr('ERROR: Username cannot be empty')
-    if password == None: ValidationErr('ERROR: Password cannot be empty')
-    if email == None: ValidationErr('ERROR: Email cannot be empty')
-    if phone == None: ValidationErr('ERROR: Phone cannot be empty')
-    if isDriver == None: ValidationErr('ERROR: Account type cannot be empty')
+    if username == None: return ValidationErr('ERROR: Username cannot be empty')
+    if password == None: return ValidationErr('ERROR: Password cannot be empty')
+    if email == None: return ValidationErr('ERROR: Email cannot be empty')
+    if phone == None: return ValidationErr('ERROR: Phone cannot be empty')
+    if isDriver == None: return ValidationErr('ERROR: Account type cannot be empty')
 
     if len(username) > 25:
         return ValidationErr('ERROR: Account username can not be longer than 25 characters')
     
     exitUser = find_user_by_username(username)
-    if exitUser != None: ValidationErr('ERROR: Account with associated username already exists')
+    print(exitUser.userId)
+    if exitUser != None: return ValidationErr('ERROR: Account with associated username already exists')
+
+    exitUser = find_user_by_email(email)
+    if exitUser != None: return ValidationErr('ERROR: Account with associated email already exists')
 
     try:
         sql_command = "INSERT INTO User (username, password, email, phone, isDriver, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -60,7 +76,7 @@ def execute_register(username, password, email, phone, isDriver):
 
     return "Success"
     
-
+# execute_register('BigBruce', '12345678', 'bruce@gmail.com', '1231231234', False)
 
 # def execute_login(username, password):
 #     # TO DO
@@ -76,21 +92,21 @@ def execute_register(username, password, email, phone, isDriver):
 def execute_driverGetOwnTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
-    return result
+    return 0
 
 def execute_driverGetOtherTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
-    return result
+    return 0
 
 def execute_driverCreateTrip(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
-    return result
+    return 0
 
 # passenger functions
 
 def execute_passengerGetTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
-    return result
+    return 0
