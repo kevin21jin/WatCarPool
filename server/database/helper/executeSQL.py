@@ -1,7 +1,7 @@
 import mysql.connector
 from sqlite3 import OperationalError
 
-def executeScriptsFromFile(filename):
+def executeSQLFromFile(filename):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -9,7 +9,7 @@ def executeScriptsFromFile(filename):
         database="WCP_DB",
     )
     cursor = db.cursor()
-    path = f'./database/sql/{filename}.sql'
+    path = f'sql/{filename}.sql'
     fd = open(path, 'r')
     sqlFile = fd.read()
     fd.close()

@@ -1,6 +1,6 @@
 import mysql.connector
-from database.executeSQL import executeScriptsFromFile
-from database.populateTables import populateTables
+from helper.executeSQL import executeSQLFromFile
+from helper.populateTables import populateTables
 
 db = mysql.connector.connect(
     host="localhost",
@@ -17,5 +17,4 @@ def createDB():
     cursor.execute("CREATE DATABASE WCP_DB")
 
 createDB()
-executeScriptsFromFile('createtables')
-populateTables()
+executeSQLFromFile('createtables')

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Driver
 
 CREATE TABLE IF NOT EXISTS Vehicle
 (
-    vehicleID INT(11) NOT NULL,
+    vehicleID INT(11) NOT NULL AUTO_INCREMENT,
     driverID INT(11) NOT NULL,
     model VARCHAR(100) NOT NULL,
     capacity INT(2) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS Vehicle
 
 CREATE TABLE IF NOT EXISTS Trip
 (
-    tripID INT(11) NOT NULL,
+    tripID INT(11) NOT NULL AUTO_INCREMENT,
     driverID INT(11) NOT NULL,
     vehicleID INT(11) NOT NULL, 
     origin VARCHAR(25) NOT NULL,
@@ -58,4 +58,4 @@ CREATE TABLE IF NOT EXISTS Travelled
     FOREIGN KEY (tripID) REFERENCES Trip(tripID),
     FOREIGN KEY (passengerID) REFERENCES Passenger(userID), 
     PRIMARY KEY (tripID, passengerID)
-)
+);

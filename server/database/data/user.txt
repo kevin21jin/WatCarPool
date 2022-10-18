@@ -1,4 +1,5 @@
-0,Kevin Jin,12345678,kevin@gmail.com,1234567890,passenger,2022-10-14
-1,Diana Shi,dianashi,diana@outlook.com,2222222222,passenger,2022-10-07
-2,Bruce Jin,loveislove,brucejin@gmail.com,3333333333,passenger,2022-10-10
-3,Kevin Ke,00000000,kevin@uwaterloo.ca,4444444444,passenger,2021-09-03
+1,BigBruce,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,bruce@gmail.com,1231231234,0,2022-10-15
+2,PeterLoo,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,loo@uwaterloo.ca,1234567890,1,2022-10-15
+3,Kevin,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,kevin@outlook.com,1234561234,0,2022-10-15
+4,KevinJ,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,kk@hotmail.com,1112223333,1,2022-10-17
+5,Toxi,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,ds@gmail.com,4445556666,0,2022-10-17
