@@ -1,6 +1,4 @@
-from dataclasses import dataclass
 import mysql.connector
-import os
 
 def populateTables():
     db = mysql.connector.connect(
@@ -9,14 +7,13 @@ def populateTables():
         passwd="12345678",
         database="WCP_DB",
     )
-    datafiles = os.listdir('data')
-    for filename in datafiles:
-        if filename.endswith('.txt'): populateTableByFilename(db, filename)
+    tablenames = ['user', 'passenger', 'driver', 'vehicle', 'trip', 'travelled']
+    for tablename in tablenames:
+        populateTableByFilename(db, tablename)
 
-def populateTableByFilename(db, filename):
+def populateTableByFilename(db, tablename):
     cursor = db.cursor()
-    path = f'data/{filename}'
-    tablename = filename[:-4]
+    path = f'data/{tablename}.txt'
     fd = open(path, 'r')
     for line in fd:
         data = line.split(',')

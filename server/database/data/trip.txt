@@ -1,0 +1,6 @@
+1,2,1,Waterloo,Oakville,2022-10-19 15:00,35,Carpool from Waterloo to Oakville
+2,4,2,Missisauga,Waterloo,2022-10-19 16:00,30,Carpool from Missisauga to Waterloo
+3,4,3,Waterloo,Toronto,2022-10-20 11:00,45,Carpool from Waterloo to Toronto
+4,2,1,Oakville,Toronto,2022-10-21 14:30,25,Carpool from Oakville to Toronto
+5,4,3,Toronto,Hamilton,2022-10-21 19:00,30,Carpool from Toronto to Hamilton
+6,4,2,Ottawa,Missisauga,2022-10-23 9:30,60,Carpool from Ottawa to Missisauga

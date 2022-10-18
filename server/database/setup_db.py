@@ -1,6 +1,5 @@
 import mysql.connector
 from helper.executeSQL import executeSQLFromFile
-from helper.populateTables import populateTables
 
 db = mysql.connector.connect(
     host="localhost",
