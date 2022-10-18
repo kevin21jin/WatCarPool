@@ -115,4 +115,4 @@ Start the application:
 npm start
 ```
 
-You can access the application at [localhost:3000](http://localhost:3000/)
+Access and play with the application: [localhost:3000](http://localhost:3000/)
