@@ -21,23 +21,48 @@ WatCarPool is a Web application that provides an affordable carpooling platform 
 
 ## Project Setup
 
-- install mySQL to Mac: https://dev.mysql.com/downloads/mysql/, and **please set your root password as 12345678**
-- (optional) if you want to visualize our database, download mySQL: https://dev.mysql.com/downloads/workbench/
-- clone this project to your local machine
-- install the require dependency by running this command under project root: 
+### Install MySQL
+
+Install MySQL on Mac: https://dev.mysql.com/downloads/mysql/
+
+(Optional) If you want to visualize our database, please download MySQL Workbench: https://dev.mysql.com/downloads/workbench/
+
+### Clone and Configure
+
+Clone the repository to your local machine:
+```
+git clone https://github.com/Fakevin0613/WatCarPool.git
+```
+Navigate into the root directory:
+
+```
+cd WatCarPool
+```
+
+Change the fields in `mysqlConfig.json` to your own MySQL configuration:
+
+```json
+{
+    "host": "localhost",
+    "user": "root",
+    "password": "12345678"
+}
+````
+
+Install the required dependency by running the following command:
 ```
 bash setup.sh
 ```
 
 
-## Import sample database
-- run the following command under project root:
+### Setup/Update Database
+Create the database (if it does not exist) and import/update sample data into the database by running the following command:
 ```
 bash importSample.sh
 ```
 
-## Drop sample database
-- run the following command under project root:
+### Drop Database
+Clean up the database by running the following command:
 ```
 bash cleanup.sh
 ```
