@@ -1,10 +1,13 @@
 import mysql.connector
 from helper.executeSQL import executeSQLFromFile
+import json
 
+path = open('../../mysqlConfig.json')
+config = json.load(path)
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="12345678",
+    host=config['host'],
+    user=config['user'],
+    password=config['password'],
 )
 
 def createDB():

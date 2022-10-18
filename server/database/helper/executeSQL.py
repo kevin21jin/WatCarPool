@@ -1,11 +1,14 @@
 import mysql.connector
 from sqlite3 import OperationalError
+import json
 
 def executeSQLFromFile(filename):
+    path = open('../../mysqlConfig.json')
+    config = json.load(path)
     db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="12345678",
+        host=config['host'],
+        user=config['user'],
+        password=config['password'],
         database="WCP_DB",
     )
     cursor = db.cursor()
