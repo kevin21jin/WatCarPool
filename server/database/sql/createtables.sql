@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS User
     password VARCHAR(255) NOT NULL,
     email VARCHAR(60) NOT NULL,
     phone VARCHAR(60) NOT NULL,
-    isDriver BOOLEAN NOT NULL,
+    type VARCHAR(9) NOT NULL,
     joinedAt DATETIME NOT NULL,
     PRIMARY KEY (userID)
 );

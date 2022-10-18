@@ -1,5 +1,5 @@
-1,BigBruce,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,bruce@gmail.com,1231231234,0,2022-10-15
-2,PeterLoo,pbkdf2:sha256:260000$in2BEdUX0uCvHOB4$1a7efe85ae1341dbcf37832c08e0b5fd55245e790dabead1e37ee8f5be267a26,loo@uwaterloo.ca,1234567890,1,2022-10-15
-3,Kevin,pbkdf2:sha256:260000$RlgysG5lJCs9BPQd$b9b8409eb976aa1b4f3dec06d9ec5b2ac0b1a316ea24925adf12ac31a2b62774,kevin@outlook.com,1234561234,0,2022-10-15
-4,KevinJ,pbkdf2:sha256:260000$sS5QjvfOnV8v89yw$b828d2b256906fa7020db828bbe75c6e85a0548cb8a3681d82d36c605cdb4583,kk@hotmail.com,1112223333,1,2022-10-17
-5,Toxi,pbkdf2:sha256:260000$DS1ZXCYdF3t3jwtd$f129741161df753cd5de48a7f3d958066aa7a7d4f34baa37f2abf81e67abbfb7,ds@gmail.com,4445556666,0,2022-10-17
+1,BigBruce,pbkdf2:sha256:260000$4FDKOv9fIptolnu0$7fada41af6a3e8240cafb2122fd7de61b86695b2f934f9d04db4ee53a62e99c4,bruce@gmail.com,1231231234,passenger,2022-10-15
+2,PeterLoo,pbkdf2:sha256:260000$in2BEdUX0uCvHOB4$1a7efe85ae1341dbcf37832c08e0b5fd55245e790dabead1e37ee8f5be267a26,loo@uwaterloo.ca,1234567890,driver,2022-10-15
+3,Kevin,pbkdf2:sha256:260000$RlgysG5lJCs9BPQd$b9b8409eb976aa1b4f3dec06d9ec5b2ac0b1a316ea24925adf12ac31a2b62774,kevin@outlook.com,1234561234,passenger,2022-10-15
+4,KevinJ,pbkdf2:sha256:260000$sS5QjvfOnV8v89yw$b828d2b256906fa7020db828bbe75c6e85a0548cb8a3681d82d36c605cdb4583,kk@hotmail.com,1112223333,driver,2022-10-17
+5,Toxi,pbkdf2:sha256:260000$DS1ZXCYdF3t3jwtd$f129741161df753cd5de48a7f3d958066aa7a7d4f34baa37f2abf81e67abbfb7,ds@gmail.com,4445556666,passenger,2022-10-17
