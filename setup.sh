@@ -2,8 +2,8 @@
 (
     set -e
     echo "Welcome to WatCarPool:"
-    echo "Let me fetch the latest git repo"
-    git fetch
+    echo "Let me pull the latest git repo"
+    git pull
 
     echo "Let me setup the frontend server:"
     cd client/my-app
