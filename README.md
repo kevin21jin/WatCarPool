@@ -35,3 +35,9 @@ bash setup.sh
 ```
 bash importSample.sh
 ```
+
+## Drop sample database
+- run the following command under project root:
+```
+bash cleanup.sh
+```
