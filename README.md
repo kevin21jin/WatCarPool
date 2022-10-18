@@ -30,10 +30,12 @@ Install MySQL on Mac: https://dev.mysql.com/downloads/mysql/
 ### Clone and Configure
 
 Clone the repository to your local machine:
+
 ```
 git clone https://github.com/Fakevin0613/WatCarPool.git
 ```
-Navigate into the root directory:
+
+Navigate to the root directory:
 
 ```
 cd WatCarPool
@@ -49,20 +51,68 @@ Change the fields in `mysqlConfig.json` to your own MySQL configuration:
 }
 ````
 
-Install the required dependency by running the following command:
+Install the required dependency:
+
 ```
 bash setup.sh
 ```
 
 
 ### Setup/Update Database
-Create the database (if it does not exist) and import/update sample data into the database by running the following command:
+
+Create the database (if it does not exist) and import/update sample data into the database:
+
 ```
 bash importSample.sh
 ```
 
 ### Drop Database
-Clean up the database by running the following command:
+
+Clean up the database:
 ```
 bash cleanup.sh
 ```
+
+## Running the Application
+
+### Backend
+
+Navigate to the backend directory
+
+```
+cd server
+```
+
+Activate the virtual environment:
+
+```
+source env/bin/activate
+```
+
+Start the server:
+
+```
+python3 server.py
+```
+
+Deactivate the virtual environment:
+
+```
+deactivate
+```
+
+### Frontend
+
+Navigate to the frontend directory
+
+```
+cd client/my-app
+```
+
+Start the application:
+
+```
+npm start
+```
+
+You can access the application at [localhost:3000](http://localhost:3000/)
