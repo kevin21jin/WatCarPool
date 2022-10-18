@@ -24,13 +24,14 @@ WatCarPool is a Web application that provides an affordable carpooling platform 
 - install mySQL to Mac: https://dev.mysql.com/downloads/mysql/, and **please set your root password as 12345678**
 - (optional) if you want to visualize our database, download mySQL: https://dev.mysql.com/downloads/workbench/
 - clone this project to your local machine
-- install the require dependency by running this command under project root : 
+- install the require dependency by running this command under project root: 
 ```
 bash setup.sh
 ```
 
 
 ## Import sample database
+- run the following command under project root:
 ```
 bash importSample.sh
 ```
