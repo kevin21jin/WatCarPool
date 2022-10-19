@@ -1,0 +1,10 @@
+
+Members and what we did:
+
+Chengyu Jin: Designed and implemented the user interface such as login, registration and home page to allow user interaction with the database.
+
+Kevin Jin: Designed database schema; produced sample database and queries, and implemented database related functions in the backend server.
+
+Kevin Ke: Set up the server and the client application framework, configured the api endpoints that connect between frontend and backend. 
+
+Diana Shi: Set up the database connection with backend, created backend functionalities such as user registration and authentication.
