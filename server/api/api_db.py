@@ -10,17 +10,18 @@ def helloWorld():
 
 @app.route("/api/login", methods=['POST'])
 def login():
-    username = request.args.get('username')
-    password = request.args.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
     result = execute_login(username, password)
+    print(result)
     return result
 
 @app.route("/api/register", methods=['POST'])
 def register():
-    username = request.args.get('username')
-    password = request.args.get('password')
-    email = request.args.get('email')
-    phone = request.args.get('phone')
-    type = request.args.get('type')
+    username = request.json.get('username')
+    password = request.json.get('password')
+    email = request.json.get('email')
+    phone = request.json.get('phone')
+    type = request.json.get('type')
     result = execute_register(username, password, email, phone, type)
     return result

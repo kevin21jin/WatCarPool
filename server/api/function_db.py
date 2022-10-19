@@ -20,7 +20,7 @@ class User():
         self.hashed_password = password
         self.email = email
         self.phone = phone
-        self.is_driver = type
+        self.type = type
         self.joined_at = joined_at
 
 
@@ -49,18 +49,18 @@ def find_user_by_email(email):
 
 def execute_register(username, password, email, phone, type):
 
-    if username == None: return { "status": "ERROR: Username cannot be empty" }
-    if password == None: return { "status": "ERROR: Password cannot be empty" }
-    if email == None: return { "status": "ERROR: Email cannot be empty" }
-    if phone == None: return { "status": "ERROR: Phone cannot be empty" }
-    if type == None: return { "status": "ERROR: Account type cannot be empty" }
+    if username == None: return { "status": "Fail", "errorMessage": "Username cannot be empty" }
+    if password == None: return { "status": "Fail", "errorMessage": "Password cannot be empty" }
+    if email == None: return { "status": "Fail", "errorMessage": "Email cannot be empty" }
+    if phone == None: return { "status": "Fail", "errorMessage": "ERROR: Phone cannot be empty" }
+    if type == None: return { "status": "Fail", "errorMessage": "ERROR: Account type cannot be empty" }
 
     if len(username) > 25:
-        return { "status": "ERROR: Account username can not be longer than 25 characters" }
+        return { "status": "Fail", "errorMessage": "ERROR: Account username can not be longer than 25 characters" }
     
     exitUser = find_user_by_username(username)
 
-    if exitUser != None: return { "status": "ERROR: Account with associated username already exists" }
+    if exitUser != None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username already exists" }
 
     exitUser = find_user_by_email(email)
     if exitUser != None: return { "status": "ERROR: Account with associated email already exists" }
@@ -78,14 +78,14 @@ def execute_register(username, password, email, phone, type):
 
 def execute_login(username, password):
     
-    if username == None: return { "status": "ERROR: Username cannot be empty" }
-    if password == None: return { "status": "ERROR: Password cannot be empty" }
+    if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
+    if password == None: return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
 
     currentUser = find_user_by_username(username)
-    if currentUser == None: return { "status": "ERROR: Account with associated username does not exist" }
+    if currentUser == None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username does not exist" }
 
     if not check_password_hash(currentUser.hashed_password, password):
-        return { "status": "ERROR: Authentication failed" }
+        return { "status": "Fail", "errorMessage": "ERROR: Authentication failed" }
     
     return {
         "status": "Success",

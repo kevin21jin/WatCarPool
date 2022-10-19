@@ -12,7 +12,6 @@ export const Login = () => {
     e.preventDefault();
     
     const requestJson = {username: user, password: pwd}
-    console.log(requestJson.username);
     const { data } = await axios.post(loginRoute, requestJson);
     console.log(data);
     if(data.status === "ERROR: Username cannot be empty"){
