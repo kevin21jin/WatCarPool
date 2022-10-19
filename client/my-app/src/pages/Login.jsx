@@ -10,12 +10,15 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const requestJson = {username: user, password: pwd}
+    console.log(requestJson.username);
     const { data } = await axios.post(loginRoute, requestJson);
-    if(data.status === false){
+    console.log(data);
+    if(data.status === "ERROR: Username cannot be empty"){
       alert("login in unsuccessful")
     }
-    if(data.status === true){
+    if(data.status === "Success"){
       alert("login in successful")
     }
   }
@@ -39,9 +42,7 @@ export const Login = () => {
             onChange={(e) => setUser(e.target.value)}>
           </Form.Control>
         </Form.Group>
-
         <br />
-
         <Form.Group controlId='Password'>
           <Form.Label>
             Password:

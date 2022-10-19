@@ -1,12 +1,14 @@
 from flask import Flask, request
 from api.function_db import *
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def helloWorld():
     return "helloWorld"
 
-@app.route("/api/login")
+@app.route("/api/login", methods=['POST'])
 def login():
     username = request.args.get('username')
     password = request.args.get('password')

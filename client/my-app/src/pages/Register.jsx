@@ -1,6 +1,6 @@
 import React from 'react'
-import { useRef, useState, useEffect } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import {useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 import { FormContainer } from  '../components/FormContainer'
 import axios from 'axios'
 import { registerRoute } from '../api/ApiRoutes'
@@ -19,7 +19,8 @@ export const Register = () => {
     e.preventDefault();
     const requestJson = {username: user, password: pwd, email: email, phone: pnum,  isDriver: driver}
     const { data } = await axios.post(registerRoute, requestJson);
-    if(data.status === false){
+    console.log(data);
+    if(data.status === "false"){
       alert("Sign up unsuccessful")
     }
     if(data.status === true){
