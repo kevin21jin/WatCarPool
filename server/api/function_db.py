@@ -14,13 +14,13 @@ mydb = mysql.connector.connect(
 my_cursor = mydb.cursor()
 
 class User():
-    def __init__(self, userId, username, password, email, phone, is_driver, joined_at):
+    def __init__(self, userId, username, password, email, phone, type, joined_at):
         self.userId = userId
         self.username = username
         self.hashed_password = password
         self.email = email
         self.phone = phone
-        self.is_driver = is_driver
+        self.is_driver = type
         self.joined_at = joined_at
 
 
@@ -47,48 +47,50 @@ def find_user_by_email(email):
 # print(find_user_by_username("BigBruce").username)
 
 
-def execute_register(username, password, email, phone, isDriver):
+def execute_register(username, password, email, phone, type):
 
-    if username == None: return ValidationErr('ERROR: Username cannot be empty')
-    if password == None: return ValidationErr('ERROR: Password cannot be empty')
-    if email == None: return ValidationErr('ERROR: Email cannot be empty')
-    if phone == None: return ValidationErr('ERROR: Phone cannot be empty')
-    if isDriver == None: return ValidationErr('ERROR: Account type cannot be empty')
+    if username == None: return { "status": "ERROR: Username cannot be empty" }
+    if password == None: return { "status": "ERROR: Password cannot be empty" }
+    if email == None: return { "status": "ERROR: Email cannot be empty" }
+    if phone == None: return { "status": "ERROR: Phone cannot be empty" }
+    if type == None: return { "status": "ERROR: Account type cannot be empty" }
 
     if len(username) > 25:
-        return ValidationErr('ERROR: Account username can not be longer than 25 characters')
+        return { "status": "ERROR: Account username can not be longer than 25 characters" }
     
     exitUser = find_user_by_username(username)
 
-    if exitUser != None: return ValidationErr('ERROR: Account with associated username already exists')
+    if exitUser != None: return { "status": "ERROR: Account with associated username already exists" }
 
     exitUser = find_user_by_email(email)
-    if exitUser != None: return ValidationErr('ERROR: Account with associated email already exists')
+    if exitUser != None: return { "status": "ERROR: Account with associated email already exists" }
 
     try:
-        sql_command = "INSERT INTO User (username, password, email, phone, isDriver, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"
+        sql_command = "INSERT INTO User (username, password, email, phone, type, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"
         hashed_password = generate_password_hash(password)
-        val = (username, hashed_password, email, phone, isDriver, datetime.now())
+        val = (username, hashed_password, email, phone, type, datetime.now())
         my_cursor.execute(sql_command, val)
         mydb.commit()
     except OperationalError as msg:
-            print("Command skipped: ", msg)
+        print("Command skipped: ", msg)
 
-    return "Success"
-    
+    return { "status": "Success" }
 
 def execute_login(username, password):
     
-    if username == None: return ValidationErr('ERROR: Username cannot be empty')
-    if password == None: return ValidationErr('ERROR: Password cannot be empty')
+    if username == None: return { "status": "ERROR: Username cannot be empty" }
+    if password == None: return { "status": "ERROR: Password cannot be empty" }
 
     currentUser = find_user_by_username(username)
-    if currentUser == None: return ValidationErr('ERROR: Account with associated username does not already exist')
+    if currentUser == None: return { "status": "ERROR: Account with associated username does not exist" }
 
     if not check_password_hash(currentUser.hashed_password, password):
-        return ValidationErr('ERROR: Authentication failed')
+        return { "status": "ERROR: Authentication failed" }
     
-    return "Success: "
+    return {
+        "status": "Success",
+        "userType": currentUser.type
+    }
 
 
 # def execute_getTrips(userID):
