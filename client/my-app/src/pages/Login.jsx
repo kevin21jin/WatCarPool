@@ -13,9 +13,8 @@ export const Login = () => {
     
     const requestJson = {username: user, password: pwd}
     const { data } = await axios.post(loginRoute, requestJson);
-    console.log(data);
-    if(data.status === "ERROR: Username cannot be empty"){
-      alert("login in unsuccessful")
+    if(data.status === "Fail"){
+      alert(data.errorMessage)
     }
     if(data.status === "Success"){
       alert("login in successful")

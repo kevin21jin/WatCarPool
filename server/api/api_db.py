@@ -13,7 +13,6 @@ def login():
     username = request.json.get('username')
     password = request.json.get('password')
     result = execute_login(username, password)
-    print(result)
     return result
 
 @app.route("/api/register", methods=['POST'])
