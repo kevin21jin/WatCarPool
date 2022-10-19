@@ -77,6 +77,11 @@ bash cleanup.sh
 
 ### Backend
 
+If you are lazy, run this, or ignore this:
+```
+bash runServer.sh 
+```
+
 Navigate to the backend directory
 
 ```
@@ -102,6 +107,11 @@ deactivate
 ```
 
 ### Frontend
+
+If you are lazy, run this, or ignore this:
+```
+bash runClient.sh 
+```
 
 Navigate to the frontend directory
 
