@@ -42,7 +42,7 @@ def createTriggers():
                     GROUP BY Travelled.driverID) T
                     ON D.userID = T.driverID
                 SET D.rating = T.avgRating;""",
-                
+
          """CREATE TRIGGER insertRating
             AFTER INSERT ON Travelled
             FOR EACH ROW
@@ -54,8 +54,8 @@ def createTriggers():
                     GROUP BY Travelled.driverID) T
                     ON D.userID = T.driverID
                 SET D.rating = T.avgRating;"""
-        
     ]
+    
     for trigger in triggers:
         try:
             cursor.execute(trigger)
