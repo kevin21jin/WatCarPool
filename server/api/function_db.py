@@ -3,6 +3,7 @@ import mysql.connector
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from sqlite3 import OperationalError
+import json
 
 mydb = mysql.connector.connect(
         host="localhost",
@@ -49,9 +50,9 @@ def find_user_by_email(email):
 
 def execute_register(username, password, email, phone, type):
 
-    if username == None: return { "status": "Fail", "errorMessage": "Username cannot be empty" }
-    if password == None: return { "status": "Fail", "errorMessage": "Password cannot be empty" }
-    if email == None: return { "status": "Fail", "errorMessage": "Email cannot be empty" }
+    if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
+    if password == None: return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
+    if email == None: return { "status": "Fail", "errorMessage": "ERROR: Email cannot be empty" }
     if phone == None: return { "status": "Fail", "errorMessage": "ERROR: Phone cannot be empty" }
     if type == None: return { "status": "Fail", "errorMessage": "ERROR: Account type cannot be empty" }
 
@@ -63,7 +64,7 @@ def execute_register(username, password, email, phone, type):
     if exitUser != None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username already exists" }
 
     exitUser = find_user_by_email(email)
-    if exitUser != None: return { "status": "ERROR: Account with associated email already exists" }
+    if exitUser != None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated email already exists" }
 
     try:
         sql_command = "INSERT INTO User (username, password, email, phone, type, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -81,15 +82,18 @@ def execute_login(username, password):
     if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
     if password == None: return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
 
-    currentUser = find_user_by_username(username)
+    currentUser = json.loads(json.dumps(find_user_by_username(username).__dict__, default=str))
+
+    print(currentUser)
     if currentUser == None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username does not exist" }
 
-    if not check_password_hash(currentUser.hashed_password, password):
+    if not check_password_hash(currentUser['hashed_password'], password):
         return { "status": "Fail", "errorMessage": "ERROR: Authentication failed" }
     
     return {
         "status": "Success",
-        "userType": currentUser.type
+        "userType": currentUser['type'],
+        "user": currentUser
     }
 
 

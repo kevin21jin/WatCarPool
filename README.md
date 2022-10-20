@@ -77,7 +77,7 @@ bash cleanup.sh
 
 ### Backend
 
-If you are lazy, run this, or ignore this:
+Shortcut:
 ```
 bash runServer.sh 
 ```
@@ -108,7 +108,7 @@ deactivate
 
 ### Frontend
 
-If you are lazy, run this, or ignore this:
+Shortcut:
 ```
 bash runClient.sh 
 ```
