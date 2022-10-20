@@ -10,7 +10,7 @@ def populateTables():
         password=config['password'],
         database="WCP_DB",
     )
-    tablenames = ['user', 'passenger', 'driver', 'vehicle', 'trip', 'travelled']
+    tablenames = ['user', 'vehicle', 'trip', 'travelled']
     for tablename in tablenames:
         populateTableByFilename(db, tablename)
 
