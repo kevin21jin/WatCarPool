@@ -1,0 +1,20 @@
+--------------
+SELECT count(*) FROM Vehicle WHERE driverID = 2
+--------------
+
+count(*)
+1
+--------------
+INSERT INTO Vehicle (driverID, vehicleID, model, capacity)
+SELECT 2, 2, 'New Car', 6
+--------------
+
+--------------
+SELECT * FROM Vehicle
+--------------
+
+driverID	vehicleID	model	capacity
+2	1	Car 1	4
+2	2	New Car	6
+4	1	Car 2	4
+4	2	Car 3	4
