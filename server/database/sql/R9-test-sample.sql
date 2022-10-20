@@ -2,19 +2,25 @@ USE WCP_DB
 -- Test: A passenger want to join a trip
 -- Expect: the travelled table add a tuple representing this trip (since the passenger would
 -- not have rate this trip, the rating would be NULL)
+
+-- check current table
 SELECT * FROM Travelled;
 
+-- insert new travelled
 INSERT INTO Travelled (driverID, vehicleID, tripID, passengerID, rating) 
 SELECT '2', '1', '1', '5', NULL;
 
+-- check table after inserting the new travelled
 SELECT * FROM Travelled;
 
 -- Test: A passenger want to leave a trip
 -- Expect: the travelled table deletes tuple representing this trip
 
+-- remove a existing travelled
 DELETE FROM Travelled
 WHERE passengerID = '5' AND driverID = '2' AND vehicleID = '1' AND tripID = '1';
 
+-- check the table after deleting a travelled
 SELECT * FROM Travelled;
 
 -- Test: A passenger want to leave a trip, but the trip capacity is full, the backend server need to know 
