@@ -1,5 +1,7 @@
 import mysql.connector
 from helper.executeSQL import executeSQLFromFile
+from helper.createTriggers import createTriggers
+from helper.populateTables import populateTables
 import json
 
 path = open('../../mysqlConfig.json')
@@ -20,3 +22,5 @@ def createDB():
 
 createDB()
 executeSQLFromFile('createtables')
+createTriggers()
+populateTables()
