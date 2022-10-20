@@ -2,7 +2,7 @@
 -- R10: Rate Trip
 -- ###############################################################################################
 
-USE WCP_DB
+USE WCP_DB;
 
 -- Test: Rate a trip of a driver who already has rating
 -- Expect: the driver's rating will update after considering the new rating 
