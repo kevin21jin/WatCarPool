@@ -60,69 +60,50 @@ bash setup.sh
 
 ### Setup/Update Database
 
-Create the database (if it does not exist) and import/update sample data into the database:
+Create the database (if it does not exist) including tables and triggers, and import/update sample data into the database:
 
 ```
 bash importSample.sh
 ```
 
+### Test Database with Sample Data
+
+Navigate to the directory that stores the list of test-sample.sql and test-sample.out files:
+
+ ```
+ cd server/database/test-sample
+ ```
+
+The SQL commands to test sample data for each feature R* are provided in the corresponding ```R*-test-sample.sql``` and the results are stored in ```R*-test-sample.out```.
+
+Reset the database when finish testing on each feature before testing other features:
+
+```
+bash reset.sh
+```
+
 ### Drop Database
 
 Clean up the database:
+
 ```
 bash cleanup.sh
 ```
 
 ## Running the Application
 
-### Backend
+Start the backend server:
 
-Shortcut:
 ```
 bash runServer.sh 
 ```
 
-Navigate to the backend directory
+Start the frontend server:
 
-```
-cd server
-```
-
-Activate the virtual environment:
-
-```
-source env/bin/activate
-```
-
-Start the server:
-
-```
-python3 server.py
-```
-
-Deactivate the virtual environment:
-
-```
-deactivate
-```
-
-### Frontend
-
-Shortcut:
 ```
 bash runClient.sh 
 ```
 
-Navigate to the frontend directory
+Backend server: http://127.0.0.1:5000
 
-```
-cd client/my-app
-```
-
-Start the application:
-
-```
-npm start
-```
-
-Access and play with the application: [localhost:3000](http://localhost:3000/)
+Frontend server: http://localhost:3000
