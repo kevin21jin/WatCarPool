@@ -1,6 +1,7 @@
 import mysql.connector
 from datetime import datetime
 from sqlite3 import OperationalError
+from api.helper.model import Trip
 import json
 
 db = mysql.connector.connect(
@@ -13,14 +14,40 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 def execute_getTrips():
-    response = []
-    sql_command = "SELECT * FROM Trip"
-    cursor.execute(sql_command)
+    trips = []
+    command = "SELECT * FROM Trip"
+    cursor.execute(command)
     result = cursor.fetchall()
-    columns = [field[0] for field in cursor.description]
     for row in result:
-        d = dict()
-        for i in range(len(columns)):
-            d[columns[i]] = row[i]
-        response.append(d)
-    return json.dumps(response, default=str)
+        trip = Trip(row).__dict__
+        trips.append(trip)
+    return json.dumps(trips, default=str)
+
+def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh):
+    trips = []
+    command = "SELECT * FROM Trip"
+    fields = []
+    if origin:
+        fields.append("origin = '" + origin + "'")
+    if destination:
+        fields.append("destination = '" + destination + "'")
+    if departTimeStart:
+        fields.append("departTime >= '" + departTimeStart + "'")
+    if departTimeEnd:
+        fields.append("departTime <= '" + departTimeEnd + "'")
+    if priceLow:
+        fields.append("price >= " + str(priceLow))
+    if priceHigh:
+        fields.append("price <= " + str(priceHigh))
+    if len(fields) > 0:
+        command += " WHERE"
+        for field in fields:
+            command += " " + field + " AND"
+        command = command[:len(command) - 4]
+        print(command)
+    cursor.execute(command)
+    result = cursor.fetchall()
+    for row in result:
+        trip = Trip(row).__dict__
+        trips.append(trip)
+    return json.dumps(trips, default=str)
