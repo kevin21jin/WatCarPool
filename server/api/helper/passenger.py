@@ -12,6 +12,7 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
+
 def execute_passengerGetTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)

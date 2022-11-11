@@ -21,7 +21,7 @@ def find_user_by_username(username):
     get_account = cursor.fetchall()
     if len(get_account) == 0: return None
     account = get_account[0]
-    existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
+    existingUser = User(account)
     return existingUser
 
 def find_user_by_email(email):
@@ -31,7 +31,7 @@ def find_user_by_email(email):
     get_account = cursor.fetchall()
     if len(get_account) == 0: return None
     account = get_account[0]
-    existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
+    existingUser = User(account)
     return existingUser
 
 def execute_register(username, password, email, phone, type):
