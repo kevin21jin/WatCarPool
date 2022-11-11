@@ -89,3 +89,9 @@ def registerVehicle():
     capacity = request.json.get('capacity')
     result = execute_registerVehicle(driverID, model, capacity)
     return result
+
+@app.route("/api/trips/passenger", methods=['GET'])
+def getTripsByPassenger():
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerGetOwnTrips(passengerID)
+    return result
