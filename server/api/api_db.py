@@ -41,3 +41,14 @@ def joinTrip():
     passengerId = request.json.get('passengerId')
     result = execute_passengerJoinTrip(driverId, vehicleId, tripId, passengerId)
     return result
+
+@app.route("/api/trips/search", methods=['GET'])
+def searchTrip():
+    origin = request.json.get('origin')
+    destination = request.json.get('destination')
+    departTimeStart = request.json.get('departTimeStart')
+    departTimeEnd = request.json.get('departTimeEnd')
+    priceLow = request.json.get('priceLow')
+    priceHigh = request.json.get('priceHigh')
+    result = execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh)
+    return result
