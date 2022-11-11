@@ -4,5 +4,5 @@
     echo "Let me run the server:"
     cd server
     source env/bin/activate
-    python3 server.py
+    python3 -B server.py
 )

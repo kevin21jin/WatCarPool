@@ -1,35 +1,24 @@
-from xml.dom import ValidationErr
 import mysql.connector
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from sqlite3 import OperationalError
+from api.helper.model import User
 import json
 
-mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="12345678",
-        database="WCP_DB",
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="12345678",
+    database="WCP_DB",
 )   
 
-my_cursor = mydb.cursor()
-
-class User():
-    def __init__(self, userId, username, password, email, phone, type, joined_at):
-        self.userId = userId
-        self.username = username
-        self.hashed_password = password
-        self.email = email
-        self.phone = phone
-        self.type = type
-        self.joined_at = joined_at
-
+cursor = db.cursor()
 
 def find_user_by_username(username):
     sql_command = "SELECT * FROM User WHERE username = %s"
     val = (username,)
-    my_cursor.execute(sql_command, val)
-    get_account = my_cursor.fetchall()
+    cursor.execute(sql_command, val)
+    get_account = cursor.fetchall()
     if len(get_account) == 0: return None
     account = get_account[0]
     existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
@@ -38,8 +27,8 @@ def find_user_by_username(username):
 def find_user_by_email(email):
     sql_command = "SELECT * FROM User WHERE email = %s"
     val = (email,)
-    my_cursor.execute(sql_command, val)
-    get_account = my_cursor.fetchall()
+    cursor.execute(sql_command, val)
+    get_account = cursor.fetchall()
     if len(get_account) == 0: return None
     account = get_account[0]
     existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
@@ -67,8 +56,8 @@ def execute_register(username, password, email, phone, type):
         sql_command = "INSERT INTO User (username, password, email, phone, type, joinedAt) VALUES (%s, %s, %s, %s, %s, %s)"
         hashed_password = generate_password_hash(password)
         val = (username, hashed_password, email, phone, type, datetime.now())
-        my_cursor.execute(sql_command, val)
-        mydb.commit()
+        cursor.execute(sql_command, val)
+        db.commit()
     except OperationalError as msg:
         print("Command skipped: ", msg)
 
@@ -91,43 +80,3 @@ def execute_login(username, password):
         "userType": currentUser['type'],
         "user": currentUser
     }
-
-
-def execute_getTrips():
-    try:
-        response = []
-        sql_command = "SELECT * FROM Trip"
-        my_cursor.execute(sql_command)
-        result = my_cursor.fetchall()
-        columns = [field[0] for field in my_cursor.description]
-        for row in result:
-            d = dict()
-            for i in range(len(columns)):
-                d[columns[i]] = row[i]
-            response.append(d)
-        return json.dumps(response, default=str)
-    except OperationalError as msg:
-        print("Command skipped: ", msg)
-    return 0
-
-def execute_driverGetOwnTrips(userID):
-    # TO DO
-    # result = my_cursor.execute(some sql)
-    return 0
-
-def execute_driverGetOtherTrips(userID):
-    # TO DO
-    # result = my_cursor.execute(some sql)
-    return 0
-
-def execute_driverCreateTrip(userID):
-    # TO DO
-    # result = my_cursor.execute(some sql)
-    return 0
-
-# passenger functions
-
-def execute_passengerGetTrips(userID):
-    # TO DO
-    # result = my_cursor.execute(some sql)
-    return 0
