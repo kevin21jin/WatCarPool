@@ -35,11 +35,11 @@ def getTrips():
 
 @app.route("/api/trips/join", methods=['POST'])
 def joinTrip():
-    driverId = request.json.get('driverId')
-    vehicleId = request.json.get('vehicleId')
-    tripId = request.json.get('tripId')
-    passengerId = request.json.get('passengerId')
-    result = execute_passengerJoinTrip(driverId, vehicleId, tripId, passengerId)
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID)
     return result
 
 @app.route("/api/trips/search", methods=['GET'])
@@ -55,9 +55,21 @@ def searchTrip():
 
 @app.route("/api/trips/leave", methods=['DELETE'])
 def leaveTrip():
-    driverId = request.json.get('driverId')
-    vehicleId = request.json.get('vehicleId')
-    tripId = request.json.get('tripId')
-    passengerId = request.json.get('passengerId')
-    result = execute_passengerLeaveTrip(driverId, vehicleId, tripId, passengerId)
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerLeaveTrip(driverID, vehicleID, tripID, passengerID)
+    return result
+
+@app.route("/api/trips/create", methods=['POST'])
+def createTrip():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    origin = request.json.get('origin')
+    destination = request.json.get('destination')
+    departTime = request.json.get('departTime')
+    price = request.json.get('price')
+    description = request.json.get('description')
+    result = execute_createTrip(driverID, vehicleID, origin, destination, departTime, price, description)
     return result
