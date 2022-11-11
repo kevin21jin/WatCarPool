@@ -52,3 +52,12 @@ def searchTrip():
     priceHigh = request.json.get('priceHigh')
     result = execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh)
     return result
+
+@app.route("/api/trips/leave", methods=['DELETE'])
+def leaveTrip():
+    driverId = request.json.get('driverId')
+    vehicleId = request.json.get('vehicleId')
+    tripId = request.json.get('tripId')
+    passengerId = request.json.get('passengerId')
+    result = execute_passengerLeaveTrip(driverId, vehicleId, tripId, passengerId)
+    return result

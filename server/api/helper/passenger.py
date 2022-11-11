@@ -22,6 +22,16 @@ def execute_passengerJoinTrip(driverId, vehicleId, tripId, passengerId):
         print("Command skipped: ", msg)
     return { "status": "Success" }
 
+def execute_passengerLeaveTrip(driverId, vehicleId, tripId, passengerId):
+    try:
+        sql_command = "DELETE FROM Travelled WHERE driverId = %s AND vehicleId = %s AND tripId = %s AND passengerId = %s"
+        val = (driverId, vehicleId, tripId, passengerId)
+        cursor.execute(sql_command, val)
+        db.commit()
+    except OperationalError as msg:
+        print("Command skipped: ", msg)
+    return { "status": "Success" }
+
 def execute_passengerGetTrips(userID):
     # TO DO
     # result = my_cursor.execute(some sql)
