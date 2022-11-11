@@ -8,7 +8,6 @@ class User():
         self.type = account[5]
         self.joinedAt = account[6]
 
-
 class Trip():
     def __init__(self, trip):
         self.driverId = trip[0]
