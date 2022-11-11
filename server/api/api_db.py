@@ -32,3 +32,12 @@ def register():
 def getTrips():
     result = execute_getTrips()
     return result
+
+@app.route("/api/trips/join", methods=['POST'])
+def joinTrip():
+    driverId = request.json.get('driverId')
+    vehicleId = request.json.get('vehicleId')
+    tripId = request.json.get('tripId')
+    passengerId = request.json.get('passengerId')
+    result = execute_passengerJoinTrip(driverId, vehicleId, tripId, passengerId)
+    return result

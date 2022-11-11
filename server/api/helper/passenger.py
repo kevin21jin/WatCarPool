@@ -12,6 +12,15 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
+def execute_passengerJoinTrip(driverId, vehicleId, tripId, passengerId):
+    try:
+        sql_command = "INSERT INTO Travelled VALUES (%s, %s, %s, %s, %s)"
+        val = (driverId, vehicleId, tripId, passengerId, None)
+        cursor.execute(sql_command, val)
+        db.commit()
+    except OperationalError as msg:
+        print("Command skipped: ", msg)
+    return { "status": "Success" }
 
 def execute_passengerGetTrips(userID):
     # TO DO
