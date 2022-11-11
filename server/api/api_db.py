@@ -73,3 +73,11 @@ def createTrip():
     description = request.json.get('description')
     result = execute_createTrip(driverID, vehicleID, origin, destination, departTime, price, description)
     return result
+
+@app.route("/api/trips/delete", methods=['DELETE'])
+def deleteTrip():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    result = execute_deleteTrip(driverID, vehicleID, tripID)
+    return result

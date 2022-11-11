@@ -12,8 +12,11 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
+def execute_registerVehicle(driverID):
+    return 0
+
 def execute_createTrip(driverID, vehicleID, origin, destination, departTime, price, description):
-    command = "SELECT COUNT(*) FROM Trip WHERE driverID = %s AND vehicleID = %s"
+    command = "SELECT MAX(TripID) FROM Trip WHERE driverID = %s AND vehicleID = %s"
     val = (driverID, vehicleID)
     cursor.execute(command, val)
     result = cursor.fetchone()
@@ -31,3 +34,14 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
     except OperationalError as msg:
         print("Command skipped: ", msg)
     return { "status": "Success" }
+
+def execute_deleteTrip(driverID, vehicleID, tripID):
+    try:
+        command = "DELETE FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
+        val = (driverID, vehicleID, tripID)
+        cursor.execute(command, val)
+        db.commit()
+    except OperationalError as msg:
+        print("Command skipped: ", msg)
+    return { "status": "Success" }
+    
