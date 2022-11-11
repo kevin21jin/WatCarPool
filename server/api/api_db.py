@@ -33,15 +33,6 @@ def getTrips():
     result = execute_getTrips()
     return result
 
-@app.route("/api/trips/join", methods=['POST'])
-def joinTrip():
-    driverID = request.json.get('driverID')
-    vehicleID = request.json.get('vehicleID')
-    tripID = request.json.get('tripID')
-    passengerID = request.json.get('passengerID')
-    result = execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID)
-    return result
-
 @app.route("/api/trips/search", methods=['GET'])
 def searchTrip():
     origin = request.json.get('origin')
@@ -51,15 +42,6 @@ def searchTrip():
     priceLow = request.json.get('priceLow')
     priceHigh = request.json.get('priceHigh')
     result = execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh)
-    return result
-
-@app.route("/api/trips/leave", methods=['DELETE'])
-def leaveTrip():
-    driverID = request.json.get('driverID')
-    vehicleID = request.json.get('vehicleID')
-    tripID = request.json.get('tripID')
-    passengerID = request.json.get('passengerID')
-    result = execute_passengerLeaveTrip(driverID, vehicleID, tripID, passengerID)
     return result
 
 @app.route("/api/trips/create", methods=['POST'])
@@ -80,4 +62,30 @@ def deleteTrip():
     vehicleID = request.json.get('vehicleID')
     tripID = request.json.get('tripID')
     result = execute_deleteTrip(driverID, vehicleID, tripID)
+    return result
+
+@app.route("/api/trips/join", methods=['POST'])
+def joinTrip():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID)
+    return result
+
+@app.route("/api/trips/leave", methods=['DELETE'])
+def leaveTrip():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerLeaveTrip(driverID, vehicleID, tripID, passengerID)
+    return result
+
+@app.route("/api/vehicle", methods=['POST'])
+def registerVehicle():
+    driverID = request.json.get('driverID')
+    model = request.json.get('model')
+    capacity = request.json.get('capacity')
+    result = execute_registerVehicle(driverID, model, capacity)
     return result
