@@ -1,5 +1,5 @@
 from flask import Flask, request
-from api.function_db import *
+from api.helper.function_db import *
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -23,4 +23,9 @@ def register():
     phone = request.json.get('phone')
     type = request.json.get('isDriver')
     result = execute_register(username, password, email, phone, type)
+    return result
+
+@app.route("/api/trips", methods=['GET'])
+def getTrips():
+    result = execute_getTrips()
     return result

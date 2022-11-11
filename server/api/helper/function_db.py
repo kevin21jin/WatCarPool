@@ -45,9 +45,6 @@ def find_user_by_email(email):
     existingUser = User(account[0], account[1], account[2], account[3], account[4], account[5], account[6])
     return existingUser
 
-# print(find_user_by_username("BigBruce").username)
-
-
 def execute_register(username, password, email, phone, type):
 
     if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
@@ -84,7 +81,6 @@ def execute_login(username, password):
 
     currentUser = json.loads(json.dumps(find_user_by_username(username).__dict__, default=str))
 
-    print(currentUser)
     if currentUser == None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username does not exist" }
 
     if not check_password_hash(currentUser['hashed_password'], password):
@@ -97,11 +93,22 @@ def execute_login(username, password):
     }
 
 
-# def execute_getTrips(userID):
-#     # TO DO
-#     # result = my_cursor.execute(some sql)
-#     return 0
-# drive functions
+def execute_getTrips():
+    try:
+        response = []
+        sql_command = "SELECT * FROM Trip"
+        my_cursor.execute(sql_command)
+        result = my_cursor.fetchall()
+        columns = [field[0] for field in my_cursor.description]
+        for row in result:
+            d = dict()
+            for i in range(len(columns)):
+                d[columns[i]] = row[i]
+            response.append(d)
+        return json.dumps(response, default=str)
+    except OperationalError as msg:
+        print("Command skipped: ", msg)
+    return 0
 
 def execute_driverGetOwnTrips(userID):
     # TO DO
