@@ -8,6 +8,7 @@ export const Home = () => {
   return (
     <>
       <Header />
+      
       <div style={{padding: "80px"}}>
         <h1>Trips Available</h1>
         <Row>

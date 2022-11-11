@@ -1,0 +1,50 @@
+#video{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.road{
+    height: 100vh;
+    width: 100%;
+    object-fit: contain;
+}
+
+.road .slogan{
+    text-align: center;
+    position: fixed;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    top: 20vh;
+}
+
+
+.road .slogan h1 {
+    font-weight: bold;
+    color: #fff;
+    font-size: 56px;
+  }
+
+  .road .slogan p {
+    color: grey;
+    font-size: 20px;
+  }
+  
+ .road .slogan .container button{
+    width: 150px;
+    height: 45px;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    position: relative;
+    z-index: 100;
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+  }
+ 
