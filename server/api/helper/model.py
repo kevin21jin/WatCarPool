@@ -1,6 +1,6 @@
 class User():
     def __init__(self, account):
-        self.userId = account[0]
+        self.userID = account[0]
         self.username = account[1]
         self.hashed_password = account[2]
         self.email = account[3]
@@ -10,9 +10,9 @@ class User():
 
 class Trip():
     def __init__(self, trip):
-        self.driverId = trip[0]
-        self.vehicleId = trip[1]
-        self.tripId = trip[2]
+        self.driverID = trip[0]
+        self.vehicleID = trip[1]
+        self.tripID = trip[2]
         self.origin = trip[3]
         self.destination = trip[4]
         self.departTime = trip[5]

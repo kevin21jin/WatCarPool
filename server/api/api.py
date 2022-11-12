@@ -108,3 +108,13 @@ def getTripsByPassenger():
     passengerID = request.json.get('passengerID')
     result = execute_passengerGetTrips(passengerID)
     return result
+
+@app.route("/api/trip/rating", methods=["PUT"])
+def submitRating():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    passengerID = request.json.get('passengerID')
+    rating = request.json.get('rating')
+    result = execute_passengerSubmitRating(driverID, vehicleID, tripID, passengerID, rating)
+    return result
