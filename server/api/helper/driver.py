@@ -48,6 +48,13 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
     return { "status": "Success" }
 
 def execute_deleteTrip(driverID, vehicleID, tripID):
+    command = "SELECT departTime FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
+    val = (driverID, vehicleID, tripID)
+    cursor.execute(command, val)
+    result = cursor.fetchone()
+    time = result[0]
+    if time <= datetime.now():
+        return { "status": "Fail", "errorMessage": "ERROR: Trips cannot be deleted after the depart time" }
     try:
         command = "DELETE FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
         val = (driverID, vehicleID, tripID)
@@ -58,6 +65,13 @@ def execute_deleteTrip(driverID, vehicleID, tripID):
     return { "status": "Success" }
 
 def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departTime, price, description):
+    command = "SELECT departTime FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
+    val = (driverID, vehicleID, tripID)
+    cursor.execute(command, val)
+    result = cursor.fetchone()
+    time = result[0]
+    if time <= datetime.now():
+        return { "status": "Fail", "errorMessage": "ERROR: Trips cannot be modified after the depart time" }
     time = datetime.strptime(departTime, "%Y-%m-%d %H:%M:%S")
     if time <= datetime.now():
         return { "status": "Fail", "errorMessage": "ERROR: Trip time must be greater than the current time" }
