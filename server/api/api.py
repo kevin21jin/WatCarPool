@@ -64,6 +64,19 @@ def deleteTrip():
     result = execute_deleteTrip(driverID, vehicleID, tripID)
     return result
 
+@app.route("/api/trips/update", methods=['PUT'])
+def updateTrip():
+    driverID = request.json.get('driverID')
+    vehicleID = request.json.get('vehicleID')
+    tripID = request.json.get('tripID')
+    origin = request.json.get('origin')
+    destination = request.json.get('destination')
+    departTime = request.json.get('departTime')
+    price = request.json.get('price')
+    description = request.json.get('description')
+    result = execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departTime, price, description)
+    return result
+
 @app.route("/api/trips/join", methods=['POST'])
 def joinTrip():
     driverID = request.json.get('driverID')
@@ -93,5 +106,5 @@ def registerVehicle():
 @app.route("/api/trips/passenger", methods=['GET'])
 def getTripsByPassenger():
     passengerID = request.json.get('passengerID')
-    result = execute_passengerGetOwnTrips(passengerID)
+    result = execute_passengerGetTrips(passengerID)
     return result

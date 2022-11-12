@@ -58,7 +58,7 @@ def execute_passengerLeaveTrip(driverId, vehicleId, tripId, passengerId):
         print("Command skipped: ", msg)
     return { "status": "Success" }
 
-def execute_passengerGetOwnTrips(passengerId):
+def execute_passengerGetTrips(passengerId):
     sql_command = """SELECT t.driverId, t.vehicleId, t.tripId, t.origin, t.destination, t.departTime, t.price, t.description
                         FROM Trip t
                         RIGHT JOIN
