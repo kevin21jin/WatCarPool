@@ -56,3 +56,20 @@ def execute_deleteTrip(driverID, vehicleID, tripID):
     except OperationalError as msg:
         print("Command skipped: ", msg)
     return { "status": "Success" }
+
+def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departTime, price, description):
+    time = datetime.strptime(departTime, "%Y-%m-%d %H:%M:%S")
+    if time <= datetime.now():
+        return { "status": "Fail", "errorMessage": "ERROR: Trip time must be greater than the current time" }
+    if origin == destination:
+        return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
+    try:
+        command = """UPDATE Trip SET origin = %s, destination = %s, departTime = %s, price = %s, description = %s
+                     WHERE driverID = %s AND vehicleID = %s AND tripID = %s"""
+        val = (origin, destination, departTime, price, description, driverID, vehicleID, tripID)
+        cursor.execute(command, val)
+        db.commit()
+    except OperationalError as msg:
+        print("Command skipped: ", msg)
+    return { "status": "Success" }
+

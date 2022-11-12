@@ -59,7 +59,7 @@ def execute_passengerLeaveTrip(driverId, vehicleId, tripId, passengerId):
     return { "status": "Success" }
 
 def execute_passengerGetOwnTrips(passengerId):
-    sql_command = """SELECT t.driverId, t.vehicleId, t.tripId, t.origin, t.destination, t.departTime, t.price, t.desciption
+    sql_command = """SELECT t.driverId, t.vehicleId, t.tripId, t.origin, t.destination, t.departTime, t.price, t.description
                         FROM Trip t
                         RIGHT JOIN
                         (SELECT * FROM Travelled WHERE passengerID = %s) travelled

@@ -34,13 +34,13 @@ SELECT count(*) FROM Vehicle WHERE driverID = 8;
 SELECT count(*) FROM Trip WHERE driverID = 2 AND vehicleID = 1;
 
 -- The previous query returns 2, so we need to set the tripID to 3.
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 2, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 40, 'Carpool from Waterloo to Toronto';
 -- Check Trip table
 SELECT * FROM Trip;
 
 -- The next trip created will have tripID equal to 4.
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 2, 1, 4, 'Toronto', 'Waterloo', '2022-10-23 14:00', 40, 'Carpool from Toronto to Waterloo';
 -- Check Trip table
 SELECT * FROM Trip;
@@ -54,13 +54,13 @@ SELECT count(*) FROM Trip WHERE driverID = 4 AND vehicleID = 1;
 SELECT count(*) FROM Trip WHERE driverID = 4 AND vehicleID = 2;
 
 -- Create trip with vehicleID = 1
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 35, 'Carpool from Waterloo to Toronto';
 -- Check Trip table
 SELECT * FROM Trip;
 
 -- Create trip with vehicleID = 2
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 2, 3, 'Toronto', 'Waterloo', '2022-10-23 14:00', 35, 'Carpool from Toronto to Waterloo';
 -- Check Trip table
 SELECT * FROM Trip;
@@ -81,7 +81,7 @@ SELECT * FROM Trip;
 -- that we just created with testdriver to include a description
 UPDATE Trip
 SET origin = 'Toronto', destination = 'Waterloo', departTime = '2022-10-23 14:00', 
-price = 50, desciption = 'Carpool from Toronto to Waterloo'
+price = 50, description = 'Carpool from Toronto to Waterloo'
 WHERE driverID = 8 AND vehicleID = 1 AND tripID = 1;
 -- Check Trip table
 SELECT * FROM Trip;
@@ -89,7 +89,7 @@ SELECT * FROM Trip;
 -- We can also remove the description by setting it to NULL
 UPDATE Trip
 SET origin = 'Waterloo', destination = 'Toronto', departTime = '2022-10-22 10:30', 
-price = 40, desciption = NULL
+price = 40, description = NULL
 WHERE driverID = 2 AND vehicleID = 1 AND tripID = 3;
 -- Check Trip table
 SELECT * FROM Trip;
@@ -97,7 +97,7 @@ SELECT * FROM Trip;
 -- We can also update other fields such as origin, destination, departTime, and price.
 UPDATE Trip
 SET origin = 'Mississauga', destination = 'Waterloo', departTime = '2022-10-24 8:30', 
-price = 25, desciption = 'Carpool from Mississauga to Waterloo'
+price = 25, description = 'Carpool from Mississauga to Waterloo'
 WHERE driverID = 4 AND vehicleID = 2 AND tripID = 3;
 -- Check Trip table
 SELECT * FROM Trip;

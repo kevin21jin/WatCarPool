@@ -45,7 +45,7 @@ SELECT count(*) FROM Trip WHERE driverID = 2 AND vehicleID = 1
 count(*)
 2
 --------------
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 2, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 40, 'Carpool from Waterloo to Toronto'
 --------------
 
@@ -53,7 +53,7 @@ SELECT 2, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 40, 'Carpool from Wat
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -62,7 +62,7 @@ driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
 4	2	1	City A	City D	2022-10-20 11:00:00	45.00	Carpool from City A to City D\n
 4	2	2	City D	City E	2022-10-21 19:00:00	30.00	Carpool from City D to City E\n
 --------------
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 2, 1, 4, 'Toronto', 'Waterloo', '2022-10-23 14:00', 40, 'Carpool from Toronto to Waterloo'
 --------------
 
@@ -70,7 +70,7 @@ SELECT 2, 1, 4, 'Toronto', 'Waterloo', '2022-10-23 14:00', 40, 'Carpool from Tor
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -92,7 +92,7 @@ SELECT count(*) FROM Trip WHERE driverID = 4 AND vehicleID = 2
 count(*)
 2
 --------------
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 35, 'Carpool from Waterloo to Toronto'
 --------------
 
@@ -100,7 +100,7 @@ SELECT 4, 1, 3, 'Waterloo', 'Toronto', '2022-10-22 10:30', 35, 'Carpool from Wat
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -111,7 +111,7 @@ driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
 4	2	1	City A	City D	2022-10-20 11:00:00	45.00	Carpool from City A to City D\n
 4	2	2	City D	City E	2022-10-21 19:00:00	30.00	Carpool from City D to City E\n
 --------------
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, desciption)
+INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 2, 3, 'Toronto', 'Waterloo', '2022-10-23 14:00', 35, 'Carpool from Toronto to Waterloo'
 --------------
 
@@ -119,7 +119,7 @@ SELECT 4, 2, 3, 'Toronto', 'Waterloo', '2022-10-23 14:00', 35, 'Carpool from Tor
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -139,7 +139,7 @@ SELECT 8, 1, 1, 'Toronto', 'Waterloo', '2022-10-23 14:00', 50
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -154,7 +154,7 @@ driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
 --------------
 UPDATE Trip
 SET origin = 'Toronto', destination = 'Waterloo', departTime = '2022-10-23 14:00', 
-price = 50, desciption = 'Carpool from Toronto to Waterloo'
+price = 50, description = 'Carpool from Toronto to Waterloo'
 WHERE driverID = 8 AND vehicleID = 1 AND tripID = 1
 --------------
 
@@ -162,7 +162,7 @@ WHERE driverID = 8 AND vehicleID = 1 AND tripID = 1
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	Carpool from Waterloo to Toronto
@@ -177,7 +177,7 @@ driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
 --------------
 UPDATE Trip
 SET origin = 'Waterloo', destination = 'Toronto', departTime = '2022-10-22 10:30', 
-price = 40, desciption = NULL
+price = 40, description = NULL
 WHERE driverID = 2 AND vehicleID = 1 AND tripID = 3
 --------------
 
@@ -185,7 +185,7 @@ WHERE driverID = 2 AND vehicleID = 1 AND tripID = 3
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
@@ -200,7 +200,7 @@ driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
 --------------
 UPDATE Trip
 SET origin = 'Mississauga', destination = 'Waterloo', departTime = '2022-10-24 8:30', 
-price = 25, desciption = 'Carpool from Mississauga to Waterloo'
+price = 25, description = 'Carpool from Mississauga to Waterloo'
 WHERE driverID = 4 AND vehicleID = 2 AND tripID = 3
 --------------
 
@@ -208,7 +208,7 @@ WHERE driverID = 4 AND vehicleID = 2 AND tripID = 3
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
@@ -242,7 +242,7 @@ collation_connection: utf8mb4_general_ci
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
@@ -279,7 +279,7 @@ DELETE FROM Trip WHERE driverID = 4 AND vehicleID = 2 AND tripID = 1
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
@@ -307,7 +307,7 @@ driverID	vehicleID	tripID	passengerID	rating
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
@@ -339,7 +339,7 @@ DELETE FROM Trip WHERE driverID = 8 AND vehicleID = 1 AND tripID = 1
 SELECT * FROM Trip
 --------------
 
-driverID	vehicleID	tripID	origin	destination	departTime	price	desciption
+driverID	vehicleID	tripID	origin	destination	departTime	price	description
 2	1	1	City A	City B	2022-10-19 15:00:00	35.00	Carpool from City A to City B\n
 2	1	2	City B	City D	2022-10-21 14:30:00	25.00	Carpool from City B to City D\n
 2	1	3	Waterloo	Toronto	2022-10-22 10:30:00	40.00	NULL
