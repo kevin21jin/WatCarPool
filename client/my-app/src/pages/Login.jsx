@@ -31,12 +31,12 @@ export const Login = () => {
     }
     if (data.status === "Success") {
       let userinfo = {
-        userId: data.user.userId,
+        userId: data.user.userID,
         username: data.user.username,
         email: data.user.email,
         phone: data.user.phone,
         type: data.user.type,
-        joined_at: data.user.joined_at
+        joined_at: data.user.joinedAt
       }
       localStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
       console.log(userinfo)

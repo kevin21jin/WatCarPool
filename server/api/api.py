@@ -5,7 +5,7 @@ from api.helper.driver import *
 from api.helper.passenger import *
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
 
 @app.route("/")
 def helloWorld():
@@ -31,6 +31,7 @@ def register():
 @app.route("/api/trips", methods=['GET'])
 def getTrips():
     result = execute_getTrips()
+    print(result)
     return result
 
 @app.route("/api/trips/search", methods=['GET'])

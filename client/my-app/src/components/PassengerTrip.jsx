@@ -6,10 +6,9 @@ const PassengerTrip = ({trip}) => {
     <>
         <Card style={{ width: '35rem'}} className="rounded">
             <Card.Body>
-              <Card.Title style={{color: "#2DA8D8FF"}}>{trip.from} to {trip.to}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Time: {trip.dapartTime}</Card.Subtitle>
+              <Card.Title style={{color: "#2DA8D8FF"}}>{trip.origin} → {trip.destination}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
               <Card.Subtitle className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
-              <Card.Subtitle className="mb-2 text-muted">Model: {trip.model}</Card.Subtitle>
               <Card.Text>
               {trip.description}
               </Card.Text>
