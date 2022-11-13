@@ -19,6 +19,7 @@ export const Login = () => {
     draggable: true,
     theme: "light"
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,9 +47,9 @@ export const Login = () => {
 
   return (
     <>
-      <div style={{ padding: "80px" }}>
+      <div style={{ padding: "20px" }}>
         <FormContainer>
-          <h1 style={{ padding: "50px 0px 50px px" }}>Sign In</h1>
+          <h2 style={{ padding: "20px 0px 20px px" }}>Sign In</h2>
           <Form >
             <Form.Group controlId='Username'>
               <Form.Label>
@@ -81,7 +82,7 @@ export const Login = () => {
               <Button type='submit' variant='primary' onClick={handleSubmit}> Login </Button><br />
             </center>
             <br />
-            <p>Need a account?<br />
+            <p style={{ fontSize: "16px" }}>Need a account?<br />
               <span className="line">
                 <Link to='/register'>Register here!</Link>
               </span></p>
