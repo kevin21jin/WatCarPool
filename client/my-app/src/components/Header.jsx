@@ -6,12 +6,14 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 export const Header = () => {
-  console.log(localStorage.getItem('WatCarPool-User'))
-  const [currentUser,setuser] = useState(JSON.parse(localStorage.getItem('WatCarPool-User')))
+  const [currentUser,setUser] = useState(JSON.parse(localStorage.getItem('WatCarPool-User')))
+
   const logout = () => {
     localStorage.setItem('WatCarPool-User', null)
-    setuser(null)
+    setUser(null)
+    window.location.reload(false)
   }
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -33,7 +35,7 @@ export const Header = () => {
             </Nav> */}
             {(currentUser == null) ?
               <Nav className="ms-auto">
-                <Nav.Link href="/login"><i className='fas fa-user'></i>Login</Nav.Link>
+                <Nav.Link href="/Login"><i className='fas fa-user'></i>Login</Nav.Link>
               </Nav>
               :
               <Nav className="ms-auto">

@@ -17,7 +17,7 @@ export const Register = () => {
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   const [pnum, setPnum] = useState('');
-  const [driver, setDriver] = useState('');
+  const [driver, setDriver] = useState('passenger');
   const navigate = useNavigate()
   const toastOptions = {
     position: "bottom-right",

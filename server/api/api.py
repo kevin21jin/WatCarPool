@@ -87,7 +87,7 @@ def joinTrip():
     result = execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID)
     return result
 
-@app.route("/api/trips/leave", methods=['DELETE'])
+@app.route("/api/trips/leave", methods=['POST'])
 def leaveTrip():
     driverID = request.json.get('driverID')
     vehicleID = request.json.get('vehicleID')
@@ -104,7 +104,7 @@ def registerVehicle():
     result = execute_registerVehicle(driverID, model, capacity)
     return result
 
-@app.route("/api/trips/passenger", methods=['GET'])
+@app.route("/api/trips/passenger", methods=['POST'])
 def getTripsByPassenger():
     passengerID = request.json.get('passengerID')
     result = execute_passengerGetTrips(passengerID)

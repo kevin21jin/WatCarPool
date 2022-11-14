@@ -29,7 +29,7 @@ export const Login = () => {
     if (data.status === "Fail") {
       toast.error(data.errorMessage, toastOptions);
     }
-    if (data.status === "Success") {
+    else if (data.status === "Success") {
       let userinfo = {
         userId: data.user.userID,
         username: data.user.username,
@@ -40,11 +40,11 @@ export const Login = () => {
       }
       localStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
       console.log(userinfo)
-      navigate("/")
+      navigate("/mainpage")
     }
   }
 
-
+  
   return (
     <>
       <div style={{ padding: "20px" }}>

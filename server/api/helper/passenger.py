@@ -59,13 +59,14 @@ def execute_passengerLeaveTrip(driverID, vehicleID, tripID, passengerID):
     return { "status": "Success" }
 
 def execute_passengerGetTrips(passengerID):
-    sql_command = """SELECT t.driverID, t.vehicleID, t.tripID, t.origin, t.destination, t.departTime, t.price, t.description
+    sql_command = """SELECT *
                         FROM Trip t
                         RIGHT JOIN
                         (SELECT * FROM Travelled WHERE passengerID = %s) travelled
                                                 ON t.driverID = travelled.driverID AND 
-                                                t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID;"""
+                                                t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID"""
     val = (passengerID,)
+    print("reach here")
     cursor.execute(sql_command, val)
     passengerTrips = []
     result = cursor.fetchall()
