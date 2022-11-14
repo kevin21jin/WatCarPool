@@ -1,6 +1,7 @@
 import mysql.connector
 from datetime import datetime
 from sqlite3 import OperationalError
+from api.helper.model import Vehicle
 import json
 
 db = mysql.connector.connect(
@@ -26,6 +27,17 @@ def execute_registerVehicle(driverID, model, capacity):
     except OperationalError as msg:
         print("Command skipped: ", msg)
     return { "status": "Success" }
+
+def execute_getVehicles(driverID):
+    vehicles = []
+    command = "SELECT * FROM Vehicle WHERE driverID = %s"
+    val = (driverID,)
+    cursor.execute(command, val)
+    result = cursor.fetchall()
+    for row in result:
+        vehicle = Vehicle(row).__dict__
+        vehicles.append(vehicle)
+    return json.dumps(vehicles, default=str)
 
 def execute_createTrip(driverID, vehicleID, origin, destination, departTime, price, description):
     command = "SELECT MAX(TripID) FROM Trip WHERE driverID = %s AND vehicleID = %s"

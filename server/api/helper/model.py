@@ -18,3 +18,10 @@ class Trip():
         self.departTime = trip[5]
         self.price = trip[6]
         self.description = trip[7]
+
+class Vehicle():
+    def __init__(self, vehicle):
+        self.driverID = vehicle[0]
+        self.vehicleID = vehicle[1]
+        self.model = vehicle[2]
+        self.capacity = vehicle[3]
