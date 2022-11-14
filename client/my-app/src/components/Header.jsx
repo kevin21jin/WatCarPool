@@ -23,19 +23,15 @@ export const Header = () => {
           <Navbar.Brand href="/">WatCarpool</Navbar.Brand>
           :
           (currentUser.type === "driver")? 
-          <Navbar.Brand href="/">WatCarpool Driver</Navbar.Brand>
+          <Navbar.Brand href="/">WatCarpool Driver Center</Navbar.Brand>
           :
-          <Navbar.Brand href="/">WatCarpool Passenger</Navbar.Brand>
+          <Navbar.Brand href="/">WatCarpool Passenger Center</Navbar.Brand>
           }
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* <Nav className="me-auto">
-              <Nav.Link href="/"><i className="fa-solid fa-house"></i>{" Home"}</Nav.Link>
-              <Nav.Link href="/aboutus"><i className="fa-solid fa-circle-info"></i>{" About"}</Nav.Link>
-            </Nav> */}
             {(currentUser == null) ?
               <Nav className="ms-auto">
-                <Nav.Link href="/Login"><i className='fas fa-user'></i>Login</Nav.Link>
+                <Nav.Link href="/"><i className='fas fa-user'></i>Login</Nav.Link>
               </Nav>
               :
               <Nav className="ms-auto">
