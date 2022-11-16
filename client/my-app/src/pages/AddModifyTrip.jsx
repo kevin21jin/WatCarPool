@@ -55,7 +55,7 @@ export const AddModifyTrip = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:MM")
         console.log(realTime)
         const requestJson = {

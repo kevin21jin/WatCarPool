@@ -18,7 +18,7 @@ def execute_registerVehicle(driverID, model, capacity):
     val = (driverID,)
     cursor.execute(command, val)
     result = cursor.fetchone()
-    vehicleID = result[0] + 1
+    vehicleID = (result[0] + 1) if result[0] is not None else 1
     try:
         command = "INSERT INTO Vehicle VALUES (%s, %s, %s, %s)"
         val = (driverID, vehicleID, model, capacity)
@@ -44,10 +44,16 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
     val = (driverID, vehicleID)
     cursor.execute(command, val)
     result = cursor.fetchone()
-    tripID = result[0] + 1
-    time = datetime.strptime(departTime, "%m/%d/%Y %H:%M %p")
+    tripID = (result[0] + 1) if result[0] is not None else 1
+    time = datetime.strptime(departTime, "%Y/%m/%d %H:%M")
     if time <= datetime.now():
         return { "status": "Fail", "errorMessage": "ERROR: Trip time must be greater than the current time" }
+    if vehicleID == "":
+        return { "status": "Fail", "errorMessage": "ERROR: You muse select a vehicle" }
+    if origin == "":
+        return { "status": "Fail", "errorMessage": "ERROR: Origin must not be empty" }
+    if destination == "":
+        return { "status": "Fail", "errorMessage": "ERROR: Destination must not be empty" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
     try:
@@ -84,9 +90,13 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
     time = result[0]
     if time <= datetime.now():
         return { "status": "Fail", "errorMessage": "ERROR: Trips cannot be modified after the depart time" }
-    time = datetime.strptime(departTime, "%Y-%m-%d %H:%M:%S")
+    time = datetime.strptime(departTime, "%Y/%m/%d %H:%M")
     if time <= datetime.now():
         return { "status": "Fail", "errorMessage": "ERROR: Trip time must be greater than the current time" }
+    if origin == "":
+        return { "status": "Fail", "errorMessage": "ERROR: Origin must not be empty" }
+    if destination == "":
+        return { "status": "Fail", "errorMessage": "ERROR: Destination must not be empty" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
     try:

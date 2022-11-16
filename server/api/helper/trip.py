@@ -16,6 +16,7 @@ cursor = db.cursor()
 def execute_getTrips():
     trips = []
     command = "SELECT * FROM Trip"
+    db.commit()
     cursor.execute(command)
     result = cursor.fetchall()
     for row in result:
@@ -32,10 +33,10 @@ def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, pri
     if destination:
         fields.append("destination = '" + destination + "'")
     if departTimeStart:
-        departFrom = datetime.strptime(departTimeStart, "%m/%d/%Y %H:%M %p")
+        departFrom = datetime.strptime(departTimeStart, "%Y/%m/%d %H:%M")
         fields.append("departTime >= '" + str(departFrom) + "'")
     if departTimeEnd:
-        departTo = datetime.strptime(departTimeEnd, "%m/%d/%Y %H:%M %p")
+        departTo = datetime.strptime(departTimeEnd, "%Y/%m/%d %H:%M")
         fields.append("departTime <= '" + str(departTo) + "'")
     if priceLow:
         fields.append("price >= " + str(priceLow))

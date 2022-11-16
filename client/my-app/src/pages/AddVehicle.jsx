@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
 import axios from 'axios'
-import { loginRoute, registerVehicleRoute } from '../api/ApiRoutes'
-import { Link, useNavigate } from 'react-router-dom'
+import { registerVehicleRoute } from '../api/ApiRoutes'
+import { useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 export const AddVehicle = () => {

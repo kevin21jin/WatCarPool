@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from '../components/Header'
 import { Card, Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const DriverTrip = ({ trips, currentUser }) => {
   const navigate = useNavigate()
