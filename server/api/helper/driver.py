@@ -45,14 +45,14 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
     cursor.execute(command, val)
     result = cursor.fetchone()
     tripID = result[0] + 1
-    time = datetime.strptime(departTime, "%Y-%m-%d %H:%M:%S")
+    time = datetime.strptime(departTime, "%m/%d/%Y %H:%M %p")
     if time <= datetime.now():
         return { "status": "Fail", "errorMessage": "ERROR: Trip time must be greater than the current time" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
     try:
         command = "INSERT INTO Trip VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-        val = (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
+        val = (driverID, vehicleID, tripID, origin, destination, time, price, description)
         cursor.execute(command, val)
         db.commit()
     except OperationalError as msg:
