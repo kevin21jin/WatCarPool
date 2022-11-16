@@ -7,3 +7,4 @@ export const quitRoute = `${server}/api/trips/leave`
 export const getMyTripsRoute = `${server}/api/trips/passenger`
 export const getVehicle = `${server}/api/vehicles`
 export const registerVehicleRoute = `${server}/api/vehicle/register`
+export const createTripRoute = `${server}/api/trips/create`

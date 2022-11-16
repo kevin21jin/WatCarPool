@@ -69,7 +69,7 @@ export const AddVehicle = () => {
 
                         <br />
                         <center>
-                            <Button type='submit' variant='primary' onClick={handleSubmit}> Submit </Button><br />
+                            <Button type='submit' variant='primary' onClick={handleSubmit}> Add! </Button><br />
                         </center>
                         <br />
                     </Form>

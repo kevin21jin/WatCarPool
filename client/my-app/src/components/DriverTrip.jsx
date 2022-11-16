@@ -2,7 +2,6 @@ import React from 'react'
 import { Header } from '../components/Header'
 import { Card, Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
-import { AddModifyTrip } from '../pages/AddModifyTrip'
 import { Link, useNavigate } from 'react-router-dom'
 
 const DriverTrip = ({ trips, currentUser }) => {

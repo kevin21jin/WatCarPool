@@ -1,5 +1,5 @@
 import React from 'react'
-import { getVehicle } from '../api/ApiRoutes'
+import { createTripRoute, getVehicle } from '../api/ApiRoutes'
 import { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
@@ -15,11 +15,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import moment from 'moment'
 export const AddModifyTrip = () => {
     const [origin, changeOrigin] = useState("")
     const [dest, changeDest] = useState("")
     const [time, changeTime] = useState(null)
-    const [price, changePrice] = useState("")
+    const [price, changePrice] = useState(0)
     const [description, changeDescription] = useState("")
 
     const [vehicles, changeVehicles] = useState([])
@@ -54,7 +55,25 @@ export const AddModifyTrip = () => {
 
 
     const handleSubmit = async (e) => {
-
+        e.preventDefault();
+        let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:MM")
+        console.log(realTime)
+        const requestJson = {
+            driverID: currentUser.userId,
+            vehicleID: vehicle,
+            origin: origin,
+            destination: dest,
+            departTime: realTime,
+            price: price,
+            description: description
+        }
+        const { data } = await axios.post(createTripRoute, requestJson);
+        if (data.status === "Fail") {
+            toast.error(data.errorMessage, toastOptions);
+        }
+        else if (data.status === "Success") {
+            navigate("/mainpage")
+        }
     }
 
 
@@ -71,8 +90,10 @@ export const AddModifyTrip = () => {
                             <DateTimePicker
                                 label="Date & Time"
                                 value={time}
+                                inputFormat="YYYY/MM/DD HH:MM"
                                 onChange={(newValue) => {
                                     changeTime(newValue)
+                                    console.log(time)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
                                     ...params.inputProps,
@@ -98,6 +119,10 @@ export const AddModifyTrip = () => {
                             </FormControl>
                         </Box>
                         <br />
+                        <p style={{ fontSize: "16px" }}>Have not register a vehicle?<br />
+                            <span className="line">
+                                <Link to='/addvehicle'>Add vehicle!</Link>
+                            </span></p>
                         <br />
                         <h2>Step 2: Travel details</h2>
                         <br />
