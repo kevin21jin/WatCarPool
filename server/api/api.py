@@ -31,7 +31,6 @@ def register():
 @app.route("/api/trips", methods=['GET'])
 def getTrips():
     result = execute_getTrips()
-    print(result)
     return result
 
 @app.route("/api/trips/search", methods=['GET'])
