@@ -10,7 +10,7 @@ import { getTripRoute } from '../api/ApiRoutes'
 export const Home = () => {
   const [trips, setTrips] = useState([]);
   const [helper, changeHelp] = useState(0);
-  const currentUser = JSON.parse(localStorage.getItem('WatCarPool-User'))
+  const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
   
   useEffect(() =>{
     async function fetchTrips(){

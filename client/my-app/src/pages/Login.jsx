@@ -38,7 +38,7 @@ export const Login = () => {
         type: data.user.type,
         joined_at: data.user.joinedAt
       }
-      localStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
+      sessionStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
       console.log(userinfo)
       navigate("/mainpage")
     }

@@ -38,7 +38,7 @@ export const Register = () => {
       toast.error(data.errorMessage, toastOptions);
     }
     if (data.status === "Success") {
-      navigate("/login")
+      navigate("/")
     }
   }
 

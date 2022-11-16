@@ -6,10 +6,10 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 export const Header = () => {
-  const [currentUser,setUser] = useState(JSON.parse(localStorage.getItem('WatCarPool-User')))
+  const [currentUser,setUser] = useState(JSON.parse(sessionStorage.getItem('WatCarPool-User')))
 
   const logout = () => {
-    localStorage.setItem('WatCarPool-User', null)
+    sessionStorage.setItem('WatCarPool-User', null)
     setUser(null)
     window.location.reload(false)
   }
