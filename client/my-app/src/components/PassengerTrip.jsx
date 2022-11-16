@@ -11,8 +11,8 @@ import { useState, useEffect } from 'react'
 import { getMyTripsRoute } from '../api/ApiRoutes'
 
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
-
   const [mytrips, getMyTrips] = useState([])
+  
 
   useEffect(() =>{
     async function fetchMyTrips(){
@@ -78,7 +78,6 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     <>
       <Header />
       <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem"}}>Hi, {currentUser.username}</h1>
-
       <div style={{ padding: "10rem", paddingTop: "5rem", paddingBottom: "0rem" }}>
         <h1>My Trips</h1>
         <Row>
@@ -110,7 +109,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+                  <Card.Subtitle stryle={{ fontSize: "16px"}} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Details:</Card.Subtitle>
                   <Card.Text>
                     {trip.description}

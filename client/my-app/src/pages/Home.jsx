@@ -1,16 +1,26 @@
 import React from 'react'
+import './Pagination.css'
 import GuestTrip from '../components/GuestTrip'
 import PassengerTrip from '../components/PassengerTrip'
 import DriverTrip from '../components/DriverTrip'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { Pagination } from '../components/Pagination'
 import axios from 'axios'
 import { getTripRoute } from '../api/ApiRoutes'
 
 export const Home = () => {
   const [trips, setTrips] = useState([]);
   const [helper, changeHelp] = useState(0);
+  const [curPage, setCurPage] = useState(1);
+  const [postPerpage] = useState(1);
   const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
+  const indexOfLastPost = curPage * postPerpage;
+  const indexOfFirstPost = indexOfLastPost - postPerpage;
+  console.log(indexOfFirstPost)
+  console.log(indexOfLastPost)
+  console.log(curPage)
+  const paginate = (pageNumber) => setCurPage(pageNumber);
   
   useEffect(() =>{
     async function fetchTrips(){
@@ -19,7 +29,7 @@ export const Home = () => {
     }
     fetchTrips()
   }, [helper])
-
+  const currentPost = trips.slice(indexOfFirstPost, indexOfLastPost)
   if(currentUser == null){
     return (
       <>
@@ -30,7 +40,8 @@ export const Home = () => {
   else if(currentUser.type === "passenger"){
     return (
       <>
-        <PassengerTrip trips = {trips} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+        <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {trips.length} paginate ={paginate}></Pagination>
       </>
     )
   }

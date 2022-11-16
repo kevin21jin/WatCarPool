@@ -1,0 +1,50 @@
+
+.Container{
+    position: absolute;
+    padding: 0 70px;
+    border-radius: 5px;
+    padding-bottom: 30;
+    
+    height: 50px;
+    transform: (-50%, -50%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+   
+}
+.Container ul{
+    display: flex;
+    text-align: center;
+    list-style-type: none;
+}
+
+.Container button{
+    background-color: white;
+    height: 50px;
+    text-align: top;
+    color-scheme: white;
+
+}
+
+.Container button:hover{
+    background-color: white;
+    background-color: gainsboro;
+
+} 
+.Container button:focus{
+    outline: none;
+
+}
+.Container ul li{
+    width: 50px;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    height: 50px;
+    line-height: 60px;
+    
+}
+
+ .active, .Container ul li:hover{
+    background-color: gainsboro;
+}
