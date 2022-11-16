@@ -5,3 +5,5 @@ export const getTripRoute = `${server}/api/trips`
 export const joinRoute = `${server}/api/trips/join`
 export const quitRoute = `${server}/api/trips/leave`
 export const getMyTripsRoute = `${server}/api/trips/passenger`
+export const getVehicle = `${server}/api/vehicles`
+export const registerVehicleRoute = `${server}/api/vehicle/register`

@@ -12,12 +12,17 @@ const DriverTrip = ({ trips, currentUser }) => {
     navigate("/addmodify")
   }
 
+  const AddVehicles = (e) => {
+    navigate("/addvehicle")
+  }
+
   return (
     <>
       <Header />
       <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem" }}>Hi, {currentUser.username}</h1>
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
       <Button style={{ margin: "0 0 5rem 0 "}} type='submit' variant='primary' onClick={ AddTrips }> Add Trips </Button><br />
+      <Button style={{ margin: "0 0 5rem 0 "}} type='submit' variant='primary' onClick={ AddVehicles }> Add Vehicles </Button><br />
         <h1>Trips Available</h1>
         <Row>
           {trips.map((trip) => (

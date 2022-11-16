@@ -5,6 +5,7 @@ import { Home } from './pages/Home'
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Welcome } from './pages/Welcome';
+import { AddVehicle } from './pages/AddVehicle';
 function App() {
     return (
         <BrowserRouter>
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/addmodify" element={<AddModifyTrip />} />
+          <Route path="/addvehicle" element={<AddVehicle />} />
           
         </Routes>
         </BrowserRouter>

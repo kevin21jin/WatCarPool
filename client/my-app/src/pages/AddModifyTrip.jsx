@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
+import { getVehicle } from '../api/ApiRoutes'
+import { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,13 +9,34 @@ import { ToastContainer, toast } from "react-toastify"
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'
 import { TextField } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import dayjs, { Dayjs } from 'dayjs';
+import axios from 'axios'
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 export const AddModifyTrip = () => {
     const [origin, changeOrigin] = useState("")
     const [dest, changeDest] = useState("")
     const [time, changeTime] = useState(null)
     const [price, changePrice] = useState("")
     const [description, changeDescription] = useState("")
+
+    const [vehicles, changeVehicles] = useState([])
+    const [vehicle, changeVehicle] = useState("")
+    const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
+
+    useEffect(() => {
+        async function fetchMyVehicle() {
+            const requestJson = {
+                driverID: currentUser.userId
+            }
+            const response = await axios.post(getVehicle, requestJson)
+            console.log(response.data)
+            changeVehicles(response.data)
+        }
+        fetchMyVehicle()
+    }, [])
 
     const navigate = useNavigate()
     const toastOptions = {
@@ -26,6 +48,10 @@ export const AddModifyTrip = () => {
         theme: "light"
     };
 
+    const handleChange = (e) => {
+        changeVehicle(e.target.value)
+    };
+
 
     const handleSubmit = async (e) => {
 
@@ -34,17 +60,16 @@ export const AddModifyTrip = () => {
 
     return (
         <>
-            <div style={{ padding: "50px" }}>
+            <div style={{ margin: "50px" }}>
                 <FormContainer>
                     <h1>Create trip:</h1>
                     <br />
                     <Form >
-
-                        <h2>Step 1: Set the time</h2>
+                        <h2>Step 1: Set your time and vehicle</h2>
                         <br />
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
-                                label="Time"
+                                label="Date & Time"
                                 value={time}
                                 onChange={(newValue) => {
                                     changeTime(newValue)
@@ -56,10 +81,25 @@ export const AddModifyTrip = () => {
                             />
                         </LocalizationProvider>
 
+                        <Box sx={{ marginTop: 5 }}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-helper-label">Vehicle</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    label="Vehicle"
+                                    value={vehicle}
+                                    onChange={handleChange}
+                                >
+                                    {vehicles.map((v) => (
+                                        <MenuItem key={v.vehicleID} value={v.vehicleID}>Vehicle {v.vehicleID} {v.model}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
                         <br />
                         <br />
-                        <br />
-                        <h2>Step 2: </h2>
+                        <h2>Step 2: Travel details</h2>
                         <br />
                         <Form.Group controlId='Origin'>
                             <Form.Label>
@@ -102,12 +142,23 @@ export const AddModifyTrip = () => {
                         </Form.Group>
 
                         <br />
-
                         <br />
-
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-                        </LocalizationProvider>
+                        <br />
+                        <h2>Step Optional: Travel details</h2>
+                        <br />
+                        <Form.Group controlId='Description'>
+                            <Form.Label>
+                                Description
+                            </Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={5}
+                                type='text'
+                                value={description}
+                                autoComplete="off"
+                                onChange={(e) => changeDescription(e.target.value)}>
+                            </Form.Control>
+                        </Form.Group>
 
                         <br />
                         <center>
@@ -116,9 +167,7 @@ export const AddModifyTrip = () => {
                     </Form>
                 </FormContainer>
             </div>
-
             <ToastContainer />
         </>
-
     )
 }

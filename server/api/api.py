@@ -104,7 +104,7 @@ def registerVehicle():
     result = execute_registerVehicle(driverID, model, capacity)
     return result
 
-@app.route("/api/vehicles", methods=['GET'])
+@app.route("/api/vehicles", methods=['POST'])
 def getVehicles():
     driverID = request.json.get('driverID')
     result = execute_getVehicles(driverID)
