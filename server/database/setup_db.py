@@ -3,6 +3,7 @@ from helper.executeSQL import executeSQLFromFile
 from helper.createTriggers import createTriggers
 from helper.populateTables import populateTables
 import json
+import sys
 
 path = open('../../mysqlConfig.json')
 config = json.load(path)
@@ -19,8 +20,12 @@ def createDB():
     for (databases) in cursor:
         if databases[0] == 'WCP_DB': return
     cursor.execute("CREATE DATABASE WCP_DB")
+    print('Database schema created successfully!')
 
+print('We will create the database WCP_DB:')
 createDB()
 executeSQLFromFile('createtables')
 createTriggers()
-populateTables()
+option = sys.argv[1]
+print(f'We will import the {option} data:')
+populateTables(option)

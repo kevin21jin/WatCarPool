@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Trip
     origin VARCHAR(25) NOT NULL,
     destination VARCHAR(25) NOT NULL,
     departTime DATETIME NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
+    price DECIMAL(6,2) NOT NULL,
     description VARCHAR(200),
     FOREIGN KEY (driverID, vehicleID) REFERENCES Vehicle(driverID, vehicleID),
     PRIMARY KEY (driverID, vehicleID, tripID)

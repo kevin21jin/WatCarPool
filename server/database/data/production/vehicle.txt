@@ -1,0 +1,314 @@
+1,1,Alfa Romeo 164,4
+4,1,Dodge Sprinter 3500 Cargo,5
+4,2,Ford F350 Super Duty Crew Cab,6
+4,3,Ford Mustang,4
+4,4,Eagle Vision,4
+4,5,Suzuki SX4,6
+7,1,Chevrolet Spark,5
+12,1,Mercedes-Benz Mercedes-AMG SL,4
+17,1,Mercedes-Benz Metris Cargo,6
+19,1,Toyota Tundra Double Cab,4
+25,1,Chevrolet Express 1500 Passenger,4
+26,1,Chevrolet Silverado 3500 HD Crew Cab,1
+33,1,Ford Econoline E350 Super Duty Passenger,5
+33,2,Kia Rio,1
+40,1,Audi Q5,1
+40,2,Dodge Ram 1500 Quad Cab,4
+42,1,Chevrolet Tracker,6
+43,1,Dodge Grand Caravan Passenger,1
+43,2,BMW 3 Series,4
+44,1,FIAT 500c,4
+46,1,Lotus Exige,4
+50,1,Pontiac Sunfire,5
+51,1,Jeep Commander,4
+51,2,MAZDA Millenia,4
+52,1,Ford F150 Super Cab,4
+54,1,Volvo C30,4
+69,1,Bentley Mulsanne,6
+71,1,GMC Sierra 1500 Regular Cab,4
+74,1,Toyota Highlander,5
+79,1,Ford Econoline E150 Cargo,4
+80,1,Ford Focus,5
+84,1,Volvo 850,4
+85,1,Mercedes-Benz C-Class,6
+88,1,Lincoln LS,5
+93,1,Aston Martin DBS,4
+93,2,Toyota Matrix,6
+95,1,Acura Legend,4
+98,1,Chevrolet 2500 Extended Cab,4
+99,1,Ford Ranger Super Cab,6
+102,1,Audi A8,6
+116,1,Nissan 240SX,4
+123,1,Kia Sorento,6
+133,1,Isuzu Rodeo,6
+137,1,Kia Sedona,4
+137,2,Volvo XC70,1
+147,1,Volkswagen Golf R,5
+147,2,Freightliner Sprinter 2500 Crew,5
+151,1,Cadillac CTS,4
+154,1,Audi A3,6
+161,1,GMC Savana 1500 Passenger,4
+164,1,Ford Transit 150 Wagon,6
+164,2,Mercedes-Benz 500 E,1
+164,3,INFINITI FX,5
+164,4,smart fortwo,4
+165,1,Hyundai Equus,4
+166,1,BMW 5 Series,4
+167,1,Toyota Yaris Hatchback,4
+167,2,Mercedes-Benz 600 SEL,4
+167,3,Porsche 911,4
+169,1,Ford Mustang,6
+173,1,Buick Terraza,4
+173,2,GMC Yukon XL 1500,1
+175,1,Chevrolet Cobalt,4
+183,1,Lexus LS,4
+183,2,Audi A4,6
+205,1,Chevrolet Astro Cargo,6
+205,2,GMC Sierra 1500 Regular Cab,4
+205,3,Alfa Romeo Spider,5
+210,1,Mitsubishi Precis,1
+210,2,Volkswagen Golf,4
+212,1,Chevrolet Camaro,4
+214,1,GMC Savana 2500 Cargo,6
+215,1,Dodge Grand Caravan Passenger,1
+216,1,Porsche 911,4
+216,2,Chevrolet Malibu,4
+217,1,Chevrolet Express 3500 Cargo,4
+219,1,Dodge Ram Wagon 2500,1
+225,1,Aston Martin Rapide,4
+227,1,BMW 8 Series,6
+243,1,Hyundai Azera,4
+243,2,Mercedes-Benz SL-Class,4
+246,1,Volvo S40,6
+246,2,Nissan Frontier Regular Cab,6
+269,1,McLaren 570S,4
+272,1,Toyota Highlander,4
+275,1,Mercedes-Benz G-Class,6
+277,1,Chevrolet Colorado Regular Cab,4
+279,1,Toyota Highlander Hybrid,6
+280,1,Land Rover Defender 90,4
+280,2,Mercury Milan,4
+280,3,Volkswagen Jetta,6
+285,1,Buick Terraza,4
+285,2,Chevrolet Cobalt,5
+285,3,Ford F250 Super Duty Super Cab,5
+285,4,Isuzu Stylus,6
+285,5,Pontiac Grand Prix,5
+297,1,Cadillac CTS,4
+297,2,Toyota RAV4,6
+301,1,Mitsubishi 3000GT,4
+302,1,Volkswagen Jetta (New),4
+311,1,Plymouth Grand Voyager,4
+313,1,Oldsmobile Aurora,4
+314,1,INFINITI QX,4
+314,2,Chevrolet Aveo,6
+314,3,Kia Spectra,4
+318,1,INFINITI G,4
+318,2,GMC Rally Wagon G2500,4
+318,3,Toyota Tundra CrewMax,5
+318,4,Volkswagen Jetta III,5
+322,1,MAZDA Millenia,4
+322,2,Oldsmobile Silhouette,4
+324,1,Lexus RC,4
+326,1,Buick Lucerne,6
+328,1,BMW X3,6
+336,1,INFINITI G,1
+337,1,MAZDA 323,6
+337,2,Chevrolet Silverado 3500 HD Regular Cab,4
+337,3,Dodge Ram 2500 Quad Cab,4
+342,1,Subaru Legacy,6
+344,1,Suzuki Samurai,4
+344,2,MAZDA Protege,5
+344,3,Mercedes-Benz CLA,4
+345,1,Chevrolet Colorado Extended Cab,6
+347,1,Ferrari 458 Spider,6
+353,1,Nissan Altima,5
+357,1,Maserati GranSport,4
+366,1,Volkswagen CC,5
+366,2,Toyota Land Cruiser,4
+366,3,MINI Clubman,5
+372,1,Nissan Murano,1
+376,1,Mitsubishi Montero,1
+378,1,Dodge Durango,5
+379,1,Chevrolet Corvette,5
+391,1,Land Rover Discovery,6
+392,1,Toyota Yaris,5
+393,1,Hyundai Accent,4
+396,1,Mercedes-Benz SL-Class,4
+399,1,Lincoln MKZ,5
+408,1,Toyota Land Cruiser,6
+420,1,Toyota Sienna,6
+433,1,Toyota Tacoma Access Cab,4
+433,2,Jaguar XF,4
+437,1,Chevrolet Express 3500 Passenger,4
+439,1,Chrysler 300,4
+441,1,Ford F250 Super Duty Crew Cab,4
+446,1,Toyota Prius c,4
+459,1,Kia Soul,1
+460,1,INFINITI FX,4
+472,1,Pontiac Vibe,4
+472,2,Ford Escape,1
+472,3,GMC Sierra 3500 Regular Cab,4
+476,1,Audi A8,4
+476,2,Mitsubishi Raider Extended Cab,4
+480,1,Audi A6,4
+486,1,Volkswagen Golf III,4
+487,1,Mercedes-Benz GLA,4
+488,1,Ford F350 Super Cab,6
+490,1,GMC Canyon Crew Cab,4
+496,1,Chevrolet Suburban 2500,4
+496,2,Nissan Maxima,4
+497,1,Chevrolet Silverado 2500 Extended Cab,4
+498,1,Mercedes-Benz GLA,4
+500,1,Audi S4,6
+500,2,Acura RSX,6
+501,1,Ford F150 Regular Cab,4
+501,2,GMC Sierra 3500 Crew Cab,5
+501,3,Audi R8,4
+504,1,Toyota Mirai,1
+507,1,INFINITI G,6
+513,1,Jeep Wrangler,4
+515,1,Chevrolet Colorado Extended Cab,6
+515,2,MAZDA Millenia,4
+515,3,Hyundai Sonata,5
+515,4,Subaru Legacy,4
+516,1,Tesla Model S,4
+519,1,Hyundai Accent,6
+519,2,Nissan JUKE,4
+520,1,Audi A4 allroad,4
+522,1,Chevrolet S10 Regular Cab,4
+525,1,Nissan Murano,6
+527,1,Volkswagen Passat,4
+538,1,INFINITI QX60,5
+542,1,Lotus Elise,4
+544,1,Acura RL,5
+545,1,Audi S8,4
+551,1,Chevrolet 1500 Extended Cab,6
+552,1,Oldsmobile Cutlass Ciera,5
+556,1,Subaru Outback,5
+557,1,Lincoln Navigator,5
+558,1,Nissan Maxima,1
+560,1,Mitsubishi Eclipse,4
+560,2,BMW 3 Series,4
+561,1,GMC Acadia,6
+563,1,Chevrolet Avalanche 1500,4
+563,2,Cadillac Escalade,1
+566,1,Lexus LX,4
+573,1,Chevrolet Silverado 2500 HD Crew Cab,4
+576,1,Volkswagen Routan,4
+576,2,Dodge Ram Wagon 1500,4
+576,3,Chevrolet Silverado 3500 HD Crew Cab,6
+576,4,Cadillac XTS,4
+579,1,Lincoln Mark LT,5
+594,1,Chevrolet Malibu,4
+594,2,Toyota Highlander Hybrid,4
+597,1,Chevrolet Corvette,6
+605,1,Mercury Milan,4
+608,1,Buick Verano,4
+610,1,Chevrolet Silverado 3500 Extended Cab,4
+616,1,Cadillac CT6,4
+617,1,Nissan Armada,4
+622,1,Chevrolet Express 3500 Passenger,4
+630,1,Ford Ranger Regular Cab,4
+630,2,Chevrolet 3500 Extended Cab,4
+634,1,Acura TLX,4
+634,2,Saab 3-Sep,6
+635,1,Mercury Mariner,5
+635,2,MAZDA Navajo,6
+635,3,Lincoln Mark VIII,6
+635,4,Chevrolet S10 Regular Cab,5
+635,5,Ram 2500 Crew Cab,4
+637,1,Ferrari 488 GTB,4
+646,1,Mercedes-Benz E-Class,6
+646,2,Honda Pilot,4
+646,3,Audi RS 7,1
+646,4,Nissan NV200,4
+655,1,Chevrolet Silverado 1500 Double Cab,4
+656,1,Mercedes-Benz S-Class,4
+659,1,Ford F250 Super Duty Crew Cab,5
+661,1,Volkswagen Golf III,6
+665,1,Ford Contour,4
+665,2,GMC Sonoma Extended Cab,6
+665,3,Mercury Cougar,4
+668,1,Mercedes-Benz SL-Class,5
+669,1,Saab 9-2X,4
+673,1,Buick Regal,4
+679,1,Chevrolet Camaro,1
+694,1,Nissan NV2500 HD Cargo,4
+695,1,Porsche Boxster,5
+696,1,Ford F350 Super Duty Super Cab,4
+703,1,Kia Spectra,6
+710,1,Chevrolet Silverado 1500 Crew Cab,4
+710,2,GMC Vandura 1500,6
+722,1,Hyundai XG350,6
+728,1,Ram 2500 Mega Cab,4
+731,1,Saturn S-Series,4
+735,1,Ford F150 Super Cab,5
+741,1,Pontiac Trans Sport,4
+743,1,Mercedes-Benz CLS-Class,4
+745,1,Ford Club Wagon,4
+747,1,Chevrolet Traverse,4
+753,1,MAZDA RX-7,4
+760,1,Ford F350 Super Duty Super Cab,4
+765,1,Lexus ES,6
+765,2,Pontiac Grand Am,6
+765,3,Acura TL,6
+774,1,Mitsubishi Outlander,4
+776,1,Dodge Durango,6
+778,1,Chevrolet Corvette,6
+786,1,GMC Sierra 3500 HD Crew Cab,6
+790,1,Volvo S60,4
+797,1,BMW M6,6
+797,2,Hyundai Accent,6
+806,1,Chevrolet S10 Regular Cab,4
+808,1,Kia Rio,4
+817,1,Dodge Ram 2500 Regular Cab,6
+817,2,Buick Regal,4
+819,1,Toyota 86,4
+821,1,Mercedes-Benz E-Class,4
+822,1,Saturn L-Series,5
+827,1,GMC Sierra 3500 HD Crew Cab,4
+829,1,Mercedes-Benz Sprinter 2500 Passenger,4
+831,1,BMW X4,1
+831,2,BMW Z4,6
+831,3,Hyundai Elantra,4
+831,4,Audi A8,4
+833,1,Ford E350 Super Duty Cargo,4
+833,2,BMW M5,4
+833,3,Chevrolet Express 1500 Passenger,5
+835,1,Hyundai Elantra,4
+835,2,Buick Cascada,4
+839,1,Honda Element,4
+839,2,Buick LeSabre,4
+842,1,BMW Z4,4
+852,1,Mercedes-Benz SL-Class,6
+853,1,Dodge Ram 2500 Regular Cab,6
+853,2,Tesla Model S,5
+853,3,GMC Sierra 2500 HD Extended Cab,6
+854,1,Volvo S60,1
+859,1,Toyota Land Cruiser,4
+867,1,Dodge Ram Van 2500,6
+873,1,Chevrolet Silverado 2500 HD Crew Cab,4
+876,1,Chevrolet Aveo,4
+879,1,Chevrolet Express 2500 Cargo,4
+888,1,Jaguar XF,1
+889,1,Cadillac Fleetwood,4
+890,1,Mercury Mariner,4
+891,1,Hyundai Accent,4
+903,1,Nissan Frontier Crew Cab,4
+918,1,Jeep Wrangler,1
+920,1,Volkswagen GTI,6
+920,2,Mercury Villager,4
+920,3,Toyota Tacoma Double Cab,4
+931,1,Mercedes-Benz CL-Class,4
+931,2,Chevrolet Lumina,6
+931,3,GMC Yukon,4
+938,1,Volkswagen Touareg,4
+941,1,Porsche Cayenne,4
+944,1,Mercedes-Benz SLS-Class,6
+946,1,Audi TT,1
+956,1,GMC Savana 1500 Passenger,4
+966,1,Lincoln Continental,4
+972,1,Acura RLX,4
+986,1,Chevrolet Malibu,4
+988,1,Mitsubishi Montero,6

@@ -58,12 +58,42 @@ bash setup.sh
 ```
 
 
-### Setup/Update Database
+### Setup Database
 
-Create the database (if it does not exist) including tables and triggers, and import/update sample data into the database:
+Create the database including tables and triggers, and import sample/production data into the database:
 
+Create the database and import sample data (default):
 ```
-bash importSample.sh
+bash createdb.sh 
+```
+
+Create the database and import sample data:
+```
+bash createdb.sh sample
+```
+
+Create the database and import production data:
+```
+bash createdb.sh production
+```
+
+### Update Database
+
+Drop the current tables and triggers and re-import sample/production data into the database:
+
+Update the database with sample data (default):
+```
+bash updatedb.sh 
+```
+
+Update the database with sample data:
+```
+bash updatedb.sh sample
+```
+
+Update the database with production data:
+```
+bash updatedb.sh production
 ```
 
 ### Test Database with Sample Data
@@ -79,7 +109,7 @@ The SQL commands to test sample data for each feature R* are provided in the cor
 Reset the database when finish testing on each feature before testing other features:
 
 ```
-bash reset.sh
+bash update.sh
 ```
 
 ### Drop Database
@@ -87,7 +117,7 @@ bash reset.sh
 Clean up the database:
 
 ```
-bash cleanup.sh
+bash cleanupdb.sh
 ```
 
 ## Running the Application
