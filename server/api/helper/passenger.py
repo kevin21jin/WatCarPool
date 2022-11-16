@@ -27,7 +27,6 @@ def execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID):
     cursor.execute(sql_command_travelled, val_travelled)
     result = cursor.fetchone()
     curJoinNum = result[0] if result != None else 0
-    print(curJoinNum)
     if curJoinNum >= vehicleCapacity:
         return { "status": "Fail", "errorMessage": "ERROR: Vehicle has reached its maximum capacity" }
     # check if current passenger is already joined in the trip
@@ -66,7 +65,6 @@ def execute_passengerGetTrips(passengerID):
                                                 ON t.driverID = travelled.driverID AND 
                                                 t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID"""
     val = (passengerID,)
-    print("reach here")
     cursor.execute(sql_command, val)
     passengerTrips = []
     result = cursor.fetchall()
