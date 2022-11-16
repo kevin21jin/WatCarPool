@@ -47,6 +47,7 @@ export const Register = () => {
 
   return (
     <div style={{ padding: "80px" }}>
+      
       <FormContainer>
         <h1><center>Sign Up</center></h1>
         <Form >

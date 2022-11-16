@@ -16,11 +16,11 @@ export const Video = () => {
             </video>
             <div className='slogan'>
                 <h1>Watcarpool</h1>
-                <p>I AM LEAVING FOR THE WIDER WORLD</p>
+                <p>LEAVING FOR THE WIDER WORLD</p>
                 <br></br>
-                <button id='btn1' onClick={()=>toggleModal(true)}>start</button>
+                
                 <Modal open={modal} onClose={()=>toggleModal(false)}/>
-                 <a href="./mainpage"><button id='btn1'><div id='btn1-box'></div>home</button></a>             
+                <button id='btn1' onClick={()=>toggleModal(true)}>start</button>
             </div>
         </div>
     )
