@@ -34,7 +34,7 @@
     font-size: 20px;
   }
   
- .road .slogan button{
+ #btn1{
     width: 150px;
     height: 45px;
     font-weight: bold;
@@ -58,6 +58,7 @@
     background-color: white;
     display: flex;
     z-index: 100;
+    border-radius: 30px;
     box-shadow: 0px 0px 36px 0px rgba(0, 0, 0, 0.85);
   }
   .modalcontent{
