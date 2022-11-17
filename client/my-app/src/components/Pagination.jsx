@@ -48,7 +48,6 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
                 <li><p onClick={handlepre}>{'<'}</p></li>
                 {pageDecrementButton}
                 {pageNumber.map((number) => {
-                    console.log(number);
                     if(number < max+1 && number > min){
                         return(
                         <li key = {number} className = {curPage == number ? "active" : null}>

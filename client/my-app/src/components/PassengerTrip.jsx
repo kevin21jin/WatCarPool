@@ -82,8 +82,8 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       <div style={{ padding: "10rem", paddingTop: "5rem", paddingBottom: "0rem" }}>
         <h1>My Trips</h1>
         <Row>
-          {mytrips.map((trip) => (
-            <Col key={trip.description} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+          {mytrips.map((trip ,index) => (
+            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
               <Card style={{ width: '35rem' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
@@ -104,8 +104,8 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
         <h1>Trips Available</h1>
         <Row>
-          {trips.map((trip) => (
-            <Col key={trip.description} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+          {trips.map((trip, index) => (
+            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
               <Card style={{ width: '35rem' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
