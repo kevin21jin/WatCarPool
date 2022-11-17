@@ -11,7 +11,10 @@ SELECT count(*) FROM Vehicle WHERE driverID = 4;
 
 -- The previous query returns 5, so we need to set the vehicleID to 6
 INSERT INTO Vehicle (driverID, vehicleID, model, capacity)
-SELECT 4, 6, 'New Car', 3; 
+SELECT 4, 6, 'Audi A7', 3; 
+
+SELECT count(*) FROM Vehicle WHERE driverID = 4;
+
 -- Check Vehicle table
 -- a new car is created for driver with driverID 4 
 SELECT * FROM Vehicle LIMIT 10;
