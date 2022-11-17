@@ -25,16 +25,25 @@ export const AddVehicle = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const requestJson = { capacity: capacity, model: model, driverID: currentUser.userId }
-        const { data } = await axios.post(registerVehicleRoute, requestJson);
-        if (data.status === "Fail") {
-            toast.error(data.errorMessage, toastOptions);
+        if(model == ""){
+            toast.error("model cannot be empty", toastOptions);
         }
-        else if (data.status === "Success") {
-            console.log(data)
-            navigate("/mainpage")
+        if(capacity < 1){
+            toast.error("Capacity cannot be 0", toastOptions);
+        }else if(capacity > 10){
+            toast.error("please call the customer service", toastOptions);
+        }else{
+            const requestJson = { capacity: capacity, model: model, driverID: currentUser.userId }
+            const { data } = await axios.post(registerVehicleRoute, requestJson);
+            if (data.status === "Fail") {
+                toast.error(data.errorMessage, toastOptions);
+            }
+            else if (data.status === "Success") {
+                console.log(data)
+                navigate("/mainpage")
+            }
         }
+        
     }
     return (
         <>
