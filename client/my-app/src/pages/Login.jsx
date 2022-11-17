@@ -40,7 +40,7 @@ export const Login = () => {
       }
       sessionStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
       console.log(userinfo)
-      navigate("/mainpage")
+      navigate("/home")
     }
   }
 

@@ -40,7 +40,7 @@ export const AddVehicle = () => {
             }
             else if (data.status === "Success") {
                 console.log(data)
-                navigate("/mainpage")
+                navigate("/home")
             }
         }
         

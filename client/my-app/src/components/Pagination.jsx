@@ -51,7 +51,7 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
                     if(number < max+1 && number > min){
                         return(
                         <li key = {number} className = {curPage == number ? "active" : null}>
-                        <a onClick={()=>paginate(number)} href= "/mainpage/#!" className='page-link'>
+                        <a onClick={()=>paginate(number)} href= "/home/#!" className='page-link'>
                             {number}
                         </a>
                     </li>);
