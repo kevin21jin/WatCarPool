@@ -11,7 +11,7 @@ USE WCP_DB;
 -- the username/email/phone is already in use.
 
 -- User table before registering a user
-SELECT * FROM User;
+SELECT * FROM User LIMIT 10;
 
 -- Record already exists, cannot register
 SELECT COUNT(*) FROM User WHERE username = 'Bonnie Dawson'; 
@@ -35,23 +35,23 @@ SELECT COUNT(*) FROM User WHERE phone = '9999999999';
 -- record will be created in either Passenger or Driver table that matches the user.
 
 -- Passenger and Driver tables before registering a user
-SELECT * FROM Passenger;
-SELECT * FROM Driver;
+SELECT * FROM Passenger order by userID desc limit 10;
+SELECT * FROM Driver order by userID desc limit 10;
 
 -- Register as a passenger
 INSERT INTO User (username, password, email, phone, type, joinedAt) 
 SELECT 'testpassenger', '12345678', '8@gmail.com', '8888888888', 'passenger', '2022-10-20';
 -- Check User and Passenger tables after registration
-SELECT * FROM User;
-SELECT * FROM Passenger;
+SELECT * FROM User order by userID desc limit 10;
+SELECT * FROM Passenger order by userID desc limit 10;
 
 -- Register as a driver, by default, the driver does not have any rating so the
 -- rating is set to NULL
 INSERT INTO User (username, password, email, phone, type, joinedAt) 
 SELECT 'testdriver', '12345678', '9@gmail.com', '9999999999', 'driver', '2022-10-20';
 -- Check User and Driver tables after registration
-SELECT * FROM User;
-SELECT * FROM Driver;
+SELECT * FROM User order by userID desc limit 10;
+SELECT * FROM Driver order by userID desc limit 10;
 
 -- To login, the username and password must match what is stored in the database.
 -- If the credentials match, then the user can login successfully. We can achieve

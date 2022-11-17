@@ -3,7 +3,7 @@
 -- ###############################################################################################
 
 USE WCP_DB;
-SELECT * FROM Vehicle;
+SELECT * FROM Vehicle LIMIT 10;
 -- When a driver registers a new vehicle, we need to first check the number of
 -- vehicles already registered by that driver and add 1 to it to make it the
 -- vehicleID.
@@ -14,4 +14,4 @@ INSERT INTO Vehicle (driverID, vehicleID, model, capacity)
 SELECT 4, 6, 'New Car', 3; 
 -- Check Vehicle table
 -- a new car is created for driver with driverID 4 
-SELECT * FROM Vehicle;
+SELECT * FROM Vehicle LIMIT 10;
