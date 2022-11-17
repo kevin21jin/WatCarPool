@@ -17,7 +17,7 @@ INSERT INTO Travelled (driverID, vehicleID, tripID, passengerID, rating)
 SELECT '1', '1', '8', '5', NULL;
 
 -- Check table after inserting the new travelled
-SELECT * FROM Travelled LIMIT 10;
+SELECT * FROM Travelled WHERE driverID = 1 AND vehicleID = 1 AND tripID = 8 AND passengerID = 5;
 
 -- Test: A passenger want to leave a trip
 -- Expect: the travelled table deletes tuple representing this trip
