@@ -45,24 +45,15 @@ WHERE passengerID = '5' AND driverID = '1' AND vehicleID = '1' AND tripID = '8'
 Query OK, 1 row affected (0.00 sec)
 
 --------------
-SELECT * FROM Travelled LIMIT 10
+SELECT count(*) FROM Travelled WHERE driverID = 1 AND vehicleID = 1 AND tripID = 8 AND passengerID = 5
 --------------
 
-+----------+-----------+--------+-------------+--------+
-| driverID | vehicleID | tripID | passengerID | rating |
-+----------+-----------+--------+-------------+--------+
-|        1 |         1 |      1 |         119 |    2.7 |
-|        1 |         1 |      1 |         809 |    4.9 |
-|        1 |         1 |      1 |         896 |   NULL |
-|        1 |         1 |      2 |         315 |   NULL |
-|        1 |         1 |      2 |         529 |    1.7 |
-|        1 |         1 |      3 |         698 |   NULL |
-|        1 |         1 |      3 |         804 |    4.2 |
-|        1 |         1 |      4 |         294 |   NULL |
-|        1 |         1 |      4 |         629 |   NULL |
-|        1 |         1 |      4 |         932 |   NULL |
-+----------+-----------+--------+-------------+--------+
-10 rows in set (0.00 sec)
++----------+
+| count(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0.00 sec)
 
 --------------
 SELECT capacity FROM Vehicle

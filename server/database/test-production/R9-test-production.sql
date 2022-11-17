@@ -28,7 +28,7 @@ DELETE FROM Travelled
 WHERE passengerID = '5' AND driverID = '1' AND vehicleID = '1' AND tripID = '8';
 
 -- Check the table after deleting a travelled
-SELECT * FROM Travelled LIMIT 10;
+SELECT count(*) FROM Travelled WHERE driverID = 1 AND vehicleID = 1 AND tripID = 8 AND passengerID = 5;
 
 -- Test: A passenger want to join a trip, but the trip capacity is full, the backend server need to know 
 --       whether the trip is full before proceeding the database query.
