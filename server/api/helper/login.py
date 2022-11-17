@@ -43,7 +43,7 @@ def execute_register(username, password, email, phone, type):
     if type == None or type == "": return { "status": "Fail", "errorMessage": "ERROR: Account type cannot be empty" }
 
     if len(username) > 25:
-        return { "status": "Fail", "errorMessage": "ERROR: Account username can not be longer than 25 characters" }
+        return { "status": "Fail", "errorMessage": "ERROR: Account username cannot be longer than 25 characters" }
     
     exitUser = find_user_by_username(username)
 

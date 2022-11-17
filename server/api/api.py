@@ -24,7 +24,7 @@ def register():
     password = request.json.get('password')
     email = request.json.get('email')
     phone = request.json.get('phone')
-    type = request.json.get('isDriver')
+    type = request.json.get('type')
     result = execute_register(username, password, email, phone, type)
     return result
 

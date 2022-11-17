@@ -30,7 +30,7 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const requestJson = { username: user, password: pwd, email: email, phone: pnum, isDriver: driver }
+    const requestJson = { username: user, password: pwd, email: email, phone: pnum, type: driver }
     console.log(requestJson)
     const { data } = await axios.post(registerRoute, requestJson)
     console.log(data);
@@ -41,9 +41,6 @@ export const Register = () => {
       navigate("/")
     }
   }
-
-
-
 
   return (
     <div style={{ padding: "80px" }}>
@@ -105,7 +102,7 @@ export const Register = () => {
           </Form.Group>
           <br />
           <FormLabel>Are you a driver or passenger</FormLabel>
-          <Form.Group controlId='Isdriver'>
+          <Form.Group controlId='type'>
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
