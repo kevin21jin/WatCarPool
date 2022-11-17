@@ -6,6 +6,8 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Welcome } from './pages/Welcome';
 import { AddVehicle } from './pages/AddVehicle';
+import { SearchTrip } from './pages/SearchTrip';
+
 function App() {
     return (
         <BrowserRouter>
@@ -17,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/addmodify" element={<AddModifyTrip />} />
           <Route path="/addvehicle" element={<AddVehicle />} />
+          <Route path="/searchtrip" element={<SearchTrip />} />
           
         </Routes>
         </BrowserRouter>
