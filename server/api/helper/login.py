@@ -65,18 +65,21 @@ def execute_register(username, password, email, phone, type):
 
 def execute_login(username, password):
     
-    if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
-    if password == None: return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
+    if username == None or username == "": 
+        return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
+    if password == None or password == "": 
+        return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
 
-    currentUser = json.loads(json.dumps(find_user_by_username(username).__dict__, default=str))
-
+    currentUser = find_user_by_username(username)
     if currentUser == None: return { "status": "Fail", "errorMessage": "ERROR: Account with associated username does not exist" }
 
-    if not check_password_hash(currentUser['hashed_password'], password):
+    currentUserJson = json.loads(json.dumps(currentUser.__dict__, default=str))
+
+    if not check_password_hash(currentUserJson['hashed_password'], password):
         return { "status": "Fail", "errorMessage": "ERROR: Authentication failed" }
     
     return {
         "status": "Success",
-        "userType": currentUser['type'],
-        "user": currentUser
+        "userType": currentUserJson['type'],
+        "user": currentUserJson
     }
