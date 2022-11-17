@@ -6,13 +6,18 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
     const [max, setmax] = useState(5);
     const [min, setmin] = useState(0);
     const [limit, setlimit] = useState(5);
+
+    
+
     const handlenxt =()=>{
+        if(curPage < totalPage){
+        setCurPage(curPage +1)
+            if((curPage + 1) > max){
+                setmax(max + limit);
+                setmin(min + limit);
+             }
+        }
         
-        setCurPage(curPage +1);
-        if((curPage + 1) > max){
-            setmax(max + limit);
-            setmin(min + limit);
-         }
     };
 
     const handlepre =()=>{
@@ -25,6 +30,15 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
         }
     };
 
+    let pageIncrementButton = null;
+    if(totalPage > max && curPage < totalPage){
+        pageIncrementButton = <li onClick={handlenxt}> ... </li>
+    }
+
+    let pageDecrementButton = null;
+    if(totalPage > max  && curPage > 1){
+        pageDecrementButton = <li onClick={handlepre}> ... </li>
+    }
     for(let i = 1; i <= Math.ceil(totalPage/ postPerpage); i++){
         pageNumber.push(i);
     }
@@ -32,7 +46,9 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
             <div className='Container' >
             <ul className='Pagination'>
                 <li><p onClick={handlepre}>{'<'}</p></li>
+                {pageDecrementButton}
                 {pageNumber.map((number) => {
+                    console.log(number);
                     if(number < max+1 && number > min){
                         return(
                         <li key = {number} className = {curPage == number ? "active" : null}>
@@ -44,6 +60,7 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
                         return null;
                     }
                     })}
+                    {pageIncrementButton}
                     <li><p onClick={handlenxt}> {'>'} </p></li>
             </ul>
             </div>

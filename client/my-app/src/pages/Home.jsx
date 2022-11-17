@@ -13,13 +13,10 @@ export const Home = () => {
   const [trips, setTrips] = useState([]);
   const [helper, changeHelp] = useState(0);
   const [curPage, setCurPage] = useState(1);
-  const [postPerpage] = useState(1);
+  const [postPerpage] = useState(4);
   const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
   const indexOfLastPost = curPage * postPerpage;
   const indexOfFirstPost = indexOfLastPost - postPerpage;
-  console.log(indexOfFirstPost)
-  console.log(indexOfLastPost)
-  console.log(curPage)
   const paginate = (pageNumber) => setCurPage(pageNumber);
   
   useEffect(() =>{
@@ -29,7 +26,9 @@ export const Home = () => {
     }
     fetchTrips()
   }, [helper])
+
   const currentPost = trips.slice(indexOfFirstPost, indexOfLastPost)
+  
   if(currentUser == null){
     return (
       <>

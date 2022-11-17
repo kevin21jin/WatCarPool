@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import { getMyTripsRoute } from '../api/ApiRoutes'
 
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
+  console.log(trips)
   const [mytrips, getMyTrips] = useState([])
   
 
