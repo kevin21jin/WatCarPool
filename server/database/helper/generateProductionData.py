@@ -7,7 +7,6 @@ from werkzeug.security import generate_password_hash
 from faker_vehicle import VehicleProvider
 
 fake = Faker('en_CA')
-Faker.seed(48)
 fake.add_provider(VehicleProvider)
 
 def generateUsers(total=1000):
@@ -51,9 +50,9 @@ def generateTrips(vehicleInfo):
     hours = list(range(24))
     minutes = list(range(0, 60, 5))
     f = open('data/production/trip.txt', 'w')
-    for trip in vehicleInfo:
+    for vehicle in vehicleInfo:
         for tripID in range(1, randrange(15) + 1):
-            tripInfo = (trip[0], trip[1], trip[2], tripID)
+            tripInfo = (vehicle[0], vehicle[1], vehicle[2], tripID)
             trips.append(tripInfo)
             origin = fake.city()
             destination = fake.city()
@@ -68,7 +67,7 @@ def generateTrips(vehicleInfo):
             departTime = date + " " + str(dt.time(hour, minute, 0))
             price = randrange(10, 150)
             description = random.choice([f'Carpool from {origin} to {destination}', 'NULL'])
-            f.write(','.join([str(trip[0]), str(trip[1]), str(tripID), origin, destination, departTime, str(price), description]))
+            f.write(','.join([str(vehicle[0]), str(vehicle[1]), str(tripID), origin, destination, departTime, str(price), description]))
             f.write('\n')
     f.close()
     return trips

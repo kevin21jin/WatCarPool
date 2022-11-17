@@ -63,16 +63,19 @@ bash setup.sh
 Create the database including tables and triggers, and import sample/production data into the database:
 
 Create the database and import sample data (default):
+
 ```
 bash createdb.sh 
 ```
 
 Create the database and import sample data:
+
 ```
 bash createdb.sh sample
 ```
 
 Create the database and import production data:
+
 ```
 bash createdb.sh production
 ```
@@ -82,16 +85,19 @@ bash createdb.sh production
 Drop the current tables and triggers and re-import sample/production data into the database:
 
 Update the database with sample data (default):
+
 ```
 bash updatedb.sh 
 ```
 
 Update the database with sample data:
+
 ```
 bash updatedb.sh sample
 ```
 
 Update the database with production data:
+
 ```
 bash updatedb.sh production
 ```
@@ -100,16 +106,24 @@ bash updatedb.sh production
 
 Navigate to the directory that stores the list of test-sample.sql and test-sample.out files:
 
- ```
- cd server/database/test-sample
- ```
+```
+cd server/database/test-sample
+```
 
 The SQL commands to test sample data for each feature R* are provided in the corresponding ```R*-test-sample.sql``` and the results are stored in ```R*-test-sample.out```.
+
+Run all SQL commands in once:
+
+```
+mysql -v -v -v -u root -p WCP_DB  < R*-test-sample.sql
+```
+
+Enter the password for MySQL and the query result will be displayed.
 
 Reset the database when finish testing on each feature before testing other features:
 
 ```
-bash update.sh
+bash reset.sh
 ```
 
 ### Drop Database
