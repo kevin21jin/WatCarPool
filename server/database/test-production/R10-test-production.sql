@@ -11,7 +11,7 @@ USE WCP_DB;
 SELECT * FROM Driver;
 
 -- submitting a new rating for a traveled
-UPDATE Travelled SET rating = "5.0" WHERE driverID = "2" AND vehicleID = "1" AND tripID = "2" AND passengerID = "1";
+UPDATE Travelled SET rating = "5.0" WHERE driverID = "1" AND vehicleID = "1" AND tripID = "1" AND passengerID = "896";
 
 -- check Driver table after inserting a rating
 SELECT * FROM Driver;
