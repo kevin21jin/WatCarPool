@@ -36,11 +36,11 @@ def find_user_by_email(email):
 
 def execute_register(username, password, email, phone, type):
 
-    if username == None: return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
-    if password == None: return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
-    if email == None: return { "status": "Fail", "errorMessage": "ERROR: Email cannot be empty" }
-    if phone == None: return { "status": "Fail", "errorMessage": "ERROR: Phone cannot be empty" }
-    if type == None: return { "status": "Fail", "errorMessage": "ERROR: Account type cannot be empty" }
+    if username == None or username == "": return { "status": "Fail", "errorMessage": "ERROR: Username cannot be empty" }
+    if password == None or password == "": return { "status": "Fail", "errorMessage": "ERROR: Password cannot be empty" }
+    if email == None or email == "": return { "status": "Fail", "errorMessage": "ERROR: Email cannot be empty" }
+    if phone == None or phone == "": return { "status": "Fail", "errorMessage": "ERROR: Phone cannot be empty" }
+    if type == None or type == "": return { "status": "Fail", "errorMessage": "ERROR: Account type cannot be empty" }
 
     if len(username) > 25:
         return { "status": "Fail", "errorMessage": "ERROR: Account username can not be longer than 25 characters" }
