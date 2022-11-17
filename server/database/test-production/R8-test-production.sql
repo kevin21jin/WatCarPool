@@ -39,13 +39,13 @@ SELECT count(*) FROM Trip WHERE driverID = 4 AND vehicleID = 1;
 INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 1, 2, 'Waterloo', 'Toronto', '2022-10-22 10:30', 40, 'Carpool from Waterloo to Toronto';
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip WHERE driverID = 4 LIMIT 10;
 
 -- The next trip created will have tripID equal to 3.
 INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 1, 3, 'Toronto', 'Waterloo', '2022-10-23 14:00', 40, 'Carpool from Toronto to Waterloo';
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip WHERE driverID = 4 LIMIT 10;
 
 -- If a user have more than one vehicles, they can create trips with different
 -- vehicles. In this case, driver with userID 4 has 5 vehicles, we can create
@@ -62,13 +62,7 @@ SELECT count(*) FROM Trip WHERE driverID = 4 AND vehicleID = 5;
 INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
 SELECT 4, 1, 4, 'Waterloo', 'Toronto', '2022-10-22 10:30', 35, 'Carpool from Waterloo to Toronto';
 -- Check Trip table
-SELECT * FROM Trip;
-
--- Create trip with vehicleID = 2
-INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price, description)
-SELECT 4, 2, 11, 'Toronto', 'Waterloo', '2022-10-23 14:00', 35, 'Carpool from Toronto to Waterloo';
--- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip WHERE driverID = 4 LIMIT 10;
 
 -- The description of a trip is optional, so a driver can create a trip without
 -- a description. In this case, the description will be set to NULL.
@@ -77,7 +71,7 @@ SELECT * FROM Trip;
 INSERT INTO Trip (driverID, vehicleID, tripID, origin, destination, departTime, price)
 SELECT 1001, 1, 1, 'Toronto', 'Waterloo', '2022-10-23 14:00', 50;
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip ORDER BY driverID DESC LIMIT 10;
 
 -- After a driver creates a trip, they can either update the origin, destination,
 -- departTime, price, and description of the trip, or delete the trip.
@@ -89,7 +83,7 @@ SET origin = 'Toronto', destination = 'Waterloo', departTime = '2022-10-23 14:00
 price = 50, description = 'Carpool from Toronto to Waterloo'
 WHERE driverID = 1001 AND vehicleID = 1 AND tripID = 1;
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip ORDER BY driverID DESC LIMIT 10;
 
 -- We can also remove the description by setting it to NULL
 UPDATE Trip
@@ -97,7 +91,7 @@ SET origin = 'Toronto', destination = 'Waterloo', departTime = '2022-10-23 14:00
 price = 40, description = NULL
 WHERE driverID = 1001 AND vehicleID = 1 AND tripID = 1;
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip ORDER BY driverID DESC LIMIT 10;
 
 -- We can also update other fields such as origin, destination, departTime, and price.
 UPDATE Trip
@@ -105,7 +99,7 @@ SET origin = 'Mississauga', destination = 'Waterloo', departTime = '2022-10-24 8
 price = 40, description = NULL
 WHERE driverID = 1001 AND vehicleID = 1 AND tripID = 1;
 -- Check Trip table
-SELECT * FROM Trip;
+SELECT * FROM Trip ORDER BY driverID DESC LIMIT 10;
 
 -- To delete a trip, we also need to delete the records in Travelled corresponding to
 -- it because the trip is no longer available for passengers to join, and any passengers
@@ -115,26 +109,26 @@ SELECT * FROM Trip;
 SHOW TRIGGERS WHERE `Table`='Trip'\G
 
 -- Trip and Travelled before deletion
-SELECT * FROM Trip;
-SELECT * FROM Travelled;
+SELECT * FROM Trip WHERE driverID = 4 LIMIT 10;
+SELECT * FROM Travelled WHERE driverID = 4 LIMIT 10;
 
 -- Delete a trip
-DELETE FROM Trip WHERE driverID = 1001 AND vehicleID = 1 AND tripID = 1;
+DELETE FROM Trip WHERE driverID = 4 AND vehicleID = 1 AND tripID = 1;
 
 -- Trip and Travelled after deletion
-SELECT * FROM Trip;
-SELECT * FROM Travelled;
+SELECT * FROM Trip WHERE driverID = 4 LIMIT 10;
+SELECT * FROM Travelled WHERE driverID = 4 LIMIT 10;
 
 -- IF there is no record corresponding to a trip, then no records in Travelled
 -- will be deleted after the deleletion of the trip.
 
 -- Trip and Travelled before deletion
-SELECT * FROM Trip;
-SELECT * FROM Travelled;
+SELECT * FROM Trip WHERE driverID = 1001;
+SELECT * FROM Travelled WHERE driverID = 1001;
 
 -- Delete a trip
-DELETE FROM Trip WHERE driverID = 1 AND vehicleID = 100 AND tripID = 1;
+DELETE FROM Trip WHERE driverID = 1001 AND vehicleID = 1 AND tripID = 1;
 
 -- Trip and Travelled after deletion
-SELECT * FROM Trip;
-SELECT * FROM Travelled;
+SELECT * FROM Trip WHERE driverID = 1001;
+SELECT * FROM Travelled WHERE driverID = 1001;

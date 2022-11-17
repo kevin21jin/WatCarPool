@@ -13,7 +13,7 @@ SELECT * FROM Trip;
 -- Select all entries with the above condition
 SELECT * FROM Trip;
 
--- Test orgin and destination: 
+-- Test origin and destination: 
 -- The registered user want to search trips with origin = City A, destination = null and all the other fields = null
 -- Expect: Only entries that have origin = City A should be returned
 SELECT * FROM Trip WHERE origin = 'City A';

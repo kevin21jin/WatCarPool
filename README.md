@@ -115,7 +115,7 @@ The SQL commands to test sample data for each feature R* are provided in the cor
 Run all SQL commands in once:
 
 ```
-mysql -v -v -v -u root -p WCP_DB  < R*-test-sample.sql
+mysql -vvv -u root -p WCP_DB  < R*-test-sample.sql
 ```
 
 Enter the password for MySQL and the query result will be displayed.
