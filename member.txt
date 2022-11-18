@@ -1,19 +1,33 @@
-Member:
-
 Chengyu Jin (c54jin): 
-Designed and implemented the user interface such as login, registration and home page.
-Connected the User interface with the database through api calls.
+Designed and implemented the user interface for login, registration and home page
+Connected the User interface with the backend server through API calls
+Implemented several UI components including pagination and pop-up
+Tested the features and implemented styling for client side
+Provided documentation for the report
 
 Kevin Jin (k24jin): 
-Designed database schema, created E/R diagram and relational database model.
-Produced sample database and queries.
-Implemented database related functions in the backend server.
+Designed database schema, created E/R diagram and relational database model
+Created SQL commands to create tables and triggers
+Produced sample database and queries
+Generated production dataset
+Implemented database related functions in the backend server
+Created test samples for different features
+Provided documentation for the report and README 
+Created multiple backend API endpoints and performed API testing for backend functions
+Implemented backend features for searching trips and functionalities supported for driver
 
 Kevin Ke (q4ke):
-Set up the server and the client application framework.
-Configured the api endpoints that connect between frontend and backend.
-Implement the Login and Registration functions in the client.
+Set up the server and the client application framework
+Configured the API endpoints that connect between frontend and backend
+Modified the API endpoints to adapt features in the frontend
+Implement the login/logout, trip creation, vehicle registration, and other features in the client
+Created production test samples for different features
+Provided documentation for the report and README
 
-Diana Sh (y337shi): 
-Set up and configure the database connection in backend.
-Created backend functionalities such as user registration and authentication at the api endpoints.
+Diana Shi (y337shi): 
+Set up and configure the database connection in backend
+Created multiple backend API endpoints
+Created backend functionalities for user registration and login
+Implemented backend features supported for passengers
+Implemented the user interface for search trip functionality
+Provided documentation for the report
