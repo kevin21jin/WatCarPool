@@ -77,7 +77,11 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={AddTrips}> Add Trips </Button><br />
         </h1>
         <div class="border-top my-4"></div>
-        <Row>
+        {
+          (mytrips.length === 0)?
+          <p style={{ fontSize: "20px" }}>You do not have a trip! Create one!</p>
+          :
+          <Row>
           {mytrips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
               <Card style={{ width: '35rem' }} className="rounded">
@@ -95,6 +99,8 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
             </Col>
           ))}
         </Row>
+        }
+        
         <h1 style={{ paddingTop: "5rem" }}>
           Trips Available
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>

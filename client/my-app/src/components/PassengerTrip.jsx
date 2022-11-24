@@ -13,12 +13,12 @@ import { getMyTripsRoute } from '../api/ApiRoutes'
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   console.log(trips)
   const [mytrips, getMyTrips] = useState([])
-  
 
-  useEffect(() =>{
-    async function fetchMyTrips(){
-      const requestJson = { 
-        passengerID: currentUser.userId 
+
+  useEffect(() => {
+    async function fetchMyTrips() {
+      const requestJson = {
+        passengerID: currentUser.userId
       }
       const response = await axios.post(getMyTripsRoute, requestJson)
       getMyTrips(response.data)
@@ -37,11 +37,11 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
   const joinTrip = async (e, trip) => {
     e.preventDefault();
-    const requestJson = { 
-      driverID: trip.driverID, 
+    const requestJson = {
+      driverID: trip.driverID,
       vehicleID: trip.vehicleID,
       tripID: trip.tripID,
-      passengerID: currentUser.userId 
+      passengerID: currentUser.userId
     }
 
     const { data } = await axios.post(joinRoute, requestJson);
@@ -49,7 +49,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     if (data.status === "Fail") {
       toast.error(data.errorMessage, toastOptions);
     }
-    else if (data.status === "Success"){
+    else if (data.status === "Success") {
       console.log("success")
       changeHelp(helper + 1)
     }
@@ -57,11 +57,11 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
   const quitTrip = async (e, trip) => {
     e.preventDefault();
-    const requestJson = { 
-      driverID: trip.driverID, 
+    const requestJson = {
+      driverID: trip.driverID,
       vehicleID: trip.vehicleID,
       tripID: trip.tripID,
-      passengerID: currentUser.userId 
+      passengerID: currentUser.userId
     }
 
     const { data } = await axios.post(quitRoute, requestJson);
@@ -69,7 +69,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     if (data.status === "Fail") {
       toast.error(data.errorMessage, toastOptions);
     }
-    else if (data.status === "Success"){
+    else if (data.status === "Success") {
       console.log("quit success")
       changeHelp(helper + 1)
     }
@@ -78,44 +78,51 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   return (
     <>
       <Header />
-      <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem"}}>Hi, {currentUser.username}</h1>
+      <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem" }}>Hi, {currentUser.username}</h1>
       <div style={{ padding: "10rem", paddingTop: "5rem", paddingBottom: "0rem" }}>
         <h1>My Trips</h1>
-        <Row>
-          {mytrips.map((trip ,index) => (
-            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
-                <Card.Body>
-                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text>
-                    {trip.description}
-                  </Card.Text>
-                  <Button variant="primary" className="rounded" onClick={(e) =>quitTrip(e, trip)}>Quit</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <div class="border-top my-4"></div>
+        {
+          (mytrips.length === 0) ?
+            <p style={{ fontSize: "20px" }}>You have not joined a trip yet:(</p>
+            :
+            <Row>
+              {mytrips.map((trip, index) => (
+                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+                  <Card style={{ width: '35rem' }} className="rounded">
+                    <Card.Body>
+                      <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
+                      <Card.Text>
+                        {trip.description}
+                      </Card.Text>
+                      <Button variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+        }
       </div>
 
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
         <h1>Trips Available</h1>
+        <div class="border-top my-4"></div>
         <Row>
           {trips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
               <Card style={{ width: '35rem' }} className="rounded">
                 <Card.Body>
-                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle stryle={{ fontSize: "16px"}} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Details:</Card.Subtitle>
+                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
+                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
+                  <Card.Subtitle stryle={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
                   <Card.Text>
                     {trip.description}
                   </Card.Text>
-                  <Button variant="primary" className="rounded" onClick={(e) =>joinTrip(e, trip)}>Join</Button>
+                  <Button variant="primary" className="rounded" onClick={(e) => joinTrip(e, trip)}>Join</Button>
                 </Card.Body>
               </Card>
             </Col>
