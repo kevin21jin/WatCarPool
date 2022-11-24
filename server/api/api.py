@@ -115,6 +115,12 @@ def getTripsByPassenger():
     result = execute_passengerGetTrips(passengerID)
     return result
 
+@app.route("/api/trips/driver", methods=['POST'])
+def getTripsByDriver():
+    driverID = request.json.get('driverID')
+    result = execute_driverGetTrips(driverID)
+    return result
+
 @app.route("/api/trip/rating", methods=["PUT"])
 def submitRating():
     driverID = request.json.get('driverID')

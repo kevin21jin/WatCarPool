@@ -2,6 +2,7 @@ import mysql.connector
 from datetime import datetime
 from sqlite3 import OperationalError
 from api.helper.model import Vehicle
+from api.helper.model import Trip
 import json
 
 db = mysql.connector.connect(
@@ -109,3 +110,13 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
         print("Command skipped: ", msg)
     return { "status": "Success" }
 
+def execute_driverGetTrips(driverID):
+    sql_command = """SELECT * FROM Trip t WHERE driverID = %s"""
+    val = (driverID,)
+    cursor.execute(sql_command, val)
+    driverTrips = []
+    result = cursor.fetchall()
+    for row in result:
+        trip = Trip(row).__dict__
+        driverTrips.append(trip)
+    return json.dumps(driverTrips, default=str)
