@@ -9,3 +9,4 @@ export const getVehicle = `${server}/api/vehicles`
 export const registerVehicleRoute = `${server}/api/vehicle/register`
 export const createTripRoute = `${server}/api/trips/create`
 export const getDriverTripsRoute = `${server}/api/trips/driver`
+export const deleteTripRoute = `${server}/api/trips/delete`

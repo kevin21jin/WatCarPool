@@ -4,10 +4,21 @@ import { Card, Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getDriverTripsRoute } from '../api/ApiRoutes'
+import { getDriverTripsRoute, deleteTripRoute } from '../api/ApiRoutes'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify"
 import axios from 'axios'
 
 const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light"
+  };
 
   const [mytrips, getMyTrips] = useState([])
 
@@ -36,6 +47,25 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
     navigate("/searchtrip")
   }
 
+  const deleteTrip = async (e, trip) => {
+    e.preventDefault();
+    const requestJson = { 
+      driverID: trip.driverID, 
+      vehicleID: trip.vehicleID,
+      tripID: trip.tripID,
+    }
+
+    const { data } = await axios.post(deleteTripRoute, requestJson);
+
+    if (data.status === "Fail") {
+      toast.error(data.errorMessage, toastOptions);
+    }
+    else if (data.status === "Success"){
+      console.log("success")
+      changeHelp(helper + 1)
+    }
+  }
+
   return (
     <>
       <Header />
@@ -46,6 +76,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
           My Trips
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={AddTrips}> Add Trips </Button><br />
         </h1>
+        <div class="border-top my-4"></div>
         <Row>
           {mytrips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
@@ -58,6 +89,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
                   <Card.Text>
                     {trip.description}
                   </Card.Text>
+                  <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -67,6 +99,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
           Trips Available
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
         </h1>
+        <div class="border-top my-4"></div>
         <Row>
           {trips.map((trip) => (
             <Col key={trip.description} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
@@ -85,6 +118,8 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
           ))}
         </Row>
       </div>
+
+      <ToastContainer />
     </>
   )
 }
