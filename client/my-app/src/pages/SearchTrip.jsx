@@ -55,11 +55,11 @@ export const SearchTrip = () => {
         console.log(requestJson)
         const { data } = await axios.post(searchTripRoute, requestJson);
         console.log(data)
-        // navigate("/home", {
-        //     state: {
-        //         optTrips: data,
-        //     }
-        // });
+        navigate("/searchresult", {
+            state: {
+                tripResult: data,
+            }
+        });
         return (
             <>
                 <DriverTrip trips = {data} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>

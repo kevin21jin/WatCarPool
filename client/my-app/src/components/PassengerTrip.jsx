@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import { useState, useEffect } from 'react'
 import { getPassengerTripsRoute } from '../api/ApiRoutes'
+import { useNavigate } from 'react-router-dom'
 
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   console.log(trips)
@@ -82,6 +83,14 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       console.log("quit success")
       changeHelp(helper + 1)
     }
+
+
+  }
+  
+  const navigate = useNavigate()
+
+  const SearchTrip = (e) => {
+    navigate("/searchtrip")
   }
 
 
@@ -122,7 +131,9 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       </div>
 
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
-        <h1>Trips Available</h1>
+        <h1>Trips Available
+          <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
+        </h1>
         <div class="border-top my-4"></div>
         <Row>
           {trips.map((trip, index) => (

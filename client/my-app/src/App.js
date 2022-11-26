@@ -8,6 +8,7 @@ import { Welcome } from './pages/Welcome';
 import { AddVehicle } from './pages/AddVehicle';
 import { SearchTrip } from './pages/SearchTrip';
 import { Account } from './pages/Account'
+import { SearchTripResult } from './pages/SearchTripResult';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/addvehicle" element={<AddVehicle />} />
           <Route path="/searchtrip" element={<SearchTrip />} />
           <Route path="/account/:id" element={<Account />} />
+          <Route path="/searchresult" element={<SearchTripResult />} />
           
         </Routes>
         </BrowserRouter>
