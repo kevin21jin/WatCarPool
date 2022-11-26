@@ -13,7 +13,7 @@ export const Home = () => {
   const [trips, setTrips] = useState([]);
   const [helper, changeHelp] = useState(0);
   const [curPage, setCurPage] = useState(1);
-  const [postPerpage] = useState(4);
+  const [postPerpage] = useState(6);
   const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
   const indexOfLastPost = curPage * postPerpage;
   const indexOfFirstPost = indexOfLastPost - postPerpage;

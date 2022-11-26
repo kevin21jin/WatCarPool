@@ -13,8 +13,10 @@ import { getPassengerTripsRoute } from '../api/ApiRoutes'
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   console.log(trips)
   const [mytrips, getMyTrips] = useState([])
+  var today = new Date(),
 
-
+  date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours() + ':' + today.getMinutes();
+  console.log(date);
   useEffect(() => {
     async function fetchMyTrips() {
       const requestJson = {
@@ -25,7 +27,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     }
     fetchMyTrips()
   }, [helper, currentUser])
-
+ 
   const toastOptions = {
     position: "bottom-right",
     autoClose: 5000,
@@ -34,7 +36,13 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     draggable: true,
     theme: "light"
   };
-
+  const compareDate = ({str1, str2}) => {
+    if(new Date(str1) > new Date(str2)){
+      return true;
+    }else{
+      return false;
+    }
+  }
   const joinTrip = async (e, trip) => {
     e.preventDefault();
     const requestJson = {
@@ -43,7 +51,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       tripID: trip.tripID,
       passengerID: currentUser.userId
     }
-
+    
     const { data } = await axios.post(joinRoute, requestJson);
 
     if (data.status === "Fail") {
@@ -54,6 +62,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       changeHelp(helper + 1)
     }
   }
+  
 
   const quitTrip = async (e, trip) => {
     e.preventDefault();
@@ -74,6 +83,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       changeHelp(helper + 1)
     }
   }
+
 
   return (
     <>
@@ -98,7 +108,11 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                       <Card.Text>
                         {trip.description}
                       </Card.Text>
-                      <Button variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
+                     {(compareDate(trip.departTime, date)) ?
+                      <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
+                      :
+                      <Button id="rate" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Rate</Button>
+                     }
                     </Card.Body>
                   </Card>
                 </Col>
