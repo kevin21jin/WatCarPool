@@ -33,7 +33,7 @@ def getTrips():
     result = execute_getTrips()
     return result
 
-@app.route("/api/trips/search", methods=['GET'])
+@app.route("/api/trips/search", methods=['POST'])
 def searchTrip():
     origin = request.json.get('origin')
     destination = request.json.get('destination')

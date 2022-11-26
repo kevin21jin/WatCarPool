@@ -5,6 +5,11 @@ import { FormContainer } from '../components/FormContainer'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { TextField, Slider, Box, Typography } from '@mui/material'
+import axios from 'axios'
+import { searchTripRoute } from '../api/ApiRoutes'
+import moment from 'moment'
+import DriverTrip from '../components/DriverTrip'
+import { useNavigate } from 'react-router-dom'
 
 function valuetext(value) {
     return `${value}`;
@@ -13,9 +18,11 @@ function valuetext(value) {
 export const SearchTrip = () => {
     const [origin, changeOrigin] = useState("")
     const [dest, changeDest] = useState("")
-    const [depDate, changeDepDate] = useState(null)
-    const [arrDate, changeArrDate] = useState(null)
+    const [depDateAfter, changeDepDateAft] = useState(null)
+    const [depDateBef, changeDepDateBef] = useState(null)
     const [priceRange, setPriceRange] = useState([0, 150])
+    const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
+    const [helper, changeHelp] = useState(0);
 
     const handlePriceChange = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
@@ -26,6 +33,40 @@ export const SearchTrip = () => {
         } else {
             setPriceRange([priceRange[0], Math.max(newValue[1], priceRange[0] + 10)]);
         }
+    }
+
+    const navigate = useNavigate()
+
+    const tripSearch = async (e) => {
+        e.preventDefault();
+        let depDateAfterRealTime = null;
+        if (depDateAfter != null) {
+            depDateAfterRealTime = moment(new Date(depDateAfter)).format("YYYY/MM/DD HH:MM")
+        } 
+        let depDateBefRealTime = null;
+        if (depDateBef != null) {
+            depDateBefRealTime = moment(new Date(depDateBef)).format("YYYY/MM/DD HH:MM")
+        }
+
+        const requestJson = { origin: origin, destination: dest, 
+            departTimeStart: depDateAfterRealTime, departTimeEnd: depDateBefRealTime, 
+            priceLow: priceRange[0], priceHigh: priceRange[1]
+        }
+        console.log(requestJson)
+        const { data } = await axios.post(searchTripRoute, requestJson);
+        console.log(data)
+        // navigate("/home", {
+        //     state: {
+        //         optTrips: data,
+        //     }
+        // });
+        return (
+            <>
+                <DriverTrip trips = {data} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+            </>
+        )
+        
+
     }
 
     return (
@@ -60,10 +101,10 @@ export const SearchTrip = () => {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <Stack spacing={2}>
                             <DateTimePicker
-                                label="Departure Date"
-                                value={depDate}
+                                label="Departure After"
+                                value={depDateAfter}
                                 onChange={(newValue) => {
-                                    changeDepDate(newValue)
+                                    changeDepDateAft(newValue)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
                                     ...params.inputProps,
@@ -72,10 +113,10 @@ export const SearchTrip = () => {
                             />
                             <br />
                             <DateTimePicker
-                                label="Arrival Date"
-                                value={arrDate}
+                                label="Departure Before"
+                                value={depDateBef}
                                 onChange={(newValue) => {
-                                    changeArrDate(newValue)
+                                    changeDepDateBef(newValue)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
                                     ...params.inputProps,
@@ -85,7 +126,7 @@ export const SearchTrip = () => {
                         </Stack>
                     </LocalizationProvider>
                     <br />
-                    <Box sx={{ width: 450}}> 
+                    <Box sx={{ width: '100%' }}> 
                         <Typography gutterBottom>Price Range</Typography>
                         <Slider
                             value={priceRange}
@@ -100,7 +141,7 @@ export const SearchTrip = () => {
                     </Box>
                 <br />
                 <center>
-                    <Button type='submit' variant='primary'> Search </Button>
+                    <Button type='submit' variant='primary' onClick={ tripSearch }> Search </Button>
                 </center>
                 </Form>
 
