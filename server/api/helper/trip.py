@@ -13,11 +13,12 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-def execute_getTrips():
+def execute_getAvailableTrips():
     trips = []
-    command = "SELECT * FROM Trip"
-    db.commit()
-    cursor.execute(command)
+    curtime = datetime.now()
+    command = "SELECT * FROM Trip WHERE departTime >= %s ORDER BY departTime"
+    val = (curtime,)
+    cursor.execute(command, val)
     result = cursor.fetchall()
     for row in result:
         trip = Trip(row).__dict__
@@ -47,7 +48,6 @@ def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, pri
         for field in fields:
             command += " " + field + " AND"
         command = command[:len(command) - 4]
-        print(command)
     cursor.execute(command)
     result = cursor.fetchall()
     for row in result:

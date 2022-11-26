@@ -111,9 +111,21 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
     return { "status": "Success" }
 
 def execute_driverGetTrips(driverID):
-    sql_command = """SELECT * FROM Trip t WHERE driverID = %s"""
+    command = "SELECT * FROM Trip t WHERE driverID = %s ORDER BY departTime"
     val = (driverID,)
-    cursor.execute(sql_command, val)
+    cursor.execute(command, val)
+    driverTrips = []
+    result = cursor.fetchall()
+    for row in result:
+        trip = Trip(row).__dict__
+        driverTrips.append(trip)
+    return json.dumps(driverTrips, default=str)
+
+def execute_driverGetUpcomingTrips(driverID):
+    curtime = datetime.now()
+    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime >= %s ORDER BY departTime"
+    val = (driverID, curtime)
+    cursor.execute(command, val)
     driverTrips = []
     result = cursor.fetchall()
     for row in result:

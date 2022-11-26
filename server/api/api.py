@@ -1,15 +1,11 @@
 from flask import Flask, request
-from api.helper.login import *
+from api.helper.user import *
 from api.helper.trip import *
 from api.helper.driver import *
 from api.helper.passenger import *
 from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
-
-@app.route("/")
-def helloWorld():
-    return "helloWorld"
 
 @app.route("/api/login", methods=['POST'])
 def login():
@@ -29,8 +25,8 @@ def register():
     return result
 
 @app.route("/api/trips", methods=['GET'])
-def getTrips():
-    result = execute_getTrips()
+def getAvailableTrips():
+    result = execute_getAvailableTrips()
     return result
 
 @app.route("/api/trips/search", methods=['POST'])
@@ -121,6 +117,18 @@ def getTripsByDriver():
     result = execute_driverGetTrips(driverID)
     return result
 
+@app.route("/api/trips/passenger/upcoming", methods=['POST'])
+def getUpcomingTripsByPassenger():
+    passengerID = request.json.get('passengerID')
+    result = execute_passengerGetUpcomingTrips(passengerID)
+    return result
+
+@app.route("/api/trips/driver/upcoming", methods=['POST'])
+def getUpcomingTripsByDriver():
+    driverID = request.json.get('driverID')
+    result = execute_driverGetUpcomingTrips(driverID)
+    return result
+
 @app.route("/api/trip/rating", methods=["PUT"])
 def submitRating():
     driverID = request.json.get('driverID')
@@ -129,4 +137,10 @@ def submitRating():
     passengerID = request.json.get('passengerID')
     rating = request.json.get('rating')
     result = execute_passengerSubmitRating(driverID, vehicleID, tripID, passengerID, rating)
+    return result
+
+@app.route("/api/user", methods=["POST"])
+def getUser():
+    userID = request.json.get('userID')
+    result = execute_getUser(userID)
     return result

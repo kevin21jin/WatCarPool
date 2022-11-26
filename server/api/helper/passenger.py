@@ -14,7 +14,6 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 def execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID):
-    # check if the vehicle is full
     sql_command_vehicle = "SELECT capacity FROM Vehicle WHERE driverID = %s AND vehicleID = %s"
     val_vehicle = (driverID, vehicleID)
     cursor.execute(sql_command_vehicle, val_vehicle)
@@ -29,7 +28,6 @@ def execute_passengerJoinTrip(driverID, vehicleID, tripID, passengerID):
     curJoinNum = result[0] if result != None else 0
     if curJoinNum >= vehicleCapacity:
         return { "status": "Fail", "errorMessage": "ERROR: Vehicle has reached its maximum capacity" }
-    # check if current passenger is already joined in the trip
     sql_command_passenger_in_trip = "SELECT count(*) FROM Travelled WHERE driverID = %s AND vehicleID = %s AND tripID = %s and passengerID = %s"
     val_passenger_in_trip = (driverID, vehicleID, tripID, passengerID)
     cursor.execute(sql_command_passenger_in_trip, val_passenger_in_trip)
@@ -63,7 +61,8 @@ def execute_passengerGetTrips(passengerID):
                         RIGHT JOIN
                         (SELECT * FROM Travelled WHERE passengerID = %s) travelled
                                                 ON t.driverID = travelled.driverID AND 
-                                                t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID"""
+                                                t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID
+                        ORDER BY departTime"""
     val = (passengerID,)
     cursor.execute(sql_command, val)
     passengerTrips = []
@@ -89,3 +88,22 @@ def execute_passengerSubmitRating(driverID, vehicleID, tripID, passengerID, rati
     except OperationalError as msg:
         print("Command skipped: ", msg)
     return { "status": "Success" }
+
+def execute_passengerGetUpcomingTrips(passengerID):
+    curtime = datetime.now()
+    command = """SELECT *
+                        FROM Trip t
+                        RIGHT JOIN
+                        (SELECT * FROM Travelled WHERE passengerID = %s) travelled
+                                                ON t.driverID = travelled.driverID AND 
+                                                t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID
+                        WHERE departTime > %s
+                        ORDER BY departTime"""
+    val = (passengerID, curtime)
+    cursor.execute(command, val)
+    passengerTrips = []
+    result = cursor.fetchall()
+    for row in result:
+        trip = Trip(row).__dict__
+        passengerTrips.append(trip)
+    return json.dumps(passengerTrips, default=str)

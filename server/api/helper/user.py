@@ -83,3 +83,26 @@ def execute_login(username, password):
         "userType": currentUserJson['type'],
         "user": currentUserJson
     }
+
+def execute_getUser(userID):
+    command = "SELECT * FROM User WHERE userID = %s"
+    val = (userID,)
+    cursor.execute(command, val)
+    result = cursor.fetchone()
+    if result == None:
+        return {
+            "status": "Fail",
+            "errorMessage": "ERROR: User not found"
+        }
+    user = User(result)
+    userJson = {
+        "userID": user.userID,
+        "username": user.username,
+        "email": user.email,
+        "phone": user.phone,
+        "type": user.type
+    }
+    return {
+        "status": "Success",
+        "user": userJson
+    }
