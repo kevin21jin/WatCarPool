@@ -21,12 +21,12 @@ export const Header = () => {
         <Container>
           
           {(currentUser == null) ?
-          <Navbar.Brand href="/">WatCarpool</Navbar.Brand>
+          <Navbar.Brand href="/home">WatCarpool</Navbar.Brand>
           :
           (currentUser.type === "driver")? 
-          <Navbar.Brand href="/">WatCarpool Driver Center</Navbar.Brand>
+          <Navbar.Brand href="/home">WatCarpool Driver Center</Navbar.Brand>
           :
-          <Navbar.Brand href="/">WatCarpool Passenger Center</Navbar.Brand>
+          <Navbar.Brand href="/home">WatCarpool Passenger Center</Navbar.Brand>
           }
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

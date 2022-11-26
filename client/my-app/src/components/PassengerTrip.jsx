@@ -8,7 +8,7 @@ import { quitRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import { useState, useEffect } from 'react'
-import { getMyTripsRoute } from '../api/ApiRoutes'
+import { getPassengerTripsRoute } from '../api/ApiRoutes'
 
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   console.log(trips)
@@ -20,7 +20,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       const requestJson = {
         passengerID: currentUser.userId
       }
-      const response = await axios.post(getMyTripsRoute, requestJson)
+      const response = await axios.post(getPassengerTripsRoute, requestJson)
       getMyTrips(response.data)
     }
     fetchMyTrips()

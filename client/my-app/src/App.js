@@ -7,6 +7,7 @@ import { Register } from './pages/Register';
 import { Welcome } from './pages/Welcome';
 import { AddVehicle } from './pages/AddVehicle';
 import { SearchTrip } from './pages/SearchTrip';
+import { Account } from './pages/Account'
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/addmodify" element={<AddModifyTrip />} />
           <Route path="/addvehicle" element={<AddVehicle />} />
           <Route path="/searchtrip" element={<SearchTrip />} />
+          <Route path="/account/:id" element={<Account />} />
           
         </Routes>
         </BrowserRouter>
