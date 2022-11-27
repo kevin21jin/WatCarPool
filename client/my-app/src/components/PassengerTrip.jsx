@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom'
 import Rating from './Rating';
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const [modal, setModel] = useState(false);
-    const toggleModal = () => {
+  const toggleModal = () => {
         setModel(!modal)
-    }
+  }
   const [mytrips, getMyTrips] = useState([])
   useEffect(() => {
     async function fetchMyTrips() {
@@ -39,8 +39,6 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const compareDate = (str1) => {
     var tripday = new Date(str1);
     var today = new Date();
-    console.log(tripday)
-    console.log(today)
     if(tripday > today){
        return true;
      }else{
@@ -91,7 +89,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
   const rateTrip = async (e, trip) => {
     toggleModal(true)
-    
+
   }
 
   const navigate = useNavigate()
@@ -128,7 +126,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                       <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
                       :
                       <React.Fragment>
-                      <Rating open={modal} onClose={()=>toggleModal(false)}/>
+                      <Rating open={modal} onClose={()=>toggleModal(false)} trip ={trip} currentUser = {currentUser}/>
                       <Button id="rate" variant="primary" className="rounded" onClick={(e) =>rateTrip(e, trip)}>Rate</Button>
                       </React.Fragment>
                      }
