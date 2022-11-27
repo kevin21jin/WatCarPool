@@ -10,9 +10,12 @@ import { ToastContainer, toast } from "react-toastify"
 import { useState, useEffect } from 'react'
 import { getPassengerTripsRoute } from '../api/ApiRoutes'
 import { useNavigate } from 'react-router-dom'
-
+import Rating from './Rating';
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
-  console.log(trips)
+  const [modal, setModel] = useState(false);
+    const toggleModal = () => {
+        setModel(!modal)
+    }
   const [mytrips, getMyTrips] = useState([])
   useEffect(() => {
     async function fetchMyTrips() {
@@ -63,6 +66,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       changeHelp(helper + 1)
     }
   }
+
   
 
   const quitTrip = async (e, trip) => {
@@ -83,10 +87,13 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       console.log("quit success")
       changeHelp(helper + 1)
     }
-
-
   }
-  
+
+  const rateTrip = async (e, trip) => {
+    toggleModal(true)
+    
+  }
+
   const navigate = useNavigate()
 
   const SearchTrip = (e) => {
@@ -120,7 +127,10 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                      {(compareDate(trip.departTime)) ?
                       <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
                       :
-                      <Button id="rate" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Rate</Button>
+                      <React.Fragment>
+                      <Rating open={modal} onClose={()=>toggleModal(false)}/>
+                      <Button id="rate" variant="primary" className="rounded" onClick={(e) =>rateTrip(e, trip)}>Rate</Button>
+                      </React.Fragment>
                      }
                     </Card.Body>
                   </Card>
