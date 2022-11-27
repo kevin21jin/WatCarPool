@@ -14,10 +14,6 @@ import { useNavigate } from 'react-router-dom'
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   console.log(trips)
   const [mytrips, getMyTrips] = useState([])
-  var today = new Date(),
-
-  date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " + today.getHours() + ':' + today.getMinutes();
-  console.log(date);
   useEffect(() => {
     async function fetchMyTrips() {
       const requestJson = {
@@ -37,12 +33,16 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     draggable: true,
     theme: "light"
   };
-  const compareDate = ({str1, str2}) => {
-    if(new Date(str1) > new Date(str2)){
-      return true;
-    }else{
-      return false;
-    }
+  const compareDate = (str1) => {
+    var tripday = new Date(str1);
+    var today = new Date();
+    console.log(tripday)
+    console.log(today)
+    if(tripday > today){
+       return true;
+     }else{
+       return false;
+     }
   }
   const joinTrip = async (e, trip) => {
     e.preventDefault();
@@ -117,7 +117,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                       <Card.Text>
                         {trip.description}
                       </Card.Text>
-                     {(compareDate(trip.departTime, date)) ?
+                     {(compareDate(trip.departTime)) ?
                       <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
                       :
                       <Button id="rate" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Rate</Button>
