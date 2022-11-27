@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { Pagination } from '../components/Pagination'
 import axios from 'axios'
-import { getTripRoute } from '../api/ApiRoutes'
+import { getTripsRoute } from '../api/ApiRoutes'
 
 export const Home = () => {
   const [trips, setTrips] = useState([]);
@@ -21,7 +21,7 @@ export const Home = () => {
   
   useEffect(() =>{
     async function fetchTrips(){
-      const response = await axios.get(getTripRoute)
+      const response = await axios.get(getTripsRoute)
       setTrips(response.data)
     }
     fetchTrips()

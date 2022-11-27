@@ -5,10 +5,12 @@ from api.helper.model import Vehicle
 from api.helper.model import Trip
 import json
 
+path = open('../mysqlConfig.json')
+config = json.load(path)
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="12345678",
+    host=config['host'],
+    user=config['user'],
+    password=config['password'],
     database="WCP_DB",
 )
 
@@ -123,7 +125,7 @@ def execute_driverGetTrips(driverID):
 
 def execute_driverGetUpcomingTrips(driverID):
     curtime = datetime.now()
-    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime >= %s ORDER BY departTime"
+    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime >= %s ORDER BY departTime LIMIT 4"
     val = (driverID, curtime)
     cursor.execute(command, val)
     driverTrips = []

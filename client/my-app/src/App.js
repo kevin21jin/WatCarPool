@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AddModifyTrip } from './pages/AddModifyTrip';
 import { Home } from './pages/Home'
 import { Login } from './pages/Login';
@@ -13,7 +13,6 @@ import { SearchTripResult } from './pages/SearchTripResult';
 function App() {
     return (
         <BrowserRouter>
-        
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/home" element={<Home />} />
@@ -22,9 +21,8 @@ function App() {
           <Route path="/addmodify" element={<AddModifyTrip />} />
           <Route path="/addvehicle" element={<AddVehicle />} />
           <Route path="/searchtrip" element={<SearchTrip />} />
-          <Route path="/account/:id" element={<Account />} />
           <Route path="/searchresult" element={<SearchTripResult />} />
-          
+          <Route path="/account" element={<Account />} />
         </Routes>
         </BrowserRouter>
     );

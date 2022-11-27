@@ -4,10 +4,12 @@ from sqlite3 import OperationalError
 from api.helper.model import Trip
 import json
 
+path = open('../mysqlConfig.json')
+config = json.load(path)
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="12345678",
+    host=config['host'],
+    user=config['user'],
+    password=config['password'],
     database="WCP_DB",
 )
 

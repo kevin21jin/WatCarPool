@@ -1,5 +1,5 @@
 import React from 'react'
-import { createTripRoute, getVehicle } from '../api/ApiRoutes'
+import { createTripRoute, getVehiclesRoute } from '../api/ApiRoutes'
 import { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
@@ -32,7 +32,7 @@ export const AddModifyTrip = () => {
             const requestJson = {
                 driverID: currentUser.userId
             }
-            const response = await axios.post(getVehicle, requestJson)
+            const response = await axios.post(getVehiclesRoute, requestJson)
             console.log(response.data)
             changeVehicles(response.data)
         }
