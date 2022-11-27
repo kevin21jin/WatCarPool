@@ -11,13 +11,13 @@ import moment from 'moment'
 import { updateTripRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 
-const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
+const UpdateCard = ({ index, trip, deleteTrip, finishTrip, toast, helper, changeHelp }) => {
     const [origin, changeOrigin] = useState(trip.origin)
     const [dest, changeDest] = useState(trip.destination)
     const [price, changePrice] = useState(trip.price)
     const [time, changeTime] = useState(trip.departTime)
     const [description, changeDescription] = useState(trip.description)
-    
+    const today = new Date();
     const toastOptions = {
         position: "bottom-right",
         autoClose: 5000,
@@ -107,10 +107,15 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
                         style={{ display: "block", marginBottom: "1rem" }} defaultValue = {description}
                         onChange={(e) => changeDescription(e.target.value)}>   
                         </textarea>
-
-                        <Button variant="primary" className="rounded" style={{ margin: "0.5rem" }} onClick = {(e) => updateTrip(e, trip)}>Update</Button>
-                        <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
-
+                        {
+                            (today > new Date(trip.departTime)) ?
+                            <Button variant="primary" className="rounded" style={{ margin: "0.5rem" }} onClick = {(e) => finishTrip(e, trip)}>Finish</Button>
+                            :
+                            <React.Fragment>
+                            <Button variant="primary" className="rounded" style={{ margin: "0.5rem" }} onClick = {(e) => updateTrip(e, trip)}>Update</Button>
+                            <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
+                            </React.Fragment>
+                        }
                     </Card.Body>
                 </Card>
             </Col>
