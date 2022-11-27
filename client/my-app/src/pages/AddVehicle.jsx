@@ -7,10 +7,10 @@ import { registerVehicleRoute } from '../api/ApiRoutes'
 import { useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
+import { NotFound } from '../components/NotFound'
 export const AddVehicle = () => {
     const navigate = useNavigate()
     const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
-
     const [model, changeModel] = useState("")
     const [capacity, changeCapacity] = useState(0)
     const toastOptions = {
@@ -48,48 +48,55 @@ export const AddVehicle = () => {
             }
         }
     }
-    return (
-        <>
-            <div style={{ padding: "20px" }}>
-                <FormContainer>
-                    <h2 style={{ padding: "20px 0px 20px px" }}>Add Vehicles:</h2>
-                    <Form >
-                        <Form.Group controlId='Model'>
-                            <Form.Label>
-                                Model:
-                            </Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='eg. Tesla'
-                                value={model}
-                                autoComplete="off"
-                                onChange={(e) => changeModel(e.target.value)}>
-                            </Form.Control>
-                        </Form.Group>
-                        <br />
-                        <Form.Group controlId='Capacity'>
-                            <Form.Label>
-                                Capacity:
-                            </Form.Label>
-                            <Form.Control
-                                type='number'
-                                value={capacity}
-                                autoComplete="off"
-                                onChange={(e) => changeCapacity(e.target.value)}>
-                            </Form.Control>
-                        </Form.Group>
+    if (currentUser == null || currentUser.type != "driver") {
+        return (
+            <>
+            <NotFound></NotFound>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <div style={{ padding: "20px" }}>
+                    <FormContainer>
+                        <h2 style={{ padding: "20px 0px 20px px" }}>Add Vehicles:</h2>
+                        <Form >
+                            <Form.Group controlId='Model'>
+                                <Form.Label>
+                                    Model:
+                                </Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='eg. Tesla'
+                                    value={model}
+                                    autoComplete="off"
+                                    onChange={(e) => changeModel(e.target.value)}>
+                                </Form.Control>
+                            </Form.Group>
+                            <br />
+                            <Form.Group controlId='Capacity'>
+                                <Form.Label>
+                                    Capacity:
+                                </Form.Label>
+                                <Form.Control
+                                    type='number'
+                                    value={capacity}
+                                    autoComplete="off"
+                                    onChange={(e) => changeCapacity(e.target.value)}>
+                                </Form.Control>
+                            </Form.Group>
+    
+                            <br />
+                            <center>
+                                <Button type='submit' variant='primary' onClick={handleSubmit}> Add! </Button><br />
+                            </center>
+                            <br />
+                        </Form>
+                    </FormContainer>
+                </div>
 
-                        <br />
-                        <center>
-                            <Button type='submit' variant='primary' onClick={handleSubmit}> Add! </Button><br />
-                        </center>
-                        <br />
-                    </Form>
-                </FormContainer>
-            </div>
-
-            <ToastContainer />
-        </>
-
-    )
+                <ToastContainer />
+            </>
+        )
+    }
 }

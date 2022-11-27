@@ -14,3 +14,4 @@ export const searchTripRoute = `${server}/api/trips/search`
 export const getUserRoute = `${server}/api/user`
 export const getDriverUpcomingTripsRoute = `${server}/api/trips/driver/upcoming`
 export const getDriverRatingRoute = `${server}/api/driver/rating`
+export const getPassengerUpcomingTripsRoute = `${server}/api/trips/passenger/upcoming`
