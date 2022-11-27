@@ -163,14 +163,14 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
                     {trip.description}
                   </Card.Text>
                   <React.Fragment>
-                      <p>{trip.tripID}</p>
                       <TripDetailModal 
                         open={modal} 
-                        onClose={()=>toggleModal(false)} 
-                        curTrip = {{ origin: trip.origin }}/>
-                      {/* <button className="open-button" onClick={(e) =>showTripDetail(e, trip)}>See More</button> */}
+                        onClose={() => toggleModal(-1)} 
+                        curTrip = {trip}
+                        index={index}/>
+                      <button className="open-button"
+                        onClick={() => toggleModal(index)}>See More</button>
                   </React.Fragment>
-                  {/* <button class="open-button" >See More</button> */}
                   <br/>
                   <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
                 </Card.Body>
