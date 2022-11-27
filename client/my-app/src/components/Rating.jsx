@@ -9,6 +9,7 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
     const stars = Array(5).fill(0);
     const [currentValue, setcurrentValue] = useState(false);
     const [hoverValue, sethoverValue] = useState(false);
+    const [rating, setRating] = useState(0)
     const toastOptions = {
         position: "bottom-right",
         autoClose: 5000,
@@ -17,10 +18,9 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
         draggable: true,
         theme: "light"
       };
-    var rateNum;
     const handleClick = value =>{
         setcurrentValue(value)
-        rateNum = value;
+        setRating(value)
     };
     const handleMouseOver = value =>{
         sethoverValue(value)
@@ -35,10 +35,8 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
             vehicleID: trip.vehicleID,
             tripID: trip.tripID,
             passengerID: currentUser.userId,
-            rating: rateNum
+            rating: rating
           }
-          console.log(requestJson)
-          console.log(rateRoute)
           const { data } = await axios.put(rateRoute, requestJson);
           if (data.status === "Fail") {
             toast.error(data.errorMessage, toastOptions);
@@ -75,7 +73,7 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
                             }}
                             color={(hoverValue||currentValue) > index ? color.orange: color.grey}
                             onClick={()=> handleClick(index+1)}
-                            onMouseOver={()=>handleMouseOver(index + 1)}
+                            onMouseOver={()=>handleMouseOver(index+1)}
                             onMouseLeave = {handleMouseLeave}
                             />
                         
