@@ -14,6 +14,7 @@ const Modal = ({open,onClose}) =>{
         <button button onClick={onClose} className="closebtn">x</button> 
         <div>
             <h2 align="center">Rating for this trip</h2>
+            
         </div>
         </div>
         </div>
