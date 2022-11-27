@@ -26,7 +26,6 @@ export const Home = () => {
     }
     fetchTrips()
   }, [helper])
-  console.log(trips)
   const currentPost = trips.slice(indexOfFirstPost, indexOfLastPost)
   
   if(currentUser == null){
@@ -48,6 +47,7 @@ export const Home = () => {
     return (
       <>
         <DriverTrip trips = {trips} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {trips.length} paginate ={paginate}></Pagination>
       </>
     )
   }
