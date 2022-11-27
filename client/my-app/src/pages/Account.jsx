@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { Pagination } from '../components/Pagination'
 import { NotFound } from '../components/NotFound'
 import DriverAccount from '../components/DriverAccount'
+import PassengerAccount from '../components/PassengerAccount'
 
 export const Account = () => {
     const [helper, changeHelp] = useState(0);
@@ -23,6 +24,11 @@ export const Account = () => {
             
         );
     } else if (currentUser.type === "passenger") {
-        
+        return (
+            <>
+            <PassengerAccount currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+            </>
+            
+        );
     }
 }
