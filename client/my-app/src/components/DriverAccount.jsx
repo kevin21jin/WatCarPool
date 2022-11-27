@@ -8,7 +8,8 @@ import {
   getVehiclesRoute,
   getDriverTripsRoute, 
   deleteTripRoute, 
-  getDriverUpcomingTripsRoute
+  getDriverUpcomingTripsRoute,
+  getDriverRatingRoute
 } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
@@ -24,25 +25,27 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
     draggable: true,
     theme: "light"
   };
-
+  
+  const [rating, setRating] = useState(0);
   const [trips, setTrips] = useState([]);
   const [upcomingTrips, setUpcomingTrips] = useState([]);
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const requestJsonVehicles = { driverID: currentUser.userId };
-      const responseVehicles = await axios.post(getVehiclesRoute, requestJsonVehicles);
+      const requestJson = { driverID: currentUser.userId };
+      const responseRating = await axios.post(getDriverRatingRoute, requestJson);
+      setRating(responseRating.data.rating);
+      const responseVehicles = await axios.post(getVehiclesRoute, requestJson);
       setVehicles(responseVehicles.data);
-      const requestJsonTrips = { driverID: currentUser.userId };
-      const responseTrips = await axios.post(getDriverTripsRoute, requestJsonTrips);
+      const responseTrips = await axios.post(getDriverTripsRoute, requestJson);
       setTrips(responseTrips.data);
-      const requestJsonUpcomingTrips = { driverID: currentUser.userId };
-      const responseUpcomingTrips = await axios.post(getDriverUpcomingTripsRoute, requestJsonUpcomingTrips);
+      const responseUpcomingTrips = await axios.post(getDriverUpcomingTripsRoute, requestJson);
       setUpcomingTrips(responseUpcomingTrips.data);
     }
     fetchData();
   }, [helper, currentUser])
+  console.log(rating)
   console.log(trips)
   console.log(vehicles)
   console.log(upcomingTrips)
@@ -71,7 +74,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
       <Header />
       <div style={{ textAlign: "center", fontSize: "20px" }}>
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
-        <p>{currentUser.email} | {currentUser.phone}</p>
+        <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star'/>{rating}</p>
       </div>
       <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "2rem" }}>
         <h1>
@@ -111,7 +114,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         {
           (trips.length === 0)?
           <p style={{ fontSize: "20px" }}>
-            You do not have a trip! Create one <Link to="/addmodify">here</Link>!
+            You do not have any upcoming trips! Create one <Link to="/addmodify">here</Link>!
           </p>
           :
           <Row>

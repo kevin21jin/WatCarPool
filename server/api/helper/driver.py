@@ -136,3 +136,10 @@ def execute_driverGetUpcomingTrips(driverID):
         trip = Trip(row).__dict__
         driverTrips.append(trip)
     return json.dumps(driverTrips, default=str)
+
+def execute_driverGetRating(userID):
+    command = "SELECT rating FROM Driver WHERE userID = %s"
+    val = (userID,)
+    cursor.execute(command, val)
+    rating = cursor.fetchone()[0]
+    return { "rating": rating }

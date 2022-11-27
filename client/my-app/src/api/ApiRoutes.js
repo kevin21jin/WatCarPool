@@ -13,3 +13,4 @@ export const deleteTripRoute = `${server}/api/trips/delete`
 export const searchTripRoute = `${server}/api/trips/search`
 export const getUserRoute = `${server}/api/user`
 export const getDriverUpcomingTripsRoute = `${server}/api/trips/driver/upcoming`
+export const getDriverRatingRoute = `${server}/api/driver/rating`

@@ -145,3 +145,9 @@ def getUser():
     userID = request.json.get('userID')
     result = execute_getUser(userID)
     return result
+
+@app.route("/api/driver/rating", methods=["POST"])
+def getDriverRating():
+    userID = request.json.get('driverID')
+    result = execute_driverGetRating(userID)
+    return result

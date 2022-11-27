@@ -22,17 +22,21 @@ export const AddVehicle = () => {
         theme: "light"
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        var valid = true;
         if(model == ""){
             toast.error("Model cannot be empty", toastOptions);
+            valid = false;
         }
         if(capacity < 1){
             toast.error("Capacity must be greater than 0", toastOptions);
+            valid = false;
         }else if(capacity > 10){
             toast.error("Please call the customer service", toastOptions);
-        }else{
+            valid = false;
+        }
+        if (valid) {
             const requestJson = { capacity: capacity, model: model, driverID: currentUser.userId }
             const { data } = await axios.post(registerVehicleRoute, requestJson);
             if (data.status === "Fail") {
@@ -43,7 +47,6 @@ export const AddVehicle = () => {
                 navigate("/home")
             }
         }
-        
     }
     return (
         <>
