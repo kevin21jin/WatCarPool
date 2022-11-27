@@ -7,9 +7,11 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
     const [min, setmin] = useState(0);
     const [limit, setlimit] = useState(5);
 
-    
+    var curhref = window.location.href
 
     const handlenxt =()=>{
+        console.log(curPage)
+        console.log(totalPage)
         if(curPage < totalPage){
         setCurPage(curPage +1)
             if((curPage + 1) > max){
@@ -39,10 +41,11 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
     if(totalPage > max  && curPage > 1){
         pageDecrementButton = <li onClick={handlepre}> ... </li>
     }
-    for(let i = 1; i <= Math.ceil(totalPage/ postPerpage); i++){
+    for(let i = 1; i <= totalPage; i++){
         pageNumber.push(i);
     }
     return(
+        
             <div className='Container' >
             <ul className='Pagination'>
                 <li><p onClick={handlepre}>{'<'}</p></li>
@@ -51,7 +54,7 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
                     if(number < max+1 && number > min){
                         return(
                         <li key = {number} className = {curPage == number ? "active" : null}>
-                        <a onClick={()=>paginate(number)} href= "/home/#!" className='page-link'>
+                        <a onClick={()=>paginate(number)} href= "/home/#" className='page-link'>
                             {number}
                         </a>
                     </li>);

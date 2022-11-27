@@ -18,7 +18,7 @@ export const Home = () => {
   const indexOfLastPost = curPage * postPerpage;
   const indexOfFirstPost = indexOfLastPost - postPerpage;
   const paginate = (pageNumber) => setCurPage(pageNumber);
-  
+  const totalPage = Math.ceil(trips.length / postPerpage);
   useEffect(() =>{
     async function fetchTrips(){
       const response = await axios.get(getTripsRoute)
@@ -39,7 +39,7 @@ export const Home = () => {
     return (
       <>
         <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {trips.length} paginate ={paginate}></Pagination>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
       </>
     )
   }
@@ -47,7 +47,7 @@ export const Home = () => {
     return (
       <>
         <DriverTrip trips = {trips} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {trips.length} paginate ={paginate}></Pagination>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
       </>
     )
   }
