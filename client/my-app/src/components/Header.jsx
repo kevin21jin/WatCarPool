@@ -8,6 +8,11 @@ import { useNavigate } from 'react-router-dom'
 export const Header = () => {
   const [currentUser,setUser] = useState(JSON.parse(sessionStorage.getItem('WatCarPool-User')))
   const navigate = useNavigate()
+  
+  const account = () => {
+    navigate("/account")
+  }
+  
   const logout = () => {
     sessionStorage.setItem('WatCarPool-User', null)
     setUser(null)
@@ -32,11 +37,12 @@ export const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {(currentUser == null) ?
               <Nav className="ms-auto">
-                <Nav.Link href="/"><i className='fas fa-user'></i>Login</Nav.Link>
+                <Nav.Link href="/"><i className='fas fa-sign-in'></i>Login</Nav.Link>
               </Nav>
               :
               <Nav className="ms-auto">
-                <Nav.Link  onClick={logout}><i className='fas fa-user'>logout</i></Nav.Link>
+                <Nav.Link  onClick={account}><i className='fas fa-user-circle'>account</i></Nav.Link>
+                <Nav.Link  onClick={logout}><i className='fas fa-sign-out'>logout</i></Nav.Link>
               </Nav>
             }
 

@@ -47,16 +47,6 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
   console.log(vehicles)
   console.log(upcomingTrips)
 
-  const AddTrips = (e) => {
-    navigate("/addmodify")
-  }
-
-  const AddVehicles = (e) => {
-    navigate("/addvehicle")
-  }
-
-  const navigate = useNavigate()
-
   const deleteTrip = async (e, trip) => {
     e.preventDefault();
     const requestJson = { 
@@ -83,7 +73,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
         <p>{currentUser.email} | {currentUser.phone}</p>
       </div>
-      <div style={{ paddingLeft: "10rem", paddingTop: "2rem" }}>
+      <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "2rem" }}>
         <h1>
           My Vehicles
         </h1>
@@ -97,16 +87,15 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
           <Row>
             {vehicles.map((vehicle, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
+              <Card style={{ width: '100%' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{vehicle.model}</Card.Title>
-                  {/* <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text>
-                    {trip.description}
-                  </Card.Text> */}
-                  {/* <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button> */}
+                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">
+                  {(vehicle.capacity > 1)?
+                    <p>Capacity: {vehicle.capacity} people</p>: 
+                    <p>Capacity: {vehicle.capacity} person</p>
+                  }
+                  </Card.Subtitle>
                 </Card.Body>
               </Card>
             </Col>
@@ -128,11 +117,11 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
           <Row>
           {upcomingTrips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
+              <Card style={{ width: '100%' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
                   <Card.Text>
                     {trip.description}
@@ -150,17 +139,18 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         </h1>
         <div className="border-top my-4"></div>
         <Row>
-          {trips.map((trip) => (
-            <Col key={trip.description} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
+          {trips.map((trip, index) => (
+            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+              <Card style={{ width: '100%' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
+                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
                   <Card.Text>
                     {trip.description}
                   </Card.Text>
+                  <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
                 </Card.Body>
               </Card>
             </Col>
