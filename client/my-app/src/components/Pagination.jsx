@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPage})=>{
+export const Pagination = ({curPage, postPerpage, totalPage, paginate, allPage, setCurPage})=>{
     const pageNumber = [];
     const [max, setmax] = useState(5);
     const [min, setmin] = useState(0);
@@ -33,12 +33,12 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
     };
 
     let pageIncrementButton = null;
-    if(totalPage > max && curPage < totalPage){
+    if(allPage > max && curPage < totalPage){
         pageIncrementButton = <li onClick={handlenxt}> ... </li>
     }
 
     let pageDecrementButton = null;
-    if(totalPage > max  && curPage > 1){
+    if(allPage > max  && curPage > 1){
         pageDecrementButton = <li onClick={handlepre}> ... </li>
     }
     for(let i = 1; i <= totalPage; i++){
@@ -54,7 +54,7 @@ export const Pagination = ({curPage, postPerpage, totalPage, paginate, setCurPag
                     if(number < max+1 && number > min){
                         return(
                         <li key = {number} className = {curPage == number ? "active" : null}>
-                        <a onClick={()=>paginate(number)} href= "/home/#" className='page-link'>
+                        <a onClick={()=>paginate(number)} className='page-link'>
                             {number}
                         </a>
                     </li>);
