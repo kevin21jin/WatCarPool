@@ -26,7 +26,7 @@ export const Home = () => {
     }
     fetchTrips()
   }, [helper])
-
+  console.log(trips)
   const currentPost = trips.slice(indexOfFirstPost, indexOfLastPost)
   
   if(currentUser == null){

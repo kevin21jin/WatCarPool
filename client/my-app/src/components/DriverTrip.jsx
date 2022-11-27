@@ -69,14 +69,14 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   return (
     <>
       <Header />
-      <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem" }}>Hi, {currentUser.username}</h1>
+      <h1 style={{ fontSize: "50xpx", paddingLeft: "10rem", paddingTop: "5rem" }}>Hi, {currentUser.username}</h1>
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
       <Button style={{ marginBottom: "5em"}} type='submit' variant='primary' onClick={AddVehicles}> Add Vehicles </Button><br />
         <h1>
           My Trips
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={AddTrips}> Add Trips </Button><br />
         </h1>
-        <div class="border-top my-4"></div>
+        <div className="border-top my-4"></div>
         {
           (mytrips.length === 0)?
           <p style={{ fontSize: "20px" }}>You do not have a trip! Create one!</p>
@@ -105,10 +105,10 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
           Trips Available
           <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
         </h1>
-        <div class="border-top my-4"></div>
+        <div className="border-top my-4"></div>
         <Row>
-          {trips.map((trip) => (
-            <Col key={trip.description} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+          {trips.map((trip,index) => (
+            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
               <Card style={{ width: '35rem' }} className="rounded">
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
