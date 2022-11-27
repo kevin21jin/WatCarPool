@@ -59,6 +59,8 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
         return { "status": "Fail", "errorMessage": "ERROR: Destination must not be empty" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
+    if float(price) < 0 or float(price) > 150:
+        return { "status": "Fail", "errorMessage": "ERROR: Trip price must be between 0 and 150"}
     try:
         command = "INSERT INTO Trip VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         val = (driverID, vehicleID, tripID, origin, destination, time, price, description)
