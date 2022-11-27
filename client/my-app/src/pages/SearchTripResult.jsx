@@ -21,14 +21,14 @@ export const SearchTripResult = () => {
         return (
             <>
               <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
+              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {tripResult.length} paginate ={paginate}></Pagination>
             </>
         )
     } else if (currentUser.type === "driver") {
         return (
             <>
               <DriverTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
+              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {tripResult.length} paginate ={paginate}></Pagination>
             </>
         )
     }

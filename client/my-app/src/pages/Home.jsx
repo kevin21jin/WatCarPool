@@ -39,7 +39,7 @@ export const Home = () => {
     return (
       <>
         <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {trips.length} paginate ={paginate}></Pagination>
       </>
     )
   }
@@ -47,7 +47,7 @@ export const Home = () => {
     return (
       <>
         <DriverTrip trips = {trips} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} paginate ={paginate}></Pagination>
+        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {trips.length} paginate ={paginate}></Pagination>
       </>
     )
   }
