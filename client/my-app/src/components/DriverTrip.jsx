@@ -4,13 +4,11 @@ import { Card, Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getDriverTripsRoute, deleteTripRoute } from '../api/ApiRoutes'
+import { getDriverTripsRoute, deleteTripRoute,finishTripRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import axios from 'axios'
 import UpdateCard from './UpdateCard'
-import "./Card.css";
-import TripDetailModal from './TripDetailModal';
 
 const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
@@ -24,7 +22,6 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   };
 
   const [mytrips, getMyTrips] = useState([])
-  const [modal, setModal] = useState(-1);
 
   useEffect(() => {
     async function fetchDriverTrips() {
@@ -69,8 +66,22 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
     }
   }
 
-  const toggleModal = (index) => {
-    setModal(index)
+  const finishTrip = async (e, trip) => {
+    e.preventDefault();
+    const requestJson = {
+      driverID: trip.driverID,
+      vehicleID: trip.vehicleID,
+      tripID: trip.tripID,
+    }
+
+    const { data } = await axios.post(finishTripRoute, requestJson);
+
+    if (data.status === "Fail") {
+      toast.error(data.errorMessage, toastOptions);
+    }
+    else if (data.status === "Success") {
+      changeHelp(helper + 1)
+    }
   }
 
   return (
@@ -90,7 +101,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
             :
             <Row>
               {mytrips.map((trip, index) => (
-                <UpdateCard key={index} index = {index} trip = {trip} deleteTrip = {deleteTrip} toast = {toast} helper = {helper} changeHelp = {changeHelp}></UpdateCard>
+                <UpdateCard key={index} index = {index} trip = {trip} deleteTrip = {deleteTrip} finishTrip = {finishTrip} toast = {toast} helper = {helper} changeHelp = {changeHelp}></UpdateCard>
               ))}
             </Row>
         }
@@ -103,24 +114,15 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
         <Row>
           {trips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card border="secondary" className="cardClass" >
-              <Card.Header style={{ color: '#2DA8D8'}} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
+              <Card style={{ width: '35rem' }} className="rounded">
                 <Card.Body>
+                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text className="card-description">
+                  <Card.Text>
                     {trip.description}
                   </Card.Text>
-                  <React.Fragment>
-                      <TripDetailModal 
-                        open={modal} 
-                        onClose={() => toggleModal(-1)} 
-                        curTrip = {trip}
-                        index={index}/>
-                      <button className="open-button"
-                        onClick={() => toggleModal(index)}>See More</button>
-                  </React.Fragment>
                 </Card.Body>
               </Card>
             </Col>
