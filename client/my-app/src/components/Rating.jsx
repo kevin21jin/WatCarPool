@@ -28,7 +28,7 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
     const handleMouseLeave = value =>{
         sethoverValue(undefined)
     }
-    const handleSubmit = async (e, trip) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const requestJson = {
             driverID: trip.driverID,
@@ -37,6 +37,8 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
             passengerID: currentUser.userId,
             rating: rateNum
           }
+          console.log(requestJson)
+          console.log(rateRoute)
           const { data } = await axios.put(rateRoute, requestJson);
           if (data.status === "Fail") {
             toast.error(data.errorMessage, toastOptions);
@@ -97,7 +99,7 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
                 </div>
         </div>
         <div align = "center">
-        <Button  type='submit' onClick={(e) => handleSubmit(e, trip, currentUser)}> Submit</Button>
+        <Button  type='submit' onClick={(e) => handleSubmit(e)}>Submit</Button>
         </div>
         </div>
         </div>

@@ -27,13 +27,10 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
   console.log(currentUser)
   const [trips, setTrips] = useState([]);
   const [upcomingTrips, setUpcomingTrips] = useState([]);
-  const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const requestJson = { passengerID: currentUser.userId };
-      const responseVehicles = await axios.post(getVehiclesRoute, requestJson);
-      setVehicles(responseVehicles.data);
       const responseTrips = await axios.post(getPassengerTripsRoute, requestJson);
       setTrips(responseTrips.data);
       const responseUpcomingTrips = await axios.post(getPassengerUpcomingTripsRoute, requestJson);
