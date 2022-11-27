@@ -33,7 +33,6 @@ export const AddModifyTrip = () => {
                 driverID: currentUser.userId
             }
             const response = await axios.post(getVehiclesRoute, requestJson)
-            console.log(response.data)
             changeVehicles(response.data)
         }
         fetchMyVehicle()
@@ -57,7 +56,6 @@ export const AddModifyTrip = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:MM")
-        console.log(realTime)
         const requestJson = {
             driverID: currentUser.userId,
             vehicleID: vehicle,
@@ -93,7 +91,6 @@ export const AddModifyTrip = () => {
                                 inputFormat="YYYY/MM/DD HH:MM"
                                 onChange={(newValue) => {
                                     changeTime(newValue)
-                                    console.log(time)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
                                     ...params.inputProps,

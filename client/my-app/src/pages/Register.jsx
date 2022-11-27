@@ -31,9 +31,7 @@ export const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const requestJson = { username: user, password: pwd, email: email, phone: pnum, type: driver }
-    console.log(requestJson)
     const { data } = await axios.post(registerRoute, requestJson)
-    console.log(data);
     if (data.status === "Fail") {
       toast.error(data.errorMessage, toastOptions);
     }

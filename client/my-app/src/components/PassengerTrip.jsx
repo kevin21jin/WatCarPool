@@ -60,7 +60,6 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success") {
-      console.log("success")
       changeHelp(helper + 1)
     }
   }
@@ -82,7 +81,6 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success") {
-      console.log("quit success")
       changeHelp(helper + 1)
     }
   }

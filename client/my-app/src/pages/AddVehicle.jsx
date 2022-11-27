@@ -43,7 +43,6 @@ export const AddVehicle = () => {
                 toast.error(data.errorMessage, toastOptions);
             }
             else if (data.status === "Success") {
-                console.log(data)
                 navigate("/home")
             }
         }

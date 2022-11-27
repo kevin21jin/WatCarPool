@@ -24,7 +24,6 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
     draggable: true,
     theme: "light"
   };
-  console.log(currentUser)
   const [trips, setTrips] = useState([]);
   const [upcomingTrips, setUpcomingTrips] = useState([]);
 

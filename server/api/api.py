@@ -61,7 +61,7 @@ def deleteTrip():
     result = execute_deleteTrip(driverID, vehicleID, tripID)
     return result
 
-@app.route("/api/trips/update", methods=['PUT'])
+@app.route("/api/trips/update", methods=['POST'])
 def updateTrip():
     driverID = request.json.get('driverID')
     vehicleID = request.json.get('vehicleID')
