@@ -1,0 +1,39 @@
+.card {
+    margin-bottom: 1rem;
+    background-color: rgb(247, 247, 247);
+    height: 100%;
+    border-radius: var(--bs-border-radius)!important;
+}
+
+.card-header {
+    overflow:hidden;
+    height: 100%;
+    font-size: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-title {
+    flex-grow: 1;
+    height: 70px;
+}
+.card-description {
+    font-size: 16px;
+    overflow: hidden;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cardClass {
+    max-width: 100%;
+    height: 100px;
+}
+
+.open-button {
+    float: right;
+    border: hidden;
+    padding: 5px;
+    border-radius: var(--bs-border-radius)!important;
+    background-color: #e0e0e0;
+}
