@@ -12,11 +12,14 @@ import { getPassengerTripsRoute } from '../api/ApiRoutes'
 import { useNavigate } from 'react-router-dom'
 import Rating from './Rating';
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
-  const [modal, setModel] = useState(false);
-  const toggleModal = () => {
-        setModel(!modal)
+  const [modal, setModel] = useState(-1);
+
+  const toggleModal = (index) => {
+    setModel(index)
   }
+
   const [mytrips, getMyTrips] = useState([])
+  
   useEffect(() => {
     async function fetchMyTrips() {
       const requestJson = {
@@ -27,7 +30,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     }
     fetchMyTrips()
   }, [helper, currentUser])
- 
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 5000,
@@ -36,15 +39,17 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     draggable: true,
     theme: "light"
   };
+
   const compareDate = (str1) => {
     var tripday = new Date(str1);
     var today = new Date();
-    if(tripday > today){
-       return true;
-     }else{
-       return false;
-     }
+    if (tripday > today) {
+      return true;
+    } else {
+      return false;
+    }
   }
+
   const joinTrip = async (e, trip) => {
     e.preventDefault();
     const requestJson = {
@@ -53,7 +58,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       tripID: trip.tripID,
       passengerID: currentUser.userId
     }
-    
+
     const { data } = await axios.post(joinRoute, requestJson);
 
     if (data.status === "Fail") {
@@ -63,8 +68,6 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       changeHelp(helper + 1)
     }
   }
-
-  
 
   const quitTrip = async (e, trip) => {
     e.preventDefault();
@@ -85,9 +88,9 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     }
   }
 
-  const rateTrip = async (e, trip) => {
-    toggleModal(true)
-
+  const rateTrip = async (e, trip, index) => {
+    toggleModal(index)
+    console.log(trip)
   }
 
   const navigate = useNavigate()
@@ -96,14 +99,13 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
     navigate("/searchtrip")
   }
 
-
   return (
     <>
       <Header />
       <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem" }}>Hi, {currentUser.username}</h1>
       <div style={{ padding: "10rem", paddingTop: "5rem", paddingBottom: "0rem" }}>
         <h1>My Trips</h1>
-        <div class="border-top my-4"></div>
+        <div className="border-top my-4"></div>
         {
           (mytrips.length === 0) ?
             <p style={{ fontSize: "20px" }}>You have not joined a trip yet:(</p>
@@ -120,14 +122,14 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
                       <Card.Text>
                         {trip.description}
                       </Card.Text>
-                     {(compareDate(trip.departTime)) ?
-                      <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
-                      :
-                      <React.Fragment>
-                      <Rating open={modal} onClose={()=>toggleModal(false)} trip ={trip} currentUser = {currentUser}/>
-                      <Button id="rate" variant="primary" className="rounded" onClick={(e) =>rateTrip(e, trip)}>Rate</Button>
-                      </React.Fragment>
-                     }
+                      {(compareDate(trip.departTime)) ?
+                        <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
+                        :
+                        <React.Fragment>
+                          <Rating open={modal} onClose={() => toggleModal(-1)} trip={trip} currentUser={currentUser} index={index} />
+                          <Button id="rate" variant="primary" className="rounded" onClick={(e) => rateTrip(e, trip, index)}>Rate</Button>
+                        </React.Fragment>
+                      }
                     </Card.Body>
                   </Card>
                 </Col>
@@ -138,9 +140,9 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
       <div style={{ padding: "10rem", paddingTop: "5rem" }}>
         <h1>Trips Available
-          <Button style={{ marginLeft: "5em"}} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
+          <Button style={{ marginLeft: "5em" }} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
         </h1>
-        <div class="border-top my-4"></div>
+        <div className="border-top my-4"></div>
         <Row>
           {trips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
