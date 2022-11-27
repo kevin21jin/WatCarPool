@@ -57,7 +57,7 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
       <div className="modalContainer">
         <div className="modalright">
         <div className="modalcontent">
-        <button button onClick={onClose} className="closebtn">x</button> 
+        <button button onClick={onClose} className="closebtn"><i class="fa fa-times-circle"/></button> 
             <h2 align="center">Rating for this trip</h2>
             <p></p><p></p><p></p>
             <div align="center">
@@ -76,15 +76,11 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
                             onMouseOver={()=>handleMouseOver(index+1)}
                             onMouseLeave = {handleMouseLeave}
                             />
-                        
                         )
                     })
                 }
                 <></>
-                
-
             </div>
-            
             <div align="center">
             <p></p>
             <textarea 
@@ -92,7 +88,6 @@ const Modal = ({open,onClose, trip, currentUser}) =>{
                 rows={10}
                 cols = {50}
                 maxLength = {300}
-
                 />
                 </div>
         </div>
