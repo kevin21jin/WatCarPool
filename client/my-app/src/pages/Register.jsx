@@ -113,7 +113,7 @@ export const Register = () => {
           </Form.Group>
           <br />
           <center>
-            <Button type='submit' variant='primary' onClick={handleSubmit}> Create Account </Button>
+            <Button type='submit' variant='primary' className="rounded" onClick={handleSubmit}> Create Account </Button>
           </center>
 
         </Form>

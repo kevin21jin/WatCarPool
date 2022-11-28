@@ -45,14 +45,12 @@ export const Login = () => {
 
   return (
     <>
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "40px 0px 40px 0px" }}>
         <FormContainer>
-          <h2 style={{ padding: "20px 0px 20px px" }}>Sign In</h2>
+          <h2>Sign In</h2>
+          <br />
           <Form >
             <Form.Group controlId='Username'>
-              <Form.Label>
-                Username:
-              </Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter Username'
@@ -63,9 +61,6 @@ export const Login = () => {
             </Form.Group>
             <br />
             <Form.Group controlId='Password'>
-              <Form.Label>
-                Password:
-              </Form.Label>
               <Form.Control
                 type='password'
                 placeholder='Enter Password'
@@ -74,16 +69,16 @@ export const Login = () => {
                 onChange={(e) => setPwd(e.target.value)}>
               </Form.Control>
             </Form.Group>
-
-            <br />
+            <br /><br />
             <center>
-              <Button type='submit' variant='primary' onClick={handleSubmit}> Login </Button><br />
+              <Button type='submit' variant='primary' className="rounded" onClick={handleSubmit}> Login </Button><br />
             </center>
             <br />
-            <p style={{ fontSize: "16px" }}>Need a account?<br />
-              <span className="line">
-                <Link to='/register'>Register here!</Link>
-              </span></p>
+            <p style={{ fontSize: "16px" }}>
+              Need a account?
+              <br />
+              Register <Link to='/register'>here</Link>!
+            </p>
           </Form>
         </FormContainer>
       </div>

@@ -82,7 +82,7 @@ const Modal = ({ open, onClose, trip, currentUser, index }) => {
               <></>
             </div>
             <div align="center">
-              <p></p>
+              <br />
               <textarea
                 style={{ resize: "none", height: "250px", width: "80%" }}
                 placeholder="Please give us your feedback!"
@@ -91,7 +91,7 @@ const Modal = ({ open, onClose, trip, currentUser, index }) => {
             </div>
           </div>
           <div align="center">
-            <Button type='submit' onClick={(e) => handleSubmit(e)}>Submit</Button>
+            <Button type='submit' className="rounded" onClick={(e) => handleSubmit(e)}>Submit Rating</Button>
           </div>
         </div>
       </div>

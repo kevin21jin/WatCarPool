@@ -90,10 +90,10 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
             <Row>
               {vehicles.map((vehicle, index) => (
                 <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 10 }}>
-                  <Card style={{ width: '100%' }} className="rounded">
+                  <Card className="cardClass">
+                    <Card.Header style={{ color: "#2DA8D8FF", fontSize: "25px" }} className="card-header">{vehicle.model}</Card.Header>
                     <Card.Body>
-                      <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{vehicle.model}</Card.Title>
-                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">
+                      <Card.Subtitle style={{ fontSize: "16px", height: "10px" }} className="mb-2 text-muted">
                         {(vehicle.capacity > 1) ?
                           <p>Capacity: {vehicle.capacity} people</p> :
                           <p>Capacity: {vehicle.capacity} person</p>
@@ -111,7 +111,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         <div className="border-top my-4"></div>
         {
           (upcomingTrips.length === 0) ?
-            <p style={{ fontSize: "20px" }}>You do not have a trip! Create one!</p>
+            <p style={{ fontSize: "20px" }}>You do not have any upcoming trips! Create one <Link to="/addtrip">here</Link>!</p>
             :
             <Row>
               {upcomingTrips.map((trip, index) => (
@@ -123,33 +123,36 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
       <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "3rem" }}>
         <h1>Trips History</h1>
         <div className="border-top my-4"></div>
-        <Row>
-          {trips.map((trip, index) => (
-            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 10 }}>
-              <Card className="cardClass">
-                <Card.Header style={{ color: '#2DA8D8' }} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
-                <Card.Body>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                  <Card.Text className="card-description">
-                    {trip.description}
-                  </Card.Text>
-                  <React.Fragment>
-                    <TripDetailModal
-                      open={modal}
-                      onClose={() => toggleModal(-1)}
-                      curTrip={trip}
-                      index={index} />
-                    <button className="open-button"
-                      onClick={() => toggleModal(index)}>See More</button>
-                  </React.Fragment>
-                  <br />
-                  <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        {
+          (trips.length === 0) ?
+            <p style={{ fontSize: "20px" }}>You have not created any trips! Create one <Link to="/addtrip">here</Link>!</p>
+            :
+            <Row>
+              {trips.map((trip, index) => (
+                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 10 }}>
+                  <Card className="cardClass">
+                    <Card.Header style={{ color: '#2DA8D8' }} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
+                    <Card.Body>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
+                      <Card.Text className="card-description">
+                        {trip.description}
+                      </Card.Text>
+                      <React.Fragment>
+                        <TripDetailModal
+                          open={modal}
+                          onClose={() => toggleModal(-1)}
+                          curTrip={trip}
+                          index={index} />
+                        <button className="open-button"
+                          onClick={() => toggleModal(index)}>See More</button>
+                      </React.Fragment>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+        }
       </div>
 
       <ToastContainer />

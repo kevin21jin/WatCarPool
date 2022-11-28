@@ -105,7 +105,7 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
 
                         <Card.Subtitle style={{ fontSize: "20px", marginTop: "1rem" }} className="mb-2 text-muted">Details:</Card.Subtitle>
                         <textarea placeholder="Add some details to your trip!" className="form-control" id="exampleFormControlTextarea1" rows="4"
-                            style={{ display: "block", marginBottom: "1rem" }} defaultValue={description}
+                            style={{ display: "block", marginBottom: "1rem", resize: "none" }} defaultValue={description}
                             onChange={(e) => changeDescription(e.target.value)}>
                         </textarea>
                         <Button variant="primary" className="rounded" style={{ margin: "0.5rem" }} onClick={(e) => updateTrip(e, trip)}>Update</Button>
