@@ -63,6 +63,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success") {
+      toast.success("Trip deleted successfully", toastOptions)
       changeHelp(helper + 1)
     }
   }

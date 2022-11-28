@@ -62,7 +62,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success"){
-      console.log("success")
+      toast.success("Trip deleted successfully", toastOptions)
       changeHelp(helper + 1)
     }
   }
@@ -113,7 +113,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         </h1>
         <div className="border-top my-4"></div>
         {
-          (trips.length === 0)?
+          (upcomingTrips.length === 0)?
           <p style={{ fontSize: "20px" }}>
             You do not have any upcoming trips! Create one <Link to="/addmodify">here</Link>!
           </p>

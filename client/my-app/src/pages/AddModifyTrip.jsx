@@ -52,7 +52,6 @@ export const AddModifyTrip = () => {
         changeVehicle(e.target.value)
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:MM")
@@ -71,9 +70,9 @@ export const AddModifyTrip = () => {
         }
         else if (data.status === "Success") {
             navigate("/home")
+            toast.success("Trip created successfully", toastOptions)
         }
     }
-
 
     return (
         <>
@@ -88,17 +87,16 @@ export const AddModifyTrip = () => {
                             <DateTimePicker
                                 label="Date & Time"
                                 value={time}
-                                inputFormat="YYYY/MM/DD HH:MM"
+                                inputFormat="YYYY/MM/DD HH:mm"
                                 onChange={(newValue) => {
                                     changeTime(newValue)
                                 }}
-                                renderInput={(params) => <TextField  {...params} inputProps={{
+                                renderInput={(params) => <TextField {...params} inputProps={{
                                     ...params.inputProps,
                                     placeholder: ""
-                                }} />}
+                                }}/>}
                             />
                         </LocalizationProvider>
-
                         <Box sx={{ marginTop: 5 }}>
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-helper-label">Vehicle</InputLabel>

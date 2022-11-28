@@ -65,6 +65,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success") {
+      toast.success("Trip joined successfully", toastOptions)
       changeHelp(helper + 1)
     }
   }
@@ -84,6 +85,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
       toast.error(data.errorMessage, toastOptions);
     }
     else if (data.status === "Success") {
+      toast.success("Trip quitted successfully", toastOptions)
       changeHelp(helper + 1)
     }
   }

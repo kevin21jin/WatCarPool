@@ -43,6 +43,7 @@ export const AddVehicle = () => {
                 toast.error(data.errorMessage, toastOptions);
             }
             else if (data.status === "Success") {
+                toast.success("Vehicle registered successfully", toastOptions)
                 navigate("/home")
             }
         }

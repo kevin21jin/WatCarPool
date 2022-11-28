@@ -36,6 +36,7 @@ export const Register = () => {
       toast.error(data.errorMessage, toastOptions);
     }
     if (data.status === "Success") {
+      toast.success("Account created successfully", toastOptions)
       navigate("/")
     }
   }

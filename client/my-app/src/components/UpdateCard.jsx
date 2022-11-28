@@ -45,7 +45,7 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
             toast.error(data.errorMessage, toastOptions);
         }
         else if (data.status === "Success") {
-            toast.success("Trip update successfully", toastOptions)
+            toast.success("Trip updated successfully", toastOptions)
             changeHelp(helper + 1)
         }
     }
@@ -87,12 +87,12 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
                                     <DateTimePicker
                                         label="Date & Time"
                                         value={time}
-                                        inputFormat="YYYY/MM/DD HH:MM"
+                                        inputFormat="YYYY/MM/DD HH:mm"
                                         onChange={(newValue) => {
                                             changeTime(newValue)
                                             console.log(newValue)
                                         }}
-                                        renderInput={(params) => <TextField  {...params} inputProps={{
+                                        renderInput={(params) => <TextField {...params} inputProps={{
                                             ...params.inputProps,
                                             placeholder: ""
                                         }}

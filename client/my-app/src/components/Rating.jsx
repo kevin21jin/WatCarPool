@@ -8,7 +8,6 @@ import { toast } from "react-toastify"
 
 const Modal = ({ open, onClose, trip, currentUser, index }) => {
   const stars = Array(5).fill(0);
-  // console.log(trip)
   const [currentValue, setcurrentValue] = useState(false);
   const [hoverValue, sethoverValue] = useState(false);
   const [rating, setRating] = useState(0)
@@ -43,10 +42,8 @@ const Modal = ({ open, onClose, trip, currentUser, index }) => {
     if (data.status === "Fail") {
       toast.error(data.errorMessage, toastOptions);
     } else if (data.status === "Success") {
-      console.log("success")
-      console.log(data)
-      console.log(requestJson)
-      onClose = { onClose }
+      toast.success("Rating submitted successfully", toastOptions);
+      onClose();
     }
   }
 
