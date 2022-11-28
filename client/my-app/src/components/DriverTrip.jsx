@@ -120,7 +120,6 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
                <Card border="secondary" className="cardClass" >
                 <Card.Header style={{ color: '#2DA8D8'}} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
                 <Card.Body>
-                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
