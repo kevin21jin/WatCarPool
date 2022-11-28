@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import axios from 'axios'
 import UpdateCard from './UpdateCard'
-
+import "./Card.css";
+import TripDetailModal from './TripDetailModal';
 const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
 
   const toastOptions = {
@@ -22,7 +23,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   };
 
   const [mytrips, getMyTrips] = useState([])
-
+  const [modal, setModal] = useState(-1);
   useEffect(() => {
     async function fetchDriverTrips() {
       const requestJson = {
@@ -65,7 +66,9 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
       changeHelp(helper + 1)
     }
   }
-
+  const toggleModal = (index) => {
+    setModal(index)
+  }
   const finishTrip = async (e, trip) => {
     e.preventDefault();
     const requestJson = {
@@ -114,15 +117,25 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
         <Row>
           {trips.map((trip, index) => (
             <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
+               <Card border="secondary" className="cardClass" >
+                <Card.Header style={{ color: '#2DA8D8'}} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
                 <Card.Body>
                   <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
                   <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text>
+                  <Card.Text className="card-description">
                     {trip.description}
                   </Card.Text>
+                  <React.Fragment>
+                      <TripDetailModal 
+                        open={modal} 
+                        onClose={() => toggleModal(-1)} 
+                        curTrip = {trip}
+                        index={index}/>
+                      <button className="open-button"
+                        onClick={() => toggleModal(index)}>See More</button>
+                  </React.Fragment>
                 </Card.Body>
               </Card>
             </Col>
