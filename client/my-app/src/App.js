@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { AddModifyTrip } from './pages/AddModifyTrip';
+import { AddTrip } from './pages/AddTrip';
 import { Home } from './pages/Home'
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/addmodify" element={<AddModifyTrip />} />
+          <Route path="/addtrip" element={<AddTrip />} />
           <Route path="/addvehicle" element={<AddVehicle />} />
           <Route path="/searchtrip" element={<SearchTrip />} />
           <Route path="/searchresult" element={<SearchTripResult />} />

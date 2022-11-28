@@ -57,6 +57,10 @@ def execute_createTrip(driverID, vehicleID, origin, destination, departTime, pri
         return { "status": "Fail", "errorMessage": "ERROR: Origin must not be empty" }
     if destination == "":
         return { "status": "Fail", "errorMessage": "ERROR: Destination must not be empty" }
+    if len(origin) > 25 or len(destination) > 25:
+        return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must not be greater than 25 characters" }
+    if len(description) > 1000:
+        return { "status": "Fail", "errorMessage": "ERROR: Description must not be greater than 1000 characters" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
     if float(price) < 0 or float(price) > 150:
@@ -104,6 +108,14 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
         return { "status": "Fail", "errorMessage": "ERROR: Destination must not be empty" }
     if origin == destination:
         return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
+    if len(origin) > 25 or len(destination) > 25:
+        return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must not be greater than 25 characters" }
+    if len(description) > 1000:
+        return { "status": "Fail", "errorMessage": "ERROR: Description must not be greater than 1000 characters" }
+    if origin == destination:
+        return { "status": "Fail", "errorMessage": "ERROR: Origin and destination must be different" }
+    if float(price) < 0 or float(price) > 150:
+        return { "status": "Fail", "errorMessage": "ERROR: Trip price must be between 0 and 150"}
     try:
         command = """UPDATE Trip SET origin = %s, destination = %s, departTime = %s, price = %s, description = %s
                      WHERE driverID = %s AND vehicleID = %s AND tripID = %s"""
@@ -115,7 +127,7 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
     return { "status": "Success" }
 
 def execute_driverGetTrips(driverID):
-    command = "SELECT * FROM Trip t WHERE driverID = %s ORDER BY departTime"
+    command = "SELECT * FROM Trip WHERE driverID = %s ORDER BY departTime"
     val = (driverID,)
     cursor.execute(command, val)
     driverTrips = []

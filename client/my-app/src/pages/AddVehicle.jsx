@@ -25,14 +25,14 @@ export const AddVehicle = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         var valid = true;
-        if(model == ""){
+        if (model === "") {
             toast.error("Model cannot be empty", toastOptions);
             valid = false;
         }
-        if(capacity < 1){
+        if (capacity < 1) {
             toast.error("Capacity must be greater than 0", toastOptions);
             valid = false;
-        }else if(capacity > 10){
+        } else if (capacity > 10) {
             toast.error("Please call the customer service", toastOptions);
             valid = false;
         }
@@ -48,10 +48,10 @@ export const AddVehicle = () => {
             }
         }
     }
-    if (currentUser == null || currentUser.type != "driver") {
+    if (currentUser === null || currentUser.type !== "driver") {
         return (
             <>
-            <NotFound></NotFound>
+                <NotFound></NotFound>
             </>
         );
     } else {
@@ -85,7 +85,7 @@ export const AddVehicle = () => {
                                     onChange={(e) => changeCapacity(e.target.value)}>
                                 </Form.Control>
                             </Form.Group>
-    
+
                             <br />
                             <center>
                                 <Button type='submit' variant='primary' onClick={handleSubmit}> Add! </Button><br />

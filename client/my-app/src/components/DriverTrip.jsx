@@ -38,7 +38,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const navigate = useNavigate()
 
   const AddTrips = (e) => {
-    navigate("/addmodify")
+    navigate("/addtrip")
   }
 
   const AddVehicles = (e) => {

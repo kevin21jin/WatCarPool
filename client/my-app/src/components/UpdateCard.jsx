@@ -11,6 +11,8 @@ import moment from 'moment'
 import { updateTripRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import "./Card.css";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
     const [origin, changeOrigin] = useState(trip.origin)
@@ -41,7 +43,6 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
             price: price,
             description: description
         }
-        console.log(requestJson.departTime)
         const { data } = await axios.post(updateTripRoute, requestJson);
         if (data.status === "Fail") {
             toast.error(data.errorMessage, toastOptions);
@@ -75,14 +76,12 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
 
                             <Card.Subtitle style={{ fontSize: "20px" }} className="mb-2 text-muted">
                                 <div style={{ marginBottom: "0.5rem" }}>Price:</div>
-                                <TextField
+                                <OutlinedInput
                                     id="outlined-number"
                                     type="number"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
                                     value={price}
                                     onChange={(e) => changePrice(e.target.value)}
+                                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 />
                             </Card.Subtitle>
 

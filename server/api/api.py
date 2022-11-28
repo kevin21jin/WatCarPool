@@ -27,7 +27,6 @@ def register():
 @app.route("/api/trips", methods=['GET'])
 def getAvailableTrips():
     result = execute_getAvailableTrips()
-    print(result)
     return result
 
 @app.route("/api/trips/search", methods=['POST'])
