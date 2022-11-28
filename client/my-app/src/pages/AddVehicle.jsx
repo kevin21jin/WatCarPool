@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import { NotFound } from '../components/NotFound'
+import { FormControl, TextField } from '@mui/material'
+
 export const AddVehicle = () => {
     const navigate = useNavigate()
     const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
@@ -57,38 +59,35 @@ export const AddVehicle = () => {
     } else {
         return (
             <>
-                <div style={{ padding: "20px" }}>
+                <div style={{ position: "center", marginTop: "50px", marginBottom: "50px" }}>
                     <FormContainer>
-                        <h2 style={{ padding: "20px 0px 20px px" }}>Add Vehicles:</h2>
+                        <h1 style={{ textAlign: "center" }} >Register Vehicle</h1>
+                        <br />
                         <Form >
                             <Form.Group controlId='Model'>
-                                <Form.Label>
-                                    Model:
-                                </Form.Label>
-                                <Form.Control
-                                    type='text'
-                                    placeholder='eg. Tesla'
-                                    value={model}
-                                    autoComplete="off"
-                                    onChange={(e) => changeModel(e.target.value)}>
-                                </Form.Control>
+                                <FormControl fullWidth>
+                                    <TextField
+                                        label="Model"
+                                        value={model}
+                                        placeholder='e.g. Tesla Model Y'
+                                        onChange={(e) => changeModel(e.target.value)}
+                                    />
+                                </FormControl>
                             </Form.Group>
                             <br />
                             <Form.Group controlId='Capacity'>
-                                <Form.Label>
-                                    Capacity:
-                                </Form.Label>
-                                <Form.Control
-                                    type='number'
-                                    value={capacity}
-                                    autoComplete="off"
-                                    onChange={(e) => changeCapacity(e.target.value)}>
-                                </Form.Control>
+                                <FormControl fullWidth>
+                                    <TextField
+                                        type="number"
+                                        label="Capacity"
+                                        value={capacity}
+                                        onChange={(e) => changeCapacity(e.target.value)}
+                                    />
+                                </FormControl>
                             </Form.Group>
-
                             <br />
                             <center>
-                                <Button type='submit' variant='primary' onClick={handleSubmit}> Add! </Button><br />
+                                <Button type='submit' variant='primary' onClick={handleSubmit}>Submit</Button><br />
                             </center>
                             <br />
                         </Form>

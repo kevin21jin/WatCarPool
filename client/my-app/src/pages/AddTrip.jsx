@@ -7,17 +7,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
-import { TextField } from '@mui/material';
+import {
+    TextField,
+    Box,
+    MenuItem,
+    FormControl,
+    Select,
+    OutlinedInput,
+    InputAdornment,
+    InputLabel
+} from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import moment from 'moment';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
 
 export const AddTrip = () => {
     const [origin, changeOrigin] = useState("")

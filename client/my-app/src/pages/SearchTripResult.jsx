@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import { useState } from 'react'
 import { Pagination } from '../components/Pagination'
 
-
 export const SearchTripResult = () => {
     const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
     const [helper, changeHelp] = useState(0);
@@ -13,22 +12,22 @@ export const SearchTripResult = () => {
     const [postPerpage] = useState(4);
     const indexOfLastPost = curPage * postPerpage;
     const indexOfFirstPost = indexOfLastPost - postPerpage;
-    const paginate = (pageNumber) => setCurPage(pageNumber);    
+    const paginate = (pageNumber) => setCurPage(pageNumber);
     let tripResult = location.state.tripResult;
     const currentPost = tripResult.slice(indexOfFirstPost, indexOfLastPost)
     const totalPage = Math.ceil(tripResult.length / postPerpage);
     if (currentUser.type === "passenger") {
         return (
             <>
-              <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {tripResult.length} paginate ={paginate}></Pagination>
+                <PassengerTrip trips={currentPost} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
+                <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={tripResult.length} paginate={paginate}></Pagination>
             </>
         )
     } else if (currentUser.type === "driver") {
         return (
             <>
-              <DriverTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-              <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {tripResult.length} paginate ={paginate}></Pagination>
+                <DriverTrip trips={currentPost} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
+                <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={tripResult.length} paginate={paginate}></Pagination>
             </>
         )
     }

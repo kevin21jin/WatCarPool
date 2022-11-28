@@ -13,22 +13,22 @@ export const Account = () => {
     if (currentUser == null) {
         return (
             <>
-            <NotFound/>
+                <NotFound />
             </>
         );
     } else if (currentUser.type === "driver") {
         return (
             <>
-            <DriverAccount currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+                <DriverAccount currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
             </>
-            
+
         );
     } else if (currentUser.type === "passenger") {
         return (
             <>
-            <PassengerAccount currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+                <PassengerAccount currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
             </>
-            
+
         );
     }
 }

@@ -19,37 +19,37 @@ export const Home = () => {
   const indexOfFirstPost = indexOfLastPost - postPerpage;
   const paginate = (pageNumber) => setCurPage(pageNumber);
   const totalPage = Math.ceil(trips.length / postPerpage);
-  useEffect(() =>{
-    async function fetchTrips(){
+  useEffect(() => {
+    async function fetchTrips() {
       const response = await axios.get(getTripsRoute)
       setTrips(response.data)
     }
     fetchTrips()
   }, [helper])
   const currentPost = trips.slice(indexOfFirstPost, indexOfLastPost)
-  
-  if(currentUser == null){
+
+  if (currentUser == null) {
     return (
       <>
-        <GuestTrip trips = {trips} helper={helper} changeHelp = {changeHelp}></GuestTrip>
+        <GuestTrip trips={trips} helper={helper} changeHelp={changeHelp}></GuestTrip>
       </>
     )
   }
-  else if(currentUser.type === "passenger"){
+  else if (currentUser.type === "passenger") {
     return (
       <>
-        <PassengerTrip trips = {currentPost} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {trips.length} paginate ={paginate}></Pagination>
+        <PassengerTrip trips={currentPost} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
+        <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={trips.length} paginate={paginate}></Pagination>
       </>
     )
   }
-  else if(currentUser.type === "driver"){
+  else if (currentUser.type === "driver") {
     return (
       <>
-        <DriverTrip trips = {trips} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
-        <Pagination setCurPage={setCurPage} curPage ={curPage} postPerpage={postPerpage} totalPage = {totalPage} allPage = {trips.length} paginate ={paginate}></Pagination>
+        <DriverTrip trips={trips} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
+        <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={trips.length} paginate={paginate}></Pagination>
       </>
     )
   }
-  
+
 }

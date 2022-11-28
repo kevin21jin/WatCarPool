@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Form, Button, Stack} from 'react-bootstrap'
+import { Form, Button, Stack } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -42,14 +42,15 @@ export const SearchTrip = () => {
         let depDateAfterRealTime = null;
         if (depDateAfter != null) {
             depDateAfterRealTime = moment(new Date(depDateAfter)).format("YYYY/MM/DD HH:MM")
-        } 
+        }
         let depDateBefRealTime = null;
         if (depDateBef != null) {
             depDateBefRealTime = moment(new Date(depDateBef)).format("YYYY/MM/DD HH:MM")
         }
 
-        const requestJson = { origin: origin, destination: dest, 
-            departTimeStart: depDateAfterRealTime, departTimeEnd: depDateBefRealTime, 
+        const requestJson = {
+            origin: origin, destination: dest,
+            departTimeStart: depDateAfterRealTime, departTimeEnd: depDateBefRealTime,
             priceLow: priceRange[0], priceHigh: priceRange[1]
         }
         console.log(requestJson)
@@ -62,10 +63,10 @@ export const SearchTrip = () => {
         });
         return (
             <>
-                <DriverTrip trips = {data} currentUser = {currentUser}  helper={helper} changeHelp = {changeHelp}/>
+                <DriverTrip trips={data} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
             </>
         )
-        
+
 
     }
 
@@ -80,22 +81,22 @@ export const SearchTrip = () => {
                             Origin
                         </Form.Label>
                         <Form.Control
-                                type='text'
-                                value={origin}
-                                autoComplete="off"
-                                onChange={(e) => changeOrigin(e.target.value)}>
-                            </Form.Control>
+                            type='text'
+                            value={origin}
+                            autoComplete="off"
+                            onChange={(e) => changeOrigin(e.target.value)}>
+                        </Form.Control>
                     </Form.Group>
                     <Form.Group controlId='Destination'>
                         <Form.Label>
                             Destination
                         </Form.Label>
                         <Form.Control
-                                type='text'
-                                value={dest}
-                                autoComplete="off"
-                                onChange={(e) => changeDest(e.target.value)}>
-                            </Form.Control>
+                            type='text'
+                            value={dest}
+                            autoComplete="off"
+                            onChange={(e) => changeDest(e.target.value)}>
+                        </Form.Control>
                     </Form.Group>
                     <br />
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -126,7 +127,7 @@ export const SearchTrip = () => {
                         </Stack>
                     </LocalizationProvider>
                     <br />
-                    <Box sx={{ width: '100%' }}> 
+                    <Box sx={{ width: '100%' }}>
                         <Typography gutterBottom>Price Range</Typography>
                         <Slider
                             value={priceRange}
@@ -139,10 +140,10 @@ export const SearchTrip = () => {
                             max={150}
                         />
                     </Box>
-                <br />
-                <center>
-                    <Button type='submit' variant='primary' onClick={ tripSearch }> Search </Button>
-                </center>
+                    <br />
+                    <center>
+                        <Button type='submit' variant='primary' onClick={tripSearch}> Search </Button>
+                    </center>
                 </Form>
 
             </FormContainer>

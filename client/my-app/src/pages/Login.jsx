@@ -7,6 +7,7 @@ import { loginRoute } from '../api/ApiRoutes'
 import { Link, useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
+
 export const Login = () => {
   const [user, setUser] = useState('')
   const [pwd, setPwd] = useState('')
@@ -19,7 +20,6 @@ export const Login = () => {
     draggable: true,
     theme: "light"
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +43,6 @@ export const Login = () => {
     }
   }
 
-  
   return (
     <>
       <div style={{ padding: "20px" }}>

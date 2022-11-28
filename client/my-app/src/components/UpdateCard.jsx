@@ -89,7 +89,6 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
                                 <div style={{ marginBottom: "0.5rem" }}>Time:</div>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DateTimePicker
-                                        label="Date & Time"
                                         value={time}
                                         inputFormat="YYYY/MM/DD HH:mm"
                                         onChange={(newValue) => {

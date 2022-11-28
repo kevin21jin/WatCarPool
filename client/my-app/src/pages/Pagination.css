@@ -1,4 +1,3 @@
-
 .Container{
     position: absolute;
     padding: 0 70px;
@@ -9,15 +8,13 @@
     transform: (-50%, -50%);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
-   
 }
+
 .Container ul{
     display: flex;
     text-align: center;
     list-style-type: none;
 }
-
-
 
 .Container ul li{
     width: 50px;
@@ -33,4 +30,3 @@
  .active, .Container ul li:hover{
     background-color: gainsboro;
 }
-
