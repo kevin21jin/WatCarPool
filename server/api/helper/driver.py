@@ -87,23 +87,6 @@ def execute_deleteTrip(driverID, vehicleID, tripID):
         print("Command skipped: ", msg)
     return { "status": "Success" }
 
-def execute_finishTrip(driverID, vehicleID, tripID):
-    command = "SELECT departTime FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
-    val = (driverID, vehicleID, tripID)
-    cursor.execute(command, val)
-    result = cursor.fetchone()
-    time = result[0]
-    if time > datetime.now():
-        return { "status": "Fail", "errorMessage": "ERROR: Trips cannot be deleted before the depart time" }
-    try:
-        command = "DELETE FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
-        val = (driverID, vehicleID, tripID)
-        cursor.execute(command, val)
-        db.commit()
-    except OperationalError as msg:
-        print("Command skipped: ", msg)
-    return { "status": "Success" }
-
 def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departTime, price, description):
     command = "SELECT departTime FROM Trip WHERE driverID = %s AND vehicleID = %s AND tripID = %s"
     val = (driverID, vehicleID, tripID)
