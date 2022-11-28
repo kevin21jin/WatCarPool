@@ -20,7 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/addtrip" element={<AddTrip />} />
           <Route path="/addvehicle" element={<AddVehicle />} />
-          <Route path="/searchtrip" element={<SearchTrip />} />
+          <Route path="/search" element={<SearchTrip />} />
           <Route path="/searchresult" element={<SearchTripResult />} />
           <Route path="/account" element={<Account />} />
         </Routes>

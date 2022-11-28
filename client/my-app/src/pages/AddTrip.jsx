@@ -83,7 +83,7 @@ export const AddTrip = () => {
         <>
             <div style={{ position: "center", marginTop: "50px", marginBottom: "50px" }}>
                 <FormContainer>
-                    <h1 style={{ textAlign: "center" }} >Create Trip</h1>
+                    <h1 style={{ textAlign: "center" }}>Create Trip</h1>
                     <br />
                     <Form>
                         <Form.Group controlId='Vehicle'>
@@ -117,8 +117,7 @@ export const AddTrip = () => {
                                         changeTime(newValue)
                                     }}
                                     renderInput={(params) => <TextField {...params} inputProps={{
-                                        ...params.inputProps,
-                                        placeholder: ""
+                                        ...params.inputProps
                                     }} />}
                                 />
                             </LocalizationProvider>
@@ -168,7 +167,7 @@ export const AddTrip = () => {
 
                         <br />
                         <center>
-                            <Button type='submit' variant='primary' onClick={handleSubmit}> Submit </Button><br />
+                            <Button type='submit' variant='primary' className="rounded" onClick={handleSubmit}>Create Trip</Button><br />
                         </center>
                     </Form>
                 </FormContainer>

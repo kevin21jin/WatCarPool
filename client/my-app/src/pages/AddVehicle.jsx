@@ -87,7 +87,7 @@ export const AddVehicle = () => {
                             </Form.Group>
                             <br />
                             <center>
-                                <Button type='submit' variant='primary' onClick={handleSubmit}>Submit</Button><br />
+                                <Button type='submit' variant='primary' className="rounded" onClick={handleSubmit}>Register Vehicle</Button><br />
                             </center>
                             <br />
                         </Form>

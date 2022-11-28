@@ -46,7 +46,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   }
 
   const SearchTrip = (e) => {
-    navigate("/searchtrip")
+    navigate("/search")
   }
 
   const deleteTrip = async (e, trip) => {

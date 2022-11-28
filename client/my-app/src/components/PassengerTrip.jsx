@@ -98,7 +98,7 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const navigate = useNavigate()
 
   const SearchTrip = (e) => {
-    navigate("/searchtrip")
+    navigate("/search")
   }
 
   return (

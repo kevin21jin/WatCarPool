@@ -95,8 +95,7 @@ const UpdateCard = ({ index, trip, deleteTrip, toast, helper, changeHelp }) => {
                                             changeTime(newValue)
                                         }}
                                         renderInput={(params) => <TextField {...params} inputProps={{
-                                            ...params.inputProps,
-                                            placeholder: ""
+                                            ...params.inputProps
                                         }}
                                         />}
                                     />

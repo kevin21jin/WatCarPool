@@ -4,7 +4,7 @@ import { Form, Button, Stack } from 'react-bootstrap'
 import { FormContainer } from '../components/FormContainer'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { TextField, Slider, Box, Typography } from '@mui/material'
+import { TextField, Slider, Box, Typography, FormControl } from '@mui/material'
 import axios from 'axios'
 import { searchTripRoute } from '../api/ApiRoutes'
 import moment from 'moment'
@@ -66,37 +66,32 @@ export const SearchTrip = () => {
                 <DriverTrip trips={data} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
             </>
         )
-
-
     }
 
     return (
-        <div style={{ margin: "50px" }}>
+        <div style={{ position: "center", marginTop: "50px", marginBottom: "50px" }}>
             <FormContainer>
-                <h1>Search trip:</h1>
+                <h1 style={{ textAlign: "center" }}>Search Trips</h1>
                 <br />
                 <Form>
                     <Form.Group controlId='Origin'>
-                        <Form.Label>
-                            Origin
-                        </Form.Label>
-                        <Form.Control
-                            type='text'
-                            value={origin}
-                            autoComplete="off"
-                            onChange={(e) => changeOrigin(e.target.value)}>
-                        </Form.Control>
+                        <FormControl fullWidth>
+                            <TextField
+                                label="Origin"
+                                value={origin}
+                                onChange={(e) => changeOrigin(e.target.value)}
+                            />
+                        </FormControl>
                     </Form.Group>
+                    <br />
                     <Form.Group controlId='Destination'>
-                        <Form.Label>
-                            Destination
-                        </Form.Label>
-                        <Form.Control
-                            type='text'
-                            value={dest}
-                            autoComplete="off"
-                            onChange={(e) => changeDest(e.target.value)}>
-                        </Form.Control>
+                        <FormControl fullWidth>
+                            <TextField
+                                label="Destination"
+                                value={dest}
+                                onChange={(e) => changeDest(e.target.value)}
+                            />
+                        </FormControl>
                     </Form.Group>
                     <br />
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -104,24 +99,24 @@ export const SearchTrip = () => {
                             <DateTimePicker
                                 label="Departure After"
                                 value={depDateAfter}
+                                inputFormat="YYYY/MM/DD HH:mm"
                                 onChange={(newValue) => {
                                     changeDepDateAft(newValue)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
-                                    ...params.inputProps,
-                                    placeholder: "mm/dd/yyyy hh:mm"
+                                    ...params.inputProps
                                 }} />}
                             />
                             <br />
                             <DateTimePicker
                                 label="Departure Before"
                                 value={depDateBef}
+                                inputFormat="YYYY/MM/DD HH:mm"
                                 onChange={(newValue) => {
                                     changeDepDateBef(newValue)
                                 }}
                                 renderInput={(params) => <TextField  {...params} inputProps={{
-                                    ...params.inputProps,
-                                    placeholder: "mm/dd/yyyy hh:mm"
+                                    ...params.inputProps
                                 }} />}
                             />
                         </Stack>
@@ -142,7 +137,7 @@ export const SearchTrip = () => {
                     </Box>
                     <br />
                     <center>
-                        <Button type='submit' variant='primary' onClick={tripSearch}> Search </Button>
+                        <Button type='submit' variant='primary' className="rounded" onClick={tripSearch}>Search</Button>
                     </center>
                 </Form>
 
