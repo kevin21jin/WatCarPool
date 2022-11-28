@@ -28,9 +28,9 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
   const [trips, setTrips] = useState([]);
   const [upcomingTrips, setUpcomingTrips] = useState([]);
 
-  const [rateModal, setRateModel] = useState(-1);
+  const [rateModal, setRateModal] = useState(-1);
   const toggleRateModal = (index) => {
-    setRateModel(index)
+    setRateModal(index)
   }
 
   const rateTrip = async (e, trip, index) => {
@@ -38,9 +38,14 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
     console.log(trip)
   }
 
-  const [moreModal, setMoreModel] = useState(-1);
-  const toggleMoreModal = (index) => {
-    setMoreModel(index)
+  const [moreModal1, setMoreModel1] = useState(-1);
+  const toggleMoreModal1 = (index) => {
+    setMoreModel1(index)
+  }
+
+  const [moreModal2, setMoreModel2] = useState(-1);
+  const toggleMoreModal2 = (index) => {
+    setMoreModel2(index)
   }
 
   const quitTrip = async (e, trip) => {
@@ -102,12 +107,12 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
                       </Card.Text>
                       <React.Fragment>
                         <TripDetailModal
-                          open={moreModal}
-                          onClose={() => toggleMoreModal(-1)}
-                          curTrip={trip}
+                          open={moreModal1}
+                          onClose={() => toggleMoreModal1(-1)}
+                          trip={trip}
                           index={index} />
                         <button className="open-button"
-                          onClick={() => toggleMoreModal(index)}>See More</button>
+                          onClick={() => toggleMoreModal1(index)}>See More</button>
                       </React.Fragment>
                       <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
                     </Card.Body>
@@ -137,12 +142,12 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
                       </Card.Text>
                       <React.Fragment>
                         <TripDetailModal
-                          open={moreModal}
-                          onClose={() => toggleMoreModal(-1)}
-                          curTrip={trip}
+                          open={moreModal2}
+                          onClose={() => toggleMoreModal2(-1)}
+                          trip={trip}
                           index={index} />
                         <button className="open-button"
-                          onClick={() => toggleMoreModal(index)}>See More</button>
+                          onClick={() => toggleMoreModal2(index)}>See More</button>
                       </React.Fragment>
                       <React.Fragment>
                         <Rating open={rateModal} onClose={() => toggleRateModal(-1)} trip={trip} currentUser={currentUser} index={index} />

@@ -114,7 +114,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
                     <TripDetailModal
                       open={modal}
                       onClose={() => toggleModal(-1)}
-                      curTrip={trip}
+                      trip={trip}
                       index={index} />
                     <button className="open-button"
                       onClick={() => toggleModal(index)}>See More</button>
