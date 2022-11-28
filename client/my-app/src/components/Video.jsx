@@ -15,7 +15,7 @@ export const Video = () => {
                 <source src={roadVideo} type = 'video/mp4'/>å
             </video>
             <div className='slogan'>
-                <h1>Watcarpool</h1>
+                <h1>WatCarPool</h1>
                 <p>LEAVING FOR THE WIDER WORLD</p>
                 <br></br>
                 

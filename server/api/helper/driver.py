@@ -127,7 +127,7 @@ def execute_driverGetTrips(driverID):
 
 def execute_driverGetUpcomingTrips(driverID):
     curtime = datetime.now()
-    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime >= %s ORDER BY departTime LIMIT 4"
+    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime >= %s ORDER BY departTime"
     val = (driverID, curtime)
     cursor.execute(command, val)
     driverTrips = []

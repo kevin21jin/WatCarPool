@@ -54,7 +54,7 @@ export const AddModifyTrip = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:MM")
+        let realTime = moment(new Date(time)).format("YYYY/MM/DD HH:mm")
         const requestJson = {
             driverID: currentUser.userId,
             vehicleID: vehicle,
@@ -94,7 +94,7 @@ export const AddModifyTrip = () => {
                                 renderInput={(params) => <TextField {...params} inputProps={{
                                     ...params.inputProps,
                                     placeholder: ""
-                                }}/>}
+                                }} />}
                             />
                         </LocalizationProvider>
                         <Box sx={{ marginTop: 5 }}>
