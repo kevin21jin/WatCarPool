@@ -127,8 +127,9 @@ def execute_updateTrip(driverID, vehicleID, tripID, origin, destination, departT
     return { "status": "Success" }
 
 def execute_driverGetTrips(driverID):
-    command = "SELECT * FROM Trip WHERE driverID = %s ORDER BY departTime"
-    val = (driverID,)
+    curtime = datetime.now()
+    command = "SELECT * FROM Trip WHERE driverID = %s AND departTime < %s ORDER BY departTime DESC"
+    val = (driverID, curtime)
     cursor.execute(command, val)
     driverTrips = []
     result = cursor.fetchall()

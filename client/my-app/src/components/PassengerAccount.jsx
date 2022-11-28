@@ -8,9 +8,12 @@ import {
   getPassengerTripsRoute,
   getPassengerUpcomingTripsRoute
 } from '../api/ApiRoutes'
+import { quitRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import axios from 'axios'
+import Rating from './Rating';
+import TripDetailModal from './TripDetailModal';
 
 const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
 
@@ -24,6 +27,40 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
   };
   const [trips, setTrips] = useState([]);
   const [upcomingTrips, setUpcomingTrips] = useState([]);
+
+  const [rateModal, setRateModel] = useState(-1);
+  const toggleRateModal = (index) => {
+    setRateModel(index)
+  }
+
+  const rateTrip = async (e, trip, index) => {
+    toggleRateModal(index)
+    console.log(trip)
+  }
+
+  const [moreModal, setMoreModel] = useState(-1);
+  const toggleMoreModal = (index) => {
+    setMoreModel(index)
+  }
+
+  const quitTrip = async (e, trip) => {
+    e.preventDefault();
+    const requestJson = {
+      driverID: trip.driverID,
+      vehicleID: trip.vehicleID,
+      tripID: trip.tripID,
+      passengerID: currentUser.userId
+    }
+    const { data } = await axios.post(quitRoute, requestJson);
+
+    if (data.status === "Fail") {
+      toast.error(data.errorMessage, toastOptions);
+    }
+    else if (data.status === "Success") {
+      toast.success("Trip quitted successfully", toastOptions)
+      changeHelp(helper + 1)
+    }
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -43,12 +80,8 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
         <p>{currentUser.email} | {currentUser.phone}</p>
       </div>
-      <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "2rem" }}>
-      </div>
-      <div style={{ padding: "10rem", paddingTop: "1rem" }}>
-        <h1 stype={{ paddingTop: "2.5rem" }}>
-          Upcoming Trips
-        </h1>
+      <div style={{ paddingLeft: "10rem", paddingRight: "10rem" }}>
+        <h1>Upcoming Trips</h1>
         <div className="border-top my-4"></div>
         {
           (upcomingTrips.length === 0) ?
@@ -58,46 +91,69 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
             :
             <Row>
               {upcomingTrips.map((trip, index) => (
-                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-                  <Card style={{ width: '100%' }} className="rounded">
+                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 10 }}>
+                  <Card className="cardClass">
+                    <Card.Header style={{ color: '#2DA8D8' }} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
                     <Card.Body>
-                      <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
-                      <Card.Text>
+                      <Card.Text className="card-description">
                         {trip.description}
                       </Card.Text>
-                      {/* <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button> */}
+                      <React.Fragment>
+                        <TripDetailModal
+                          open={moreModal}
+                          onClose={() => toggleMoreModal(-1)}
+                          curTrip={trip}
+                          index={index} />
+                        <button className="open-button"
+                          onClick={() => toggleMoreModal(index)}>See More</button>
+                      </React.Fragment>
+                      <Button id="quit" variant="primary" className="rounded" onClick={(e) => quitTrip(e, trip)}>Quit</Button>
                     </Card.Body>
                   </Card>
                 </Col>
               ))}
             </Row>
         }
-
-        <h1 style={{ paddingTop: "5rem" }}>
-          Trips History
-        </h1>
+      </div>
+      <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "3rem" }}>
+        <h1>Trips History</h1>
         <div className="border-top my-4"></div>
-        <Row>
-          {trips.map((trip, index) => (
-            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '100%' }} className="rounded">
-                <Card.Body>
-                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px" }}>{trip.origin} → {trip.destination}</Card.Title>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text>
-                    {trip.description}
-                  </Card.Text>
-                  {/* <Button variant="primary" className="rounded" onClick={(e) => deleteTrip(e, trip)}>Delete</Button> */}
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        {
+          (trips.length === 0) ?
+            <p style={{ fontSize: "20px" }}>You have not joined any trips! Join one <Link to="/home">here</Link>!</p>
+            :
+            <Row>
+              {trips.map((trip, index) => (
+                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
+                  <Card className="cardClass">
+                    <Card.Header style={{ color: '#2DA8D8' }} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
+                    <Card.Body>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
+                      <Card.Text className="card-description">
+                        {trip.description}
+                      </Card.Text>
+                      <React.Fragment>
+                        <TripDetailModal
+                          open={moreModal}
+                          onClose={() => toggleMoreModal(-1)}
+                          curTrip={trip}
+                          index={index} />
+                        <button className="open-button"
+                          onClick={() => toggleMoreModal(index)}>See More</button>
+                      </React.Fragment>
+                      <React.Fragment>
+                        <Rating open={rateModal} onClose={() => toggleRateModal(-1)} trip={trip} currentUser={currentUser} index={index} />
+                        <Button id="rate" variant="primary" className="rounded" onClick={(e) => rateTrip(e, trip, index)}>Rate</Button>
+                      </React.Fragment>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+        }
       </div>
 
       <ToastContainer />

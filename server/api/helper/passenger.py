@@ -58,14 +58,16 @@ def execute_passengerLeaveTrip(driverID, vehicleID, tripID, passengerID):
     return { "status": "Success" }
 
 def execute_passengerGetTrips(passengerID):
+    curtime = datetime.now()
     sql_command = """SELECT *
                         FROM Trip t
                         RIGHT JOIN
                         (SELECT * FROM Travelled WHERE passengerID = %s) travelled
                                                 ON t.driverID = travelled.driverID AND 
                                                 t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID
-                        ORDER BY departTime"""
-    val = (passengerID,)
+                        WHERE departTime < %s
+                        ORDER BY departTime DESC"""
+    val = (passengerID, curtime)
     cursor.execute(sql_command, val)
     passengerTrips = []
     result = cursor.fetchall()
@@ -99,9 +101,8 @@ def execute_passengerGetUpcomingTrips(passengerID):
                         (SELECT * FROM Travelled WHERE passengerID = %s) travelled
                                                 ON t.driverID = travelled.driverID AND 
                                                 t.vehicleID = travelled.vehicleID AND t.tripID = travelled.tripID
-                        WHERE departTime > %s
-                        ORDER BY departTime
-                        LIMIT 4"""
+                        WHERE departTime >= %s
+                        ORDER BY departTime"""
     val = (passengerID, curtime)
     cursor.execute(command, val)
     passengerTrips = []

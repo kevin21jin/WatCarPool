@@ -91,7 +91,7 @@ const Modal = ({ open, onClose, trip, currentUser, index }) => {
             </div>
           </div>
           <div align="center">
-            <Button type='submit' className="rounded" onClick={(e) => handleSubmit(e)}>Submit Rating</Button>
+            <Button type='submit' className="rounded" onClick={(e) => handleSubmit(e)}>Submit</Button>
           </div>
         </div>
       </div>

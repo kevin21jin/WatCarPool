@@ -1,5 +1,4 @@
 import React from "react";
-import {Button} from 'react-bootstrap'
 
 const Modal = ({open, onClose, curTrip, index}) => {
     if(open != index) return null
@@ -7,7 +6,7 @@ const Modal = ({open, onClose, curTrip, index}) => {
         <div className="overlay">
             <div className="modalContainer">
                 <div className="modalright">
-                <button button onClick={onClose} className="closebtn"><i class="fa fa-times-circle"/></button> 
+                <button onClick={onClose} className="closebtn"><i className="fa fa-times-circle"/></button> 
                 <br/>
                 <h2 align="center">Trip Detail</h2>
                 <br/>
@@ -23,7 +22,7 @@ const Modal = ({open, onClose, curTrip, index}) => {
                     &nbsp;Description: 
                     
                     </h6>
-                    <box>{curTrip.description} </box>
+                    <div>{curTrip.description} </div>
                 </div>
 
                 <div align="center">

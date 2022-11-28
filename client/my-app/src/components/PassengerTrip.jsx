@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import { getPassengerTripsRoute } from '../api/ApiRoutes'
 import { useNavigate } from 'react-router-dom'
 import Rating from './Rating';
+
 const PassengerTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const [modal, setModel] = useState(-1);
 
