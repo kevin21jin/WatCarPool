@@ -4,7 +4,7 @@ import { Card, Button } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getDriverTripsRoute, deleteTripRoute,finishTripRoute } from '../api/ApiRoutes'
+import { getDriverTripsRoute, deleteTripRoute } from '../api/ApiRoutes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify"
 import axios from 'axios'
@@ -69,23 +69,6 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
   const toggleModal = (index) => {
     setModal(index)
   }
-  const finishTrip = async (e, trip) => {
-    e.preventDefault();
-    const requestJson = {
-      driverID: trip.driverID,
-      vehicleID: trip.vehicleID,
-      tripID: trip.tripID,
-    }
-
-    const { data } = await axios.post(finishTripRoute, requestJson);
-
-    if (data.status === "Fail") {
-      toast.error(data.errorMessage, toastOptions);
-    }
-    else if (data.status === "Success") {
-      changeHelp(helper + 1)
-    }
-  }
 
   return (
     <>
@@ -104,7 +87,7 @@ const DriverTrip = ({ trips, currentUser, helper, changeHelp }) => {
             :
             <Row>
               {mytrips.map((trip, index) => (
-                <UpdateCard key={index} index = {index} trip = {trip} deleteTrip = {deleteTrip} finishTrip = {finishTrip} toast = {toast} helper = {helper} changeHelp = {changeHelp}></UpdateCard>
+                <UpdateCard key={index} index = {index} trip = {trip} deleteTrip = {deleteTrip}  toast = {toast} helper = {helper} changeHelp = {changeHelp}></UpdateCard>
               ))}
             </Row>
         }
