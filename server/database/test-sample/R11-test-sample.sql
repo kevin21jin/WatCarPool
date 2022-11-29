@@ -27,19 +27,19 @@ SELECT * FROM Trip WHERE destination = 'City D';
 SELECT * FROM Trip WHERE origin = 'City D' AND destination = 'City E';
 
 -- Test departTime: 
--- The registered user want to search trips with departTime <= 2022-10-20 00:00:00 
--- Expect: Only entries that have departTime <= '2022-10-20 00:00:00' should be returned
-SELECT * FROM Trip WHERE departTime <= '2022-10-20 00:00:00';
+-- The registered user want to search trips with departTime <= 2023-01-01 00:00:00
+-- Expect: Only entries that have departTime <= '2023-01-01 00:00:00' should be returned
+SELECT * FROM Trip WHERE departTime <= '2023-01-01 00:00:00';
 
--- The registered user want to search trips with departTime >= 2022-10-21 00:00:00 
--- Expect: Only entries that have departTime >= '2022-10-21 00:00:00' should be returned
-SELECT * FROM Trip WHERE departTime >= '2022-10-21 00:00:00';
+-- The registered user want to search trips with departTime >= 2023-01-01 00:00:00 
+-- Expect: Only entries that have departTime >= '2023-01-01 00:00:00' should be returned
+SELECT * FROM Trip WHERE departTime >= '2023-01-01 00:00:00';
 
--- The registered user want to search trips with departTime <= 2022-10-21 00:00:00 and
--- departTime >= 2022-10-20 00:00:00 
--- Expect: Only entries that have departTime >= '2022-10-20 00:00:00' 
--- AND departTime <= '2022-10-21 19:00:00' should be returned
-SELECT * FROM Trip WHERE departTime >= '2022-10-20 00:00:00' AND departTime <= '2022-10-21 19:00:00';
+-- The registered user want to search trips with departTime <= 2023-02-01 19:00:00 and
+-- departTime >= 2023-01-01 00:00:00 
+-- Expect: Only entries that have departTime >= '2023-01-01 00:00:00' 
+-- AND departTime <= '2023-02-01 19:00:00' should be returned
+SELECT * FROM Trip WHERE departTime >= '2023-01-01 00:00:00' AND departTime <= '2023-02-01 19:00:00';
 
 -- Test price:
 -- The registered user want to search trips with price >= 30
@@ -56,8 +56,8 @@ SELECT * FROM Trip WHERE price <= 100 AND price >= 0;
 
 -- Test combined fields:
 -- The registered user want to search trips with origin = City F, destination = City C,
--- departTime >= '2022-10-23 00:00:00', departTime <= '2022-11-15 00:00:00' and price <= 100
+-- departTime >= '2023-01-01 00:00:00', departTime <= '2023-02-15 00:00:00' and price <= 100
 -- Expect: Only entries that meet the condition above should be returned 
 SELECT * FROM Trip 
     WHERE origin = 'City F' AND destination = 'City C'
-        AND departTime >= '2022-10-23 00:00:00' AND departTime <= '2022-11-15 00:00:00' AND price <= 100;
+        AND departTime >= '2023-01-01 00:00:00' AND departTime <= '2023-02-15 00:00:00' AND price <= 100;
