@@ -1,33 +1,78 @@
 import React from 'react'
 import { Header } from '../components/Header'
-import { Card } from 'react-bootstrap'
-import { Row, Col } from 'react-bootstrap'
+import { Card, Button, Row, Col } from 'react-bootstrap'
+import { useNavigate, Link } from 'react-router-dom'
+import { useState } from 'react'
+import TripDetailModal from './TripDetailModal';
+import "./Card.css";
+import { ToastContainer, toast } from "react-toastify"
 
-const GuestTrip = ({trips, helper, changeHelp}) => {
+const GuestTrip = ({ trips }) => {
+
+  const navigate = useNavigate()
+  const SearchTrip = (e) => {
+    navigate("/search")
+  }
+
+  const [modal, setModal] = useState(-1);
+  const toggleModal = (index) => {
+    setModal(index)
+  }
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light"
+  };
+
+  const joinError = () => {
+    toast.error("ERROR: You must login first to join a trip", toastOptions)
+  }
+
   return (
     <>
       <Header />
-      <h1 style={{ fontSize: "50px", paddingLeft: "10rem", paddingTop: "5rem"}}>Welcome to WatCarPool</h1>
-      <div style={{ padding: "10rem", paddingTop: "5rem" }}>
+      <div style={{ paddingLeft: "10rem", paddingRight: "10rem" }}>
+        <h1 style={{ textAlign: "center", paddingTop: "2.5rem", paddingBottom: "0.5rem", fontSize: "45px" }}>Welcome to WatCarPool!</h1>
+        <Button style={{ marginBottom: "1.5rem", }} type='submit' variant='primary' className='rounded' onClick={SearchTrip}>Search Trips</Button>
         <h1>Trips Available</h1>
-        <Row>
-          {trips.map((trip,index) => (
-            <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 20 }}>
-              <Card style={{ width: '35rem' }} className="rounded">
-                <Card.Body>
-                  <Card.Title style={{ color: "#2DA8D8FF", fontSize: "30px"}}>{trip.origin} → {trip.destination}</Card.Title>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Price: {trip.price}</Card.Subtitle>
-                  <Card.Subtitle style={{ fontSize: "16px"}} className="mb-2 text-muted">Details:</Card.Subtitle>
-                  <Card.Text>
-                    {trip.description}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <div className="border-top my-4"></div>
+        {
+          (trips.length === 0) ?
+            <p style={{ fontSize: "20px" }}>Sorry, there are no available trips at the moment. Please try again later!</p>
+            :
+            <Row>
+              {trips.map((trip, index) => (
+                <Col key={index} sm={10} md={110} lg={10} xl={6} style={{ padding: 10 }}>
+                  <Card className="cardClass">
+                    <Card.Header style={{ color: '#2DA8D8' }} className="card-header">{trip.origin} → {trip.destination}</Card.Header>
+                    <Card.Body>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
+                      <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
+                      <Card.Text className="card-description">
+                        {trip.description}
+                      </Card.Text>
+                      <React.Fragment>
+                        <TripDetailModal
+                          open={modal}
+                          onClose={() => toggleModal(-1)}
+                          trip={trip}
+                          index={index} />
+                        <button className="open-button"
+                          onClick={() => toggleModal(index)}>See More</button>
+                      </React.Fragment>
+                      <Button id="join" variant="primary" className="rounded" onClick={joinError}>Join</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+        }
       </div>
+      <ToastContainer />
     </>
   )
 }

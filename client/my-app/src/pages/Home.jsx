@@ -31,7 +31,7 @@ export const Home = () => {
   if (currentUser == null) {
     return (
       <>
-        <GuestTrip trips={trips} helper={helper} changeHelp={changeHelp}></GuestTrip>
+        <GuestTrip trips={trips}></GuestTrip>
       </>
     )
   }
