@@ -50,7 +50,7 @@ export const AddVehicle = () => {
             }
         }
     }
-    if (currentUser === null || currentUser.type !== "driver") {
+    if (currentUser == null || currentUser.type !== "driver") {
         return (
             <>
                 <NotFound></NotFound>

@@ -41,7 +41,7 @@ const GuestTrip = ({ trips, title = "Trips Available" }) => {
   return (
     <>
       <Header />
-      <div style={{ padding: "10rem", paddingTop: "5rem" }}>
+      <div style={{ padding: "5rem 10rem 2.5rem 10rem" }}>
         <h1>
           {title}
           <Button style={{ marginLeft: "3em" }} type='submit' variant='primary' className='rounded' onClick={SearchTrip}>Search Trips</Button>

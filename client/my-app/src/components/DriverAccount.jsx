@@ -89,7 +89,7 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
       <div style={{ textAlign: "center", fontSize: "20px" }}>
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
         {
-          (rating === null) ?
+          (rating == null) ?
             <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />0</p>
             :
             <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />{rating}</p>

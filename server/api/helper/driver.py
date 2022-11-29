@@ -153,6 +153,7 @@ def execute_driverGetUpcomingTrips(driverID):
 def execute_driverGetRating(userID):
     command = "SELECT rating FROM Driver WHERE userID = %s"
     val = (userID,)
+    db.commit()
     cursor.execute(command, val)
     rating = cursor.fetchone()[0]
     return { "rating": rating }
