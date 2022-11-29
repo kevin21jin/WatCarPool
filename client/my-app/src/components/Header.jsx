@@ -11,6 +11,12 @@ export const Header = () => {
   
   const account = () => {
     navigate("/account")
+    window.location.reload(false)
+  }
+
+  const home = () => {
+    navigate("/home")
+    window.location.reload(false)
   }
   
   const logout = () => {
@@ -41,6 +47,7 @@ export const Header = () => {
               </Nav>
               :
               <Nav className="ms-auto">
+                <Nav.Link  onClick={home}><i className='fas fa-house'>home</i></Nav.Link>
                 <Nav.Link  onClick={account}><i className='fas fa-user-circle'>account</i></Nav.Link>
                 <Nav.Link  onClick={logout}><i className='fas fa-sign-out'>logout</i></Nav.Link>
               </Nav>

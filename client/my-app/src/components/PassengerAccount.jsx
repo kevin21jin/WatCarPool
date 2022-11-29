@@ -102,9 +102,6 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
                     <Card.Body>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                      <Card.Text className="card-description">
-                        {trip.description}
-                      </Card.Text>
                       <React.Fragment>
                         <TripDetailModal
                           open={moreModal1}

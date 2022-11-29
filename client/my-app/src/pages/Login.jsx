@@ -39,7 +39,12 @@ export const Login = () => {
         joined_at: data.user.joinedAt
       }
       sessionStorage.setItem('WatCarPool-User', JSON.stringify(userinfo));
-      navigate("/home")
+      if(userinfo.type === "driver"){
+        navigate("/account")
+      }
+      else{
+        navigate("/home")
+      }
     }
   }
 

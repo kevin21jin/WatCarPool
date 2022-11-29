@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header } from '../components/Header'
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import {
@@ -16,9 +16,10 @@ import axios from 'axios'
 import UpdateCard from './UpdateCard'
 import "./Card.css";
 import TripDetailModal from './TripDetailModal';
+import { useNavigate } from 'react-router-dom'
 
 const DriverAccount = ({ currentUser, helper, changeHelp }) => {
-
+  const navigate = useNavigate()
   const toastOptions = {
     position: "bottom-right",
     autoClose: 5000,
@@ -70,6 +71,18 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
     setModal(index)
   }
 
+  const AddTrips = (e) => {
+    navigate("/addtrip")
+  }
+
+  const AddVehicles = (e) => {
+    navigate("/addvehicle")
+  }
+
+  const SearchTrip = (e) => {
+    navigate("/search")
+  }
+
   return (
     <>
       <Header />
@@ -77,7 +90,17 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
         <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />{rating}</p>
       </div>
+
+
       <div style={{ paddingLeft: "10rem", paddingRight: "10rem" }}>
+        <div style={{ paddingBottom: "3rem", paddingTop: "2rem" }}>
+          <Button style={{ display: "inline-block" }} type='submit' variant='primary' onClick={AddTrips}> Add My Trips </Button>
+          
+          <Button style={{ marginLeft: "3em", display: "inline-block" }} type='submit' variant='primary' onClick={AddVehicles}> Add Vehicles </Button>
+
+          <Button style={{ marginLeft: "3em",display: "inline-block" }} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
+        </div>
+
         <h1>My Vehicles</h1>
         <div className="border-top my-4"></div>
         {
@@ -134,9 +157,6 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
                     <Card.Body>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                      <Card.Text className="card-description">
-                        {trip.description}
-                      </Card.Text>
                       <React.Fragment>
                         <TripDetailModal
                           open={modal}

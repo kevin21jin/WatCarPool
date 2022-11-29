@@ -25,6 +25,7 @@ def execute_getAvailableTrips():
     for row in result:
         trip = Trip(row).__dict__
         trips.append(trip)
+    print(trips)
     return json.dumps(trips, default=str)
 
 def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh):
