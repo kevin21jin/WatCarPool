@@ -88,17 +88,20 @@ const DriverAccount = ({ currentUser, helper, changeHelp }) => {
       <Header />
       <div style={{ textAlign: "center", fontSize: "20px" }}>
         <h1 style={{ fontSize: "50px", paddingTop: "2.5rem" }}>{currentUser.username}</h1>
-        <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />{rating}</p>
+        {
+          (rating === null) ?
+            <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />0</p>
+            :
+            <p>{currentUser.email} | {currentUser.phone} | <i className='fas fa-star' />{rating}</p>
+        }
       </div>
 
 
       <div style={{ paddingLeft: "10rem", paddingRight: "10rem" }}>
         <div style={{ paddingBottom: "3rem", paddingTop: "2rem" }}>
-          <Button style={{ display: "inline-block" }} type='submit' variant='primary' onClick={AddTrips}> Add My Trips </Button>
-          
-          <Button style={{ marginLeft: "3em", display: "inline-block" }} type='submit' variant='primary' onClick={AddVehicles}> Add Vehicles </Button>
-
-          <Button style={{ marginLeft: "3em",display: "inline-block" }} type='submit' variant='primary' onClick={SearchTrip}> Search Trips</Button>
+          <Button style={{ display: "inline-block" }} type='submit' variant='primary' className='rounded' onClick={AddVehicles}>Register Vehicle</Button>
+          <Button style={{ marginLeft: "2em", display: "inline-block" }} type='submit' variant='primary' className='rounded' onClick={AddTrips}>Create Trip</Button>
+          <Button style={{ marginLeft: "2em", display: "inline-block" }} type='submit' variant='primary' className='rounded' onClick={SearchTrip}>Search Trips</Button>
         </div>
 
         <h1>My Vehicles</h1>

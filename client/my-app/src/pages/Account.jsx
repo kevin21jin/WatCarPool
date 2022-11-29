@@ -1,8 +1,6 @@
 import React from 'react'
 import './Pagination.css'
 import { useState } from 'react'
-import { useEffect } from 'react'
-import { Pagination } from '../components/Pagination'
 import { NotFound } from '../components/NotFound'
 import DriverAccount from '../components/DriverAccount'
 import PassengerAccount from '../components/PassengerAccount'

@@ -51,7 +51,7 @@ const Modal = ({ open, onClose, trip, currentUser, index }) => {
     orange: "#ffba5a",
     grey: "#a9a9a9"
   }
-  if (open != index) return null
+  if (open !== index) return null
   return (
     <div className="overlay">
       <div className="modalContainer">

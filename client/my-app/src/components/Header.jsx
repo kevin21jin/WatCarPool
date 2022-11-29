@@ -43,7 +43,7 @@ export const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {(currentUser == null) ?
               <Nav className="ms-auto">
-                <Nav.Link href="/"><i className='fas fa-sign-in'></i>Login</Nav.Link>
+                <Nav.Link href="/"><i className='fas fa-sign-in'>login</i></Nav.Link>
               </Nav>
               :
               <Nav className="ms-auto">

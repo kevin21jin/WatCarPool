@@ -13,7 +13,7 @@ export const Home = () => {
   const [trips, setTrips] = useState([]);
   const [helper, changeHelp] = useState(0);
   const [curPage, setCurPage] = useState(1);
-  const [postPerpage] = useState(6);
+  const [postPerpage] = useState(10);
   const currentUser = JSON.parse(sessionStorage.getItem('WatCarPool-User'))
   const indexOfLastPost = curPage * postPerpage;
   const indexOfFirstPost = indexOfLastPost - postPerpage;
@@ -31,7 +31,8 @@ export const Home = () => {
   if (currentUser == null) {
     return (
       <>
-        <GuestTrip trips={trips}></GuestTrip>
+        <GuestTrip trips={currentPost}></GuestTrip>
+        <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={trips.length} paginate={paginate}></Pagination>
       </>
     )
   }
@@ -46,7 +47,7 @@ export const Home = () => {
   else if (currentUser.type === "driver") {
     return (
       <>
-        <DriverTrip trips={trips} currentUser={currentUser} helper={helper} changeHelp={changeHelp} />
+        <DriverTrip trips={currentPost} />
         <Pagination setCurPage={setCurPage} curPage={curPage} postPerpage={postPerpage} totalPage={totalPage} allPage={trips.length} paginate={paginate}></Pagination>
       </>
     )

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Header } from '../components/Header'
 import { Card, Button, Row, Col } from 'react-bootstrap'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import TripDetailModal from './TripDetailModal';
 import "./Card.css";
 import { ToastContainer, toast } from "react-toastify"
 
-const GuestTrip = ({ trips }) => {
+const GuestTrip = ({ trips, title="Trips Available" }) => {
 
   const navigate = useNavigate()
   const SearchTrip = (e) => {
@@ -35,10 +35,11 @@ const GuestTrip = ({ trips }) => {
   return (
     <>
       <Header />
-      <div style={{ paddingLeft: "10rem", paddingRight: "10rem" }}>
-        <h1 style={{ textAlign: "center", paddingTop: "2.5rem", paddingBottom: "0.5rem", fontSize: "45px" }}>Welcome to WatCarPool!</h1>
-        <Button style={{ marginBottom: "1.5rem", }} type='submit' variant='primary' className='rounded' onClick={SearchTrip}>Search Trips</Button>
-        <h1>Trips Available</h1>
+      <div style={{ padding: "10rem", paddingTop: "5rem" }}>
+        <h1>
+          {title}
+          <Button style={{ marginLeft: "3em" }} type='submit' variant='primary' className='rounded' onClick={SearchTrip}>Search Trips</Button>
+        </h1>
         <div className="border-top my-4"></div>
         {
           (trips.length === 0) ?
@@ -52,9 +53,6 @@ const GuestTrip = ({ trips }) => {
                     <Card.Body>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Time: {trip.departTime}</Card.Subtitle>
                       <Card.Subtitle style={{ fontSize: "16px" }} className="mb-2 text-muted">Price: ${trip.price}</Card.Subtitle>
-                      <Card.Text className="card-description">
-                        {trip.description}
-                      </Card.Text>
                       <React.Fragment>
                         <TripDetailModal
                           open={modal}

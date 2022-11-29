@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.css";
 
 const Modal = ({ open, onClose, trip, index }) => {
-    if (open != index) return null
+    if (open !== index) return null
     return (
         <div className="overlay">
             <div className="modalContainer">
