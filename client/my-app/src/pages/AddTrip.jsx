@@ -41,7 +41,7 @@ export const AddTrip = () => {
             changeVehicles(response.data)
         }
         fetchMyVehicle()
-    }, [currentUser])
+    }, [])
 
     const navigate = useNavigate()
     const toastOptions = {

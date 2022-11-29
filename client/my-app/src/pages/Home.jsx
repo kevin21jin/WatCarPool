@@ -21,7 +21,7 @@ export const Home = () => {
   const totalPage = Math.ceil(trips.length / postPerpage);
   useEffect(() => {
     async function fetchTrips() {
-      const response = await axios.get(getTripsRoute)
+      const response = await axios.post(getTripsRoute)
       setTrips(response.data)
     }
     fetchTrips()
