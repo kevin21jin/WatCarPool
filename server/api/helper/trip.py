@@ -16,19 +16,20 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 def execute_getAvailableTrips():
-    trips = []
     curtime = datetime.now()
     command = "SELECT * FROM Trip WHERE departTime >= %s ORDER BY departTime"
     val = (curtime,)
+    db.commit()
     cursor.execute(command, val)
     result = cursor.fetchall()
+    trips = []
     for row in result:
         trip = Trip(row).__dict__
         trips.append(trip)
-    print(trips)
     return json.dumps(trips, default=str)
 
 def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, priceLow, priceHigh):
+    
     trips = []
     command = "SELECT * FROM Trip"
     fields = []
@@ -51,6 +52,7 @@ def execute_searchTrips(origin, destination, departTimeStart, departTimeEnd, pri
         for field in fields:
             command += " " + field + " AND"
         command = command[:len(command) - 4]
+    db.commit()
     cursor.execute(command)
     result = cursor.fetchall()
     for row in result:

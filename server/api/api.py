@@ -24,7 +24,7 @@ def register():
     result = execute_register(username, password, email, phone, type)
     return result
 
-@app.route("/api/trips", methods=['POST'])
+@app.route("/api/trips", methods=['GET'])
 def getAvailableTrips():
     result = execute_getAvailableTrips()
     return result
