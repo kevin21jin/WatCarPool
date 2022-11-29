@@ -46,7 +46,7 @@ export const AddVehicle = () => {
             }
             else if (data.status === "Success") {
                 toast.success("Vehicle registered successfully", toastOptions)
-                navigate("/home")
+                navigate("/account")
             }
         }
     }

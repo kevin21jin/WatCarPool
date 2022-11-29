@@ -41,7 +41,7 @@ export const AddTrip = () => {
             changeVehicles(response.data)
         }
         fetchMyVehicle()
-    }, [])
+    }, [currentUser])
 
     const navigate = useNavigate()
     const toastOptions = {
@@ -74,8 +74,7 @@ export const AddTrip = () => {
             toast.error(data.errorMessage, toastOptions);
         }
         else if (data.status === "Success") {
-            navigate("/home")
-            toast.success("Trip created successfully", toastOptions)
+            navigate("/account")
         }
     }
 
