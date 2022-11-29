@@ -119,7 +119,7 @@ const PassengerAccount = ({ currentUser, helper, changeHelp }) => {
             </Row>
         }
       </div>
-      <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "3rem" }}>
+      <div style={{ paddingLeft: "10rem", paddingRight: "10rem", paddingTop: "3rem", paddingBottom: "7.5rem" }}>
         <h1>Trips History</h1>
         <div className="border-top my-4"></div>
         {
