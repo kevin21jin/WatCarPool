@@ -7,7 +7,7 @@ import TripDetailModal from './TripDetailModal';
 import "./Card.css";
 import { ToastContainer, toast } from "react-toastify"
 
-const GuestTrip = ({ trips, title="Trips Available" }) => {
+const GuestTrip = ({ trips, title = "Trips Available" }) => {
 
   const navigate = useNavigate()
   const SearchTrip = (e) => {
@@ -30,6 +30,12 @@ const GuestTrip = ({ trips, title="Trips Available" }) => {
 
   const joinError = () => {
     toast.error("ERROR: You must login first to join a trip", toastOptions)
+  }
+
+  const checkTime = (time) => {
+    const curTime = Date.now()
+    const departTime = new Date(time)
+    return curTime < departTime
   }
 
   return (
@@ -62,7 +68,12 @@ const GuestTrip = ({ trips, title="Trips Available" }) => {
                         <button className="open-button"
                           onClick={() => toggleModal(index)}>See More</button>
                       </React.Fragment>
-                      <Button id="join" variant="primary" className="rounded" onClick={joinError}>Join</Button>
+                      {
+                        (checkTime(trip.departTime)) ?
+                          <Button id="join" variant="primary" className="rounded" onClick={joinError}>Join</Button>
+                          :
+                          <Button disabled id="join" variant="primary" className="rounded" onClick={joinError}>Join</Button>
+                      }
                     </Card.Body>
                   </Card>
                 </Col>

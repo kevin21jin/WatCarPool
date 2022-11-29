@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify"
 import "./Card.css";
 import TripDetailModal from './TripDetailModal';
 
-const DriverTrip = ({ trips, title="Trips Available" }) => {
+const DriverTrip = ({ trips, title = "Trips Available" }) => {
 
   const [modal, setModal] = useState(-1);
 
@@ -34,7 +34,7 @@ const DriverTrip = ({ trips, title="Trips Available" }) => {
         {
           (trips.length === 0) ?
             <p style={{ fontSize: "20px" }}>
-              Sorry, there are no available trips at the moment. You can create one <Link to="/addvehicle">here</Link>!
+              Sorry, there are no available trips at the moment. You can create one <Link to="/addtrip">here</Link>!
             </p>
             :
             <Row>

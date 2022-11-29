@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import TripDetailModal from './TripDetailModal';
 import { useState } from 'react'
 
-const PassengerTrip = ({ trips, currentUser, helper, changeHelp, title="Trips Available" }) => {
+const PassengerTrip = ({ trips, currentUser, helper, changeHelp, title = "Trips Available" }) => {
   const toastOptions = {
     position: "bottom-right",
     autoClose: 5000,
@@ -43,6 +43,12 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp, title="Trips Av
       changeHelp(helper + 1)
       toast.success("Trip joined successfully", toastOptions)
     }
+  }
+
+  const checkTime = (time) => {
+    const curTime = Date.now()
+    const departTime = new Date(time)
+    return curTime < departTime
   }
 
   const navigate = useNavigate()
@@ -81,7 +87,12 @@ const PassengerTrip = ({ trips, currentUser, helper, changeHelp, title="Trips Av
                         <button className="open-button"
                           onClick={() => toggleModal(index)}>See More</button>
                       </React.Fragment>
-                      <Button id="join" variant="primary" className="rounded" onClick={(e) => joinTrip(e, trip)}>Join</Button>
+                      {
+                        (checkTime(trip.departTime)) ?
+                          <Button id="join" variant="primary" className="rounded" onClick={(e) => joinTrip(e, trip)}>Join</Button>
+                          :
+                          <Button disabled id="join" variant="primary" className="rounded" onClick={(e) => joinTrip(e, trip)}>Join</Button>
+                      }
                     </Card.Body>
                   </Card>
                 </Col>
