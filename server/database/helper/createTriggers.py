@@ -13,7 +13,7 @@ def createTriggers():
     )
     cursor = db.cursor()
     triggers = [ 
-         """CREATE TRIGGER insertPassenger 
+         """CREATE TRIGGER insertUser 
             AFTER INSERT ON USER 
             FOR EACH ROW 
             BEGIN 
