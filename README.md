@@ -1,6 +1,7 @@
-# WatCarPool
+# WatCarPool <img src=https://user-images.githubusercontent.com/83667515/223636438-2167b855-f76d-4247-bb5c-217bee713ee1.PNG height=40>
 
-This is the group project for CS 348 Fall 2022 at University of Waterloo
+This is the group project for CS 348 Fall 2022 at University of Waterloo!
+
 
 ## Overview
 
